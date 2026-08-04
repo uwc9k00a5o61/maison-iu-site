@@ -22,7 +22,7 @@ a{color:inherit;text-decoration:none}
 .hd .row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:66px}
 .hd .links,.hd .tools{display:flex;gap:26px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
 .hd .tools{justify-content:flex-end}
-.hd .brand{font-family:var(--serif);font-weight:500;letter-spacing:.26em;font-size:16px;text-align:center}
+.hd .brand{font-family:var(--script);font-weight:400;font-size:30px;line-height:1;text-align:center;color:var(--ink)}
 .burger{display:none;width:24px;height:16px;position:relative;cursor:pointer}
 .burger span{position:absolute;left:0;right:0;height:1.6px;background:var(--ink);transition:.3s var(--e)}
 .burger span:nth-child(1){top:0}.burger span:nth-child(2){top:7px}.burger span:nth-child(3){top:14px}
@@ -30,9 +30,10 @@ a{color:inherit;text-decoration:none}
 
 /* hero (editorial split) */
 .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:74px 0 84px}
-.hero .ey{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
-.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(38px,6vw,72px);line-height:1.03;letter-spacing:-.01em}
-.hero h1 em{font-family:var(--script);font-style:normal;font-weight:400;font-size:1.18em;display:inline-block;line-height:.8;color:#2a2620}
+.hero .ey{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+.hero .brandbig{font-family:var(--script);font-weight:400;font-size:clamp(66px,10vw,128px);line-height:.84;color:#211d18;margin:0 0 8px}
+.hero .brandsub{font-family:var(--serif);font-weight:500;font-size:clamp(13px,1.5vw,17px);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.4vw,46px);line-height:1.06;letter-spacing:-.01em;margin-top:22px}
 .hero .sub{margin:26px 0 34px;color:var(--muted);font-size:16px;max-width:44ch}
 .hero .cta{display:flex;gap:14px;flex-wrap:wrap}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 28px;border-radius:999px;
@@ -89,8 +90,39 @@ a{color:inherit;text-decoration:none}
 .drawer.open{transform:none}
 .drawer a{font-family:var(--serif);font-size:26px;padding:8px 0}
 .drawer .x{position:absolute;top:22px;right:24px;font-size:24px;background:none;border:0;color:var(--ivory)}
+
+/* intro — logo pen-writes, then dark curtains part to reveal the site */
+.intro{position:fixed;inset:0;z-index:100}
+.intro .curtain{position:absolute;left:0;right:0;height:50.5%;background:var(--ink);transition:transform .95s var(--e)}
+.intro .curtain.top{top:0}.intro .curtain.bot{bottom:0}
+.intro .lg{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:opacity .55s ease,transform .9s var(--e)}
+.intro .lg svg.sglogo{width:min(72vw,560px);height:auto}
+.intro .lg .sig{fill:none;stroke:var(--ivory);stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.intro .lg .sig-fill{fill:var(--ivory);opacity:0;transition:opacity .5s ease}
+.intro .lg .flr{display:block;margin:4px auto 0;width:min(48vw,360px);height:22px}
+.intro .lg .flr path{fill:none;stroke:var(--champ);stroke-width:1.6;stroke-linecap:round}
+.intro .lg .dsc{margin-top:16px;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--champ);opacity:0;transition:opacity .6s ease}
+.intro.done .curtain.top{transform:translateY(-100%)}
+.intro.done .curtain.bot{transform:translateY(100%)}
+.intro.done .lg{opacity:0;transform:scale(.94)}
+.intro.gone{display:none}
+body.introing{overflow:hidden}
 </style>
 </head><body>
+
+<div class="intro" id="intro">
+  <div class="curtain top"></div>
+  <div class="curtain bot"></div>
+  <div class="lg">
+    <svg class="sglogo" viewBox="0 0 1000 250" aria-label="Maison IU">
+      <text class="sig" x="500" y="176" text-anchor="middle" font-family="'Pinyon Script',cursive" font-size="150">Maison IU</text>
+      <text class="sig-fill" x="500" y="176" text-anchor="middle" font-family="'Pinyon Script',cursive" font-size="150">Maison IU</text>
+    </svg>
+    <svg class="flr" viewBox="0 0 360 22" preserveAspectRatio="none" aria-hidden="true"><path id="introFlr" d="M6 15 C 92 3, 182 3, 224 10 S 332 20, 354 6"/></svg>
+    <div class="dsc">Fine Watches · Jewellery · Bags</div>
+  </div>
+</div>
 
 <div class="drawer" id="drawer"><button class="x" id="dx" aria-label="Закрыть">✕</button>
   <a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a>
@@ -99,7 +131,7 @@ a{color:inherit;text-decoration:none}
 
 <header class="hd"><div class="wrap"><div class="row">
   <div class="links"><a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a></div>
-  <div class="brand">MAISON&nbsp;&nbsp;IU</div>
+  <div class="brand">Maison&nbsp;IU</div>
   <div class="tools"><a href="catalog.html">Каталог</a><a href="#contact">Контакты</a><span>RU · EN</span></div>
   <div class="burger" id="burger" style="grid-column:3;justify-self:end"><span></span><span></span><span></span></div>
 </div></div></header>
@@ -107,8 +139,10 @@ a{color:inherit;text-decoration:none}
 <main class="wrap">
   <section class="hero">
     <div>
-      <div class="ey">MAISON IU · С 2013 · Москва · Dubai · Istanbul</div>
-      <h1>Редкие часы,<br>украшения<br>и <em>сумки</em></h1>
+      <div class="ey">С 2013 · Москва · Dubai · Istanbul</div>
+      <div class="brandbig">Maison IU</div>
+      <div class="brandsub">Fine Watches · Jewellery · Bags</div>
+      <h1>Редкие часы, украшения и сумки</h1>
       <p class="sub">Дом кураторского люкса. Проверенная подлинность, box &amp; papers, конфиденциальный сервис для взыскательных коллекционеров.</p>
       <div class="cta"><a class="btn g" href="catalog.html">Смотреть каталог</a><a class="btn o" href="#contact">Связаться · Telegram</a></div>
     </div>
@@ -151,5 +185,31 @@ a{color:inherit;text-decoration:none}
  function o(){d.classList.add('open')}function c(){d.classList.remove('open')}
  if(b)b.addEventListener('click',o); if(x)x.addEventListener('click',c);
  d.querySelectorAll('a').forEach(function(a){a.addEventListener('click',c)});})();
+
+/* intro: script logo pen-writes, then curtains part to reveal the site */
+(function(){
+  var intro=document.getElementById('intro'); if(!intro) return;
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches, seen=false;
+  try{seen=sessionStorage.getItem('miuIntro')==='1';}catch(e){}
+  if(reduce||seen){ intro.classList.add('gone'); return; }
+  document.body.classList.add('introing');
+  try{sessionStorage.setItem('miuIntro','1');}catch(e){}
+  var sig=intro.querySelector('.sig'), fill=intro.querySelector('.sig-fill'),
+      flr=document.getElementById('introFlr'), dsc=intro.querySelector('.dsc'), played=false, L=2600, fl=1;
+  function play(){ if(played)return; played=true;
+    try{var l=sig.getComputedTextLength()*3.4; if(l>200)L=l;}catch(e){}
+    sig.style.strokeDasharray=L; sig.style.strokeDashoffset=L;
+    try{fl=flr.getTotalLength();}catch(e){} flr.style.strokeDasharray=fl; flr.style.strokeDashoffset=fl;
+    requestAnimationFrame(function(){
+      sig.style.transition='stroke-dashoffset 1.5s cubic-bezier(.66,0,.34,1)'; sig.style.strokeDashoffset=0;
+      setTimeout(function(){ fill.style.opacity=1; },1250);
+      setTimeout(function(){ flr.style.transition='stroke-dashoffset .7s ease'; flr.style.strokeDashoffset=0; dsc.style.opacity=1; },1400);
+      setTimeout(function(){ intro.classList.add('done'); document.body.classList.remove('introing'); },2550);
+      setTimeout(function(){ intro.classList.add('gone'); },3600);
+    });
+  }
+  if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(play); }
+  setTimeout(play,1000);  // fallback if fonts.ready never resolves
+})();
 </script>
 </body></html>
