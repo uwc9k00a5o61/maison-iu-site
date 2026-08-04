@@ -101,7 +101,7 @@ img{display:block;max-width:100%}
 
 <div class="scroller">
 <div class="stage" id="stage">
-  <div class="flyer" id="flyer"><img id="watchImg" src="assets/watch-options/1-royal-oak.jpg" alt=""></div>
+  <div class="flyer" id="flyer"><canvas id="scrub" width="1080" height="1080"></canvas></div>
 
   <div class="modelcap" id="modelcap">
     <div class="k">Limited · Live selection</div>
@@ -147,19 +147,38 @@ img{display:block;max-width:100%}
   var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
 
   // --- watch models ---
+  var RM={p:'assets/hero-rm/f_',n:80,ext:'.jpg',pad:3};
   var WATCHES={
+    'rm':{frames:RM, nm:'Richard Mille · RM 30-01', meta:'Automatic · Declutchable Rotor · 18K Rose Gold', price:'POA'},
     '1':{img:'assets/watch-options/1-royal-oak.jpg', nm:'Audemars Piguet Royal Oak', meta:'Ref. 15500ST · Blue dial', price:'52,000'},
-    '2':{img:'assets/watch-options/2-richard-mille.jpg', nm:'Richard Mille RM',          meta:'Skeleton · Titanium',    price:'POA'},
-    '3':{img:'assets/watch-options/3-nautilus.jpg',      nm:'Patek Philippe Nautilus',   meta:'Ref. 5711 · Steel',      price:'POA'},
-    '4':{img:'assets/watch-options/4-daytona.jpg',       nm:'Rolex Cosmograph Daytona',  meta:'Ref. 116500LN · Steel',  price:'38,000'}
+    '2':{frames:RM, nm:'Richard Mille · RM 30-01', meta:'Automatic · Declutchable Rotor · 18K Rose Gold', price:'POA'},
+    '3':{img:'assets/watch-options/3-nautilus.jpg', nm:'Patek Philippe Nautilus', meta:'Ref. 5711 · Steel', price:'POA'},
+    '4':{img:'assets/watch-options/4-daytona.jpg', nm:'Rolex Cosmograph Daytona', meta:'Ref. 116500LN · Steel', price:'38,000'}
   };
-  var w=WATCHES[q.get('watch')]||WATCHES['1'];
-  document.getElementById('watchImg').src=w.img;
+  var w=WATCHES[q.get('watch')]||WATCHES['rm'];
   document.getElementById('modelName').textContent=w.nm;
   document.getElementById('modelMeta').textContent=w.meta;
   var priceEl=document.getElementById('modelPrice');
   if(w.price==='POA'){ priceEl.parentNode.innerHTML='<span style="letter-spacing:.16em;font-size:13px;color:var(--champ)">PRICE ON REQUEST</span>'; }
   else priceEl.textContent=w.price;
+
+  // --- watch renderer: real-photo frame-scrub (canvas) — sharp, brand-accurate, no distortion ---
+  var scrub=document.getElementById('scrub'), sctx=scrub.getContext('2d');
+  var frames=[], NF=0, loaded=0;
+  var cl=function(v,a,b){return Math.max(a,Math.min(b,v));};
+  function drawFrame(idx){
+    if(!NF) return; idx=cl(Math.round(idx),0,NF-1);
+    var im=frames[idx]; if(!im||!im.complete||!im.naturalWidth) return;
+    var cw=scrub.width, ch=scrub.height, s=Math.max(cw/im.naturalWidth,ch/im.naturalHeight);
+    var dw=im.naturalWidth*s, dh=im.naturalHeight*s;
+    sctx.clearRect(0,0,cw,ch); sctx.drawImage(im,(cw-dw)/2,(ch-dh)/2,dw,dh);
+  }
+  if(w.frames){
+    NF=w.frames.n;
+    for(var ii=1;ii<=NF;ii++){ var im=new Image();
+      im.onload=function(){ loaded++; if(loaded===1) drawFrame(0); };
+      im.src=w.frames.p+String(ii).padStart(w.frames.pad,'0')+w.frames.ext; frames.push(im); }
+  } else { NF=1; var only=new Image(); only.onload=function(){drawFrame(0);}; only.src=w.img; frames.push(only); }
 
   // --- helpers ---
   var clamp=function(v,a,b){return Math.max(a,Math.min(b,v));};
@@ -192,6 +211,14 @@ img{display:block;max-width:100%}
     var driftUp=lerp(0,-150, easeIO(leave));
     flyer.style.opacity=fly;
     flyer.style.transform='translate(-50%,-50%) translateY('+(bob+driftUp)+'px) scale('+scale+')';
+
+    // ---- real-photo frame-scrub: scroll rotates the watch [0 .. 0.42] ----
+    if(NF>1){
+      var fi;
+      if(p<0.008){ fi=(Math.sin(t*0.3)*0.5+0.5)*Math.min(7,NF-1); }   // gentle idle sway at rest
+      else{ fi=band(p,0,0.42)*(NF-1); }                                // scroll drives full rotation
+      drawFrame(fi);
+    }
 
     // ---- model caption (with the watch) ----
     modelcap.style.opacity=(1-band(p,0.34,0.48));
