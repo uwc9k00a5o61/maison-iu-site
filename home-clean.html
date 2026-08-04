@@ -189,11 +189,9 @@ body.introing{overflow:hidden}
 /* intro: script logo pen-writes, then curtains part to reveal the site */
 (function(){
   var intro=document.getElementById('intro'); if(!intro) return;
-  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches, seen=false;
-  try{seen=sessionStorage.getItem('miuIntro')==='1';}catch(e){}
-  if(reduce||seen){ intro.classList.add('gone'); return; }
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce){ intro.classList.add('gone'); return; }   // (for launch: gate to once-per-session)
   document.body.classList.add('introing');
-  try{sessionStorage.setItem('miuIntro','1');}catch(e){}
   var sig=intro.querySelector('.sig'), fill=intro.querySelector('.sig-fill'),
       flr=document.getElementById('introFlr'), dsc=intro.querySelector('.dsc'), played=false, L=2600, fl=1;
   function play(){ if(played)return; played=true;
