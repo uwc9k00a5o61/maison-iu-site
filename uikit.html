@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAISON IU — UI Kit</title><link rel="stylesheet" href="site.css">
+<style>
+.kit{padding:56px 0 96px}
+.block{border-top:1px solid var(--line);padding:34px 0}
+.block .lab{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ash);margin-bottom:20px}
+.row{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.field{border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-family:var(--body);font-size:16px;color:var(--ink2);width:280px;background:#fff}
+.field.focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(22,19,14,.06)}
+.swatches{display:flex;gap:14px;flex-wrap:wrap}
+.sw{width:120px}.sw .c{height:70px;border-radius:10px;border:1px solid var(--line)}.sw .n{font-size:10.5px;letter-spacing:.08em;color:var(--ash);margin-top:8px}
+.type div{margin:10px 0}
+.stateline{display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+</style></head><body>
+<div class="announce">MAISON IU · UI KIT · Design System · Stage 3.2</div>
+<nav class="nav">
+  <div class="links"><a>Watches</a><a>Jewellery</a><a>Bags</a><a>Bespoke</a></div>
+  <div class="brand">MAISON IU</div>
+  <div class="tools"><span class="pill">RU · EN</span></div>
+</nav>
+<div class="wrap kit">
+  <h1 class="h-serif" style="font-size:40px;margin-bottom:8px">Mini UI Kit</h1>
+  <p style="font-family:var(--body);font-size:17px;color:var(--ink2)">Атомы дизайн-системы сайта — на токенах брендбука. Zero золота (шампань — только hairline-деталь).</p>
+
+  <div class="block"><div class="lab">Кнопки — solid / ghost / garnet · состояния</div>
+    <div class="row">
+      <a class="btn btn-solid">Solid</a>
+      <a class="btn btn-solid" style="background:#000">Solid · hover</a>
+      <a class="btn btn-ghost">Ghost</a>
+      <a class="btn btn-ghost" style="background:var(--ink);color:var(--ivory)">Ghost · hover</a>
+      <a class="btn btn-garnet">Garnet · Связаться</a>
+      <a class="btn btn-ghost" style="opacity:.4;pointer-events:none">Disabled</a>
+    </div>
+  </div>
+
+  <div class="block"><div class="lab">Поля ввода · состояния</div>
+    <div class="row">
+      <div class="field">Поиск по каталогу</div>
+      <div class="field focus">Rolex Datejust|</div>
+      <div class="field" style="border-color:#B4544A;color:#B4544A">Ошибка — обязательное поле</div>
+    </div>
+  </div>
+
+  <div class="block"><div class="lab">Бейджи</div>
+    <div class="row"><span class="badge badge-line">New</span><span class="badge badge-ink">In stock</span><span class="badge badge-garnet">Bespoke</span><span class="badge badge-garnet">Rare</span><span class="badge badge-line" style="opacity:.6">Sold</span></div>
+  </div>
+
+  <div class="block"><div class="lab">Карточка товара · hover</div>
+    <div class="row" style="align-items:flex-start">
+      <div class="card" style="width:280px"><div class="ph"><img src="img/hero-watch.jpg"><span class="fav"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z"/></svg></span></div><h3>Rolex Datejust 36</h3><div class="meta tabular">Ref. 126231 · Everose</div><div class="price tabular">₽ 1 450 000</div></div>
+      <div class="card" style="width:280px"><div class="ph" style="outline:1px solid var(--ink);outline-offset:3px"><img src="img/jewellery.jpg"><span class="fav" style="background:var(--ink)"><svg viewBox="0 0 24 24" style="stroke:var(--ivory)"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z"/></svg></span><span class="badge badge-garnet">Bespoke</span></div><h3>Tennis Bracelet</h3><div class="meta tabular">Diamonds · RG</div><div class="price tabular">По запросу</div></div>
+    </div>
+  </div>
+
+  <div class="block"><div class="lab">Психология продаж · люкс-компоненты (тонко, без кричалок)</div>
+    <div class="row" style="align-items:flex-start;gap:40px">
+      <div><div class="lab" style="margin-bottom:10px">Trust-бейдж</div>
+        <span class="trust-badge"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6z"/></svg> Подлинность подтверждена · документы</span></div>
+      <div><div class="lab" style="margin-bottom:10px">Scarcity</div>
+        <span class="scarcity"><span class="dot"></span> Единственный экземпляр</span></div>
+      <div><div class="lab" style="margin-bottom:10px">Retail-anchor цена (круглая)</div>
+        <div class="tabular" style="font-family:var(--serif);font-size:18px"><span class="anchor">Retail ₽ 1 690 000</span> ₽ 1 450 000</div></div>
+    </div>
+    <div class="vip" style="max-width:340px;margin-top:26px"><div class="top"><span>VIP · Silver</span><span>→ Gold</span></div><div class="bar"><i></i></div><div class="cap">До уровня Gold — ещё одна покупка</div></div>
+    <div class="verified" style="max-width:620px;margin-top:22px">
+      <div class="it"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 5-3.5 7.5-7 9-3.5-1.5-7-4-7-9V6z"/></svg> Экспертиза дома</div>
+      <div class="it"><svg viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4"/></svg> Box &amp; papers</div>
+      <div class="it"><svg viewBox="0 0 24 24"><circle cx="12" cy="10" r="6"/><path d="M9 15l-2 6 5-3 5 3-2-6"/></svg> Гарантия</div>
+      <div class="it"><svg viewBox="0 0 24 24"><path d="M9 4L7 20M17 4l-2 16M5 9h14M4 15h14"/></svg> Серийный сверен</div>
+    </div>
+    <p class="cap" style="margin-top:18px;font-family:var(--sans)">Правила: круглые цены (fluency), без countdown/charm-цен/«-10%!!!»/спам-попапов. Один primary-CTA на экран, sticky «Связаться».</p>
+  </div>
+
+  <div class="block"><div class="lab">Палитра</div>
+    <div class="swatches">
+      <div class="sw"><div class="c" style="background:#F4F0E7"></div><div class="n">Ivory #F4F0E7</div></div>
+      <div class="sw"><div class="c" style="background:#16130E"></div><div class="n">Ink #16130E</div></div>
+      <div class="sw"><div class="c" style="background:#5A1A28"></div><div class="n">Garnet #5A1A28</div></div>
+      <div class="sw"><div class="c" style="background:#C4B196"></div><div class="n">Champagne (foil) #C4B196</div></div>
+      <div class="sw"><div class="c" style="background:#1C1B18"></div><div class="n">Graphite #1C1B18</div></div>
+      <div class="sw"><div class="c" style="background:#8A8478"></div><div class="n">Ash #8A8478</div></div>
+    </div>
+  </div>
+
+  <div class="block"><div class="lab">Типо-шкала — Pinyon / Bodoni / Cormorant / Inter</div>
+    <div class="type">
+      <div class="script" style="font-size:56px">Maison IU</div>
+      <div class="h-serif" style="font-size:44px">Display · Bodoni 44</div>
+      <div class="h-serif" style="font-size:30px">Heading · Bodoni 30</div>
+      <div style="font-family:var(--body);font-size:20px;color:var(--ink2)">Body · Cormorant 20 — редкость требует тишины и воздуха.</div>
+      <div style="font-family:var(--sans);font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--ash)">Label · Inter 13 · TRACKING</div>
+      <div class="tabular" style="font-family:var(--serif);font-size:20px">Tabular · ₽ 1 450 000 · Ref. 126231</div>
+    </div>
+  </div>
+</div>
+</body></html>

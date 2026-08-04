@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MAISON IU — Live</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Inter:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root{
+ --ivory:#F5F1E8;--white:#FDFCFA;--ink:#141210;--ink2:#39352E;--muted:#6B665C;
+ --graphite:#181614;--graphite2:#0E0D0C;--champ:#C4B196;--garnet:#5A1A28;--cream:#F1E4D7;
+ --line:rgba(20,18,16,.14);--line-d:rgba(245,241,232,.14);
+ --serif:'Bodoni Moda',Didot,serif;--script:'Pinyon Script',cursive;--sans:'Inter',system-ui,Arial,sans-serif;
+ --e:cubic-bezier(.22,.61,.36,1);--maxw:1300px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden}
+body{background:var(--ivory);color:var(--ink);font-family:var(--sans);font-weight:400;line-height:1.6;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+img{max-width:100%;display:block}a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 42px}
+.eyebrow{font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.tabular{font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s var(--e),transform .9s var(--e)}
+.reveal.in,html.still .reveal{opacity:1;transform:none}
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:40;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:18px 42px;transition:.4s var(--e);color:var(--ivory)}
+.nav.solid{background:rgba(253,252,250,.92);backdrop-filter:blur(10px);color:var(--ink);border-bottom:1px solid var(--line)}
+.nav .links,.nav .tools{display:flex;gap:24px;align-items:center;font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:500}
+.nav .tools{justify-content:flex-end}
+.nav a.link:hover{color:var(--champ)}
+.nav .brand{font-family:var(--serif);font-weight:500;font-size:23px;letter-spacing:8px;text-align:center;padding-left:8px}
+.nav .pill{border:1px solid currentColor;border-radius:999px;padding:5px 11px;font-size:11px;opacity:.85}
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--sans);font-weight:500;font-size:12px;letter-spacing:.15em;text-transform:uppercase;border-radius:999px;padding:15px 30px;cursor:pointer;border:1px solid transparent;transition:.25s var(--e)}
+.btn-garnet{background:var(--garnet);color:var(--cream)}.btn-garnet:hover{filter:brightness(1.12)}
+.btn-ivory{background:var(--ivory);color:var(--ink)}.btn-ivory:hover{background:#fff}
+.btn-ghost-d{background:transparent;color:var(--ivory);border-color:rgba(245,241,232,.55)}.btn-ghost-d:hover{background:var(--ivory);color:var(--ink)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--ink)}.btn-ghost:hover{background:var(--ink);color:var(--ivory)}
+/* HERO */
+.hero{position:relative;height:100vh;min-height:660px;background:radial-gradient(120% 120% at 72% 26%,#241f18,#0d0c0b 70%);color:var(--ivory);overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,12,11,.82),rgba(13,12,11,.28) 44%,rgba(13,12,11,0) 66%);z-index:2}
+html.still .hero{height:700px;min-height:700px}
+.hero .layer{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+#heroArt{justify-content:flex-end;padding-right:5vw}
+.hero-watch{width:min(44vh,440px);border-radius:20px;box-shadow:0 50px 120px rgba(0,0,0,.65);will-change:transform}
+/* burger + drawer */
+.burger{display:none;background:none;border:0;cursor:pointer;width:44px;height:44px;flex-direction:column;gap:5px;justify-content:center;align-items:center;color:inherit}
+.burger span{width:22px;height:1.6px;background:currentColor;display:block}
+.drawer{position:fixed;inset:0;z-index:60;background:rgba(14,13,12,.985);color:var(--ivory);display:flex;flex-direction:column;justify-content:center;gap:2px;padding:56px 32px;transform:translateY(-102%);transition:transform .5s var(--e)}
+.drawer.open{transform:none}
+.drawer a{font-family:var(--serif);font-size:30px;padding:15px 0;border-bottom:1px solid var(--line-d)}
+.drawer .mini{display:flex;gap:22px;flex-wrap:wrap;margin-top:26px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--champ)}
+.drawer-close{position:absolute;top:18px;right:18px;background:none;border:0;color:var(--ivory);font-size:22px;width:44px;height:44px;cursor:pointer}
+.hero .copy{position:relative;z-index:3;max-width:var(--maxw);margin:0 auto;padding:0 42px;width:100%}
+.hero .script{font-family:var(--script);font-size:clamp(44px,6vw,80px);color:var(--champ);line-height:.82;margin-bottom:6px}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(42px,6.6vw,92px);line-height:1;letter-spacing:-.02em;margin:10px 0 18px;max-width:11ch}
+.hero p{font-size:17px;color:#D9D4C8;max-width:42ch;margin-bottom:28px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero .tag3d{position:absolute;bottom:20px;left:50%;transform:translateX(-50%);font-size:10px;letter-spacing:.2em;color:#8f8button;color:#93897A;text-transform:uppercase}
+.scrollhint{position:absolute;bottom:24px;right:42px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#93897A;display:flex;align-items:center;gap:10px;z-index:3}
+.scrollhint .ln{width:44px;height:1px;background:linear-gradient(90deg,transparent,var(--champ))}
+/* HERO cinematic (3.5): watch → logo writes → copy reveals */
+#heroArt{justify-content:center;padding-right:0;z-index:1}
+.hero-center{position:relative;z-index:3;text-align:center;max-width:900px;margin:0 auto;padding:0 24px}
+#heroLogoSvg{width:min(720px,86vw);height:auto;overflow:visible;display:block;margin:0 auto}
+.hero .sig{fill:none;stroke-linecap:round;stroke-linejoin:round}
+.hero .sig-fill{opacity:0}
+.hero-copy2{margin-top:16px}
+.hero-copy2 .lede{font-family:var(--sans);color:#D9D4C8;font-size:16px;line-height:1.7;max-width:52ch;margin:0 auto 24px}
+.hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+html.still .hero .sig{opacity:0}
+html.still .hero .sig-fill{opacity:1}
+/* marquee */
+.marquee{background:var(--ink);color:var(--ivory);overflow:hidden;padding:16px 0;border-top:1px solid var(--line-d)}
+.marquee .track{display:flex;gap:52px;white-space:nowrap;font-family:var(--serif);font-size:20px;letter-spacing:.18em;opacity:.85;animation:mq 26s linear infinite}
+@keyframes mq{to{transform:translateX(-50%)}}
+/* sections */
+section{padding:112px 0}
+.sec-white{background:var(--white)}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:40px;gap:20px}
+.sec-head h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,40px);letter-spacing:-.01em}
+.sec-head p{color:var(--muted);font-size:15px;max-width:42ch;margin-top:6px}
+.grid{display:grid;gap:26px}.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+/* card */
+.card{cursor:pointer}
+.card .ph{aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:linear-gradient(160deg,#F2ECDF,#E7DECB);position:relative}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--e)}
+.card:hover .ph img{transform:scale(1.05)}
+.card .fav{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:rgba(245,241,232,.92);display:flex;align-items:center;justify-content:center}
+.card .fav svg{width:15px;height:15px;stroke:var(--ink);fill:none;stroke-width:1.5}
+.card .badge{position:absolute;top:12px;left:12px;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:var(--garnet);color:var(--cream)}
+.card h3{font-family:var(--serif);font-weight:500;font-size:17px;margin-top:15px}
+.card .meta{font-size:12.5px;color:var(--muted);margin-top:3px}
+.card .scar{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--garnet);margin-top:6px;display:flex;align-items:center;gap:6px}
+.card .scar .dot{width:5px;height:5px;border-radius:50%;background:var(--garnet)}
+.card .price{font-family:var(--serif);font-size:18px;margin-top:7px}
+/* split */
+.split{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
+.split .im{overflow:hidden;min-height:520px}.split .im img{width:100%;height:100%;object-fit:cover;will-change:transform}
+.split .tx{padding:90px;display:flex;flex-direction:column;justify-content:center}
+.split h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.2vw,40px);margin:12px 0 16px;line-height:1.05}
+.split p{font-size:17px;color:var(--ink2);max-width:48ch}
+/* trust numbers */
+.nums{display:grid;grid-template-columns:repeat(3,1fr);text-align:center;gap:20px}
+.nums .n{font-family:var(--serif);font-size:clamp(40px,5vw,64px);font-weight:500}
+.nums .l{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:6px}
+.logos{display:flex;gap:38px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+.logos span{font-family:var(--serif);font-size:17px;letter-spacing:.14em;color:var(--ink2);opacity:.7}
+/* concierge */
+.concierge{background:var(--graphite);color:var(--ivory);border-radius:20px;text-align:center;padding:88px 40px}
+.concierge .script{font-family:var(--script);font-size:56px;color:var(--champ)}
+.concierge h2{font-family:var(--serif);font-weight:500;font-size:clamp(28px,3.4vw,40px);margin:8px 0 14px}
+.concierge p{color:#D9D4C8;max-width:52ch;margin:0 auto 28px;font-size:16px}
+/* footer */
+.footer{background:var(--graphite2);color:var(--ivory);padding:80px 0 40px}
+.footer .cols{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px}
+.footer h4{font-family:var(--serif);font-weight:400;font-size:15px;margin-bottom:15px}
+.footer li{list-style:none;font-size:13px;margin:9px 0;color:#B4AF a3;color:#B7B1A4}
+.footer a:hover{color:var(--champ)}
+.footer .bottom{border-top:1px solid var(--line-d);margin-top:54px;padding-top:22px;display:flex;justify-content:space-between;font-size:11px;letter-spacing:.1em;color:#8F897C}
+@media(max-width:860px){
+ .nav{padding:12px 16px;grid-template-columns:44px 1fr 44px}.nav .links,.nav .tools{display:none}.nav .brand{font-size:19px;letter-spacing:6px}
+ .burger{display:flex}
+ .wrap{padding:0 20px}section{padding:72px 0}
+ .g4,.g3{grid-template-columns:1fr 1fr}
+ .split{grid-template-columns:1fr}.split .tx{padding:48px 22px}.split .im{min-height:320px}
+ .hero .copy{padding:0 20px}.footer .cols{grid-template-columns:1fr 1fr}
+ .sec-head{flex-direction:column;align-items:flex-start}
+ #heroArt{padding-right:0;justify-content:center;align-items:flex-end;padding-bottom:5vh}
+ .hero-watch{width:min(34vh,240px);opacity:.9}
+ .hero::before{background:linear-gradient(180deg,rgba(13,12,11,.5) 0%,rgba(13,12,11,.35) 40%,rgba(13,12,11,.82) 100%)}
+}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1!important;transform:none!important}.marquee .track{animation:none}}
+</style></head><body>
+
+<nav class="nav" id="nav">
+  <button class="burger" id="burger" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+  <div class="links"><a class="link" href="catalog.html">Watches</a><a class="link" href="catalog.html">Jewellery</a><a class="link" href="catalog.html">Bags</a><a class="link" href="catalog.html">Bespoke</a></div>
+  <div class="brand">MAISON IU</div>
+  <div class="tools">
+    <a class="link" href="catalog.html">Search</a>
+    <a class="link" href="#">Account</a>
+    <a class="link" href="#">Cart</a>
+    <span class="pill">RU · EN</span>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="drawer" id="drawer">
+  <button class="drawer-close" id="drawerClose" aria-label="Закрыть">✕</button>
+  <a href="catalog.html">Watches</a>
+  <a href="catalog.html">Jewellery</a>
+  <a href="catalog.html">Bags</a>
+  <a href="catalog.html">Bespoke</a>
+  <div class="mini"><a href="catalog.html">Search</a><a href="#">Account</a><a href="#">Cart</a><a href="#">RU · EN</a></div>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="hero">
+  <div class="layer" id="heroArt">
+    <canvas class="hero-watch" id="heroWatch" data-frames="60" data-path="assets/hero-frames/orbit_" data-pad="3" data-ext=".jpg" data-poster="assets/hero-frames/poster.jpg" aria-label="Люкс-часы MAISON IU"></canvas>
+  </div>
+  <div class="layer">
+    <div class="hero-center">
+      <svg id="heroLogoSvg" viewBox="0 0 1000 260" role="img" aria-label="Maison IU">
+        <text class="sig" x="500" y="182" text-anchor="middle" font-family="'Pinyon Script',cursive" font-size="152" stroke="#F5F1E8" stroke-width="1.1">Maison IU</text>
+        <text class="sig-fill" x="500" y="182" text-anchor="middle" font-family="'Pinyon Script',cursive" font-size="152" fill="#F5F1E8">Maison IU</text>
+      </svg>
+      <div class="hero-copy2" id="heroCopy">
+        <p class="lede">Rolex · Patek Philippe · Cartier · Van Cleef &amp; Arpels · Hermès<br>Частный дом кураторского люкса — Fine Watches · Jewellery · Bags.</p>
+        <div class="cta">
+          <a class="btn btn-ivory" href="catalog.html">Смотреть коллекцию</a>
+          <a class="btn btn-ghost-d" href="#contact">Связаться · Telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tag3d">3D-часы уходят → логотип пишется пером → разделы проявляются · Mobile & 3D</div>
+  <div class="scrollhint">Scroll <span class="ln"></span></div>
+</header>
+
+<!-- MARQUEE (living) -->
+<div class="marquee"><div class="track">
+  <span>ROLEX</span><span>PATEK PHILIPPE</span><span>CARTIER</span><span>VAN CLEEF &amp; ARPELS</span><span>HERMÈS</span><span>AUDEMARS PIGUET</span><span>RICHARD MILLE</span>
+  <span>ROLEX</span><span>PATEK PHILIPPE</span><span>CARTIER</span><span>VAN CLEEF &amp; ARPELS</span><span>HERMÈS</span><span>AUDEMARS PIGUET</span><span>RICHARD MILLE</span>
+</div></div>
+
+<!-- CURATED -->
+<section class="sec-white"><div class="wrap">
+  <div class="sec-head reveal"><div><div class="eyebrow">Кураторская подборка</div><h2>Избранное этой недели</h2></div><a class="btn btn-ghost" href="catalog.html">Весь каталог</a></div>
+  <div class="grid g4">
+    <a class="card reveal" href="product.html"><div class="ph"><img src="assets/products/watch-gold.jpg"><span class="fav"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z"/></svg></span></div><h3>Rolex Datejust 36</h3><div class="meta tabular">Ref. 126231 · Everose</div><div class="scar"><span class="dot"></span> 1 in stock</div><div class="price tabular">$18,500</div></a>
+    <a class="card reveal" href="product.html"><div class="ph"><img src="assets/products/bracelet.jpg"><span class="fav"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z"/></svg></span><span class="badge">Bespoke</span></div><h3>Tennis Bracelet</h3><div class="meta tabular">Diamonds · RG</div><div class="price tabular">Inquire</div></a>
+    <a class="card reveal" href="product.html"><div class="ph"><img src="assets/products/bag.jpg"><span class="fav"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z"/></svg></span></div><h3>Hermès Kelly 28</h3><div class="meta tabular">Box calf · PHW</div><div class="scar"><span class="dot"></span> Only one</div><div class="price tabular">$42,000</div></a>
+    <a class="card reveal" href="product.html"><div class="ph"><img src="assets/products/watch-twotone.jpg"><span class="fav"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z"/></svg></span></div><h3>Cartier Santos</h3><div class="meta tabular">Large · Steel</div><div class="price tabular">$12,900</div></a>
+  </div>
+</div></section>
+
+<!-- STORY split (parallax image) -->
+<div class="split">
+  <div class="im"><img id="storyImg" src="assets/products/bag.jpg" alt=""></div>
+  <div class="tx reveal">
+    <div class="eyebrow">Дом MAISON IU</div>
+    <h2>Не магазин — частный дом кураторского люкса</h2>
+    <p>Каждое изделие подобрано лично Исламом Утакаевым. Провенанс, дискретность и доступ к редкому — в основе каждой сделки. Москва · Дубай · Стамбул.</p>
+    <div style="margin-top:26px"><a class="btn btn-ghost" href="#">О доме</a></div>
+  </div>
+</div>
+
+<!-- TRUST -->
+<section><div class="wrap">
+  <div class="nums reveal">
+    <div><div class="n">11–12</div><div class="l">лет на рынке</div></div>
+    <div><div class="n">500+</div><div class="l">частных клиентов</div></div>
+    <div><div class="n">3</div><div class="l">страны присутствия</div></div>
+  </div>
+  <div class="logos reveal" style="margin-top:56px"><span>ROLEX</span><span>PATEK PHILIPPE</span><span>CARTIER</span><span>VAN CLEEF &amp; ARPELS</span><span>HERMÈS</span><span>AUDEMARS PIGUET</span></div>
+</div></section>
+
+<!-- NEW ARRIVALS -->
+<section class="sec-white"><div class="wrap">
+  <div class="sec-head reveal"><div><div class="eyebrow">Только что</div><h2>Новые поступления</h2></div><a class="btn btn-ghost" href="catalog.html">Смотреть все</a></div>
+  <div class="grid g4">
+    <a class="card reveal" href="product.html"><div class="ph"><img src="assets/products/bag.jpg"></div><h3>Hermès Birkin 30</h3><div class="meta tabular">Togo · GHW</div><div class="price tabular">$54,000</div></a>
+    <a class="card reveal" href="product.html"><div class="ph"><img src="assets/products/necklace.jpg"></div><h3>VCA Alhambra</h3><div class="meta tabular">5 motifs · YG</div><div class="price tabular">$9,400</div></a>
+    <a class="card reveal" href="product.html"><div class="ph"><img src="assets/products/watch-twotone.jpg"></div><h3>Patek Nautilus</h3><div class="meta tabular">5711 · Steel</div><div class="price tabular">POA</div></a>
+    <a class="card reveal" href="product.html"><div class="ph"><img src="assets/products/watch-gold.jpg"></div><h3>AP Royal Oak</h3><div class="meta tabular">41 mm · Steel</div><div class="price tabular">$78,000</div></a>
+  </div>
+</div></section>
+
+<!-- CONCIERGE -->
+<section id="contact"><div class="wrap"><div class="concierge reveal">
+  <span class="script">Личный подбор</span>
+  <h2>Подберём редкое под ваш запрос</h2>
+  <p>Один разговор — и мы найдём нужную референцию с подтверждённым провенансом. По записи, дискретно.</p>
+  <a class="btn btn-garnet" href="#">Связаться · Telegram</a>
+</div></div></section>
+
+<!-- FOOTER -->
+<footer class="footer"><div class="wrap">
+  <div class="cols">
+    <div><div class="script" style="font-family:var(--script);font-size:46px;color:var(--ivory)">Maison IU</div><div style="font-family:var(--serif);letter-spacing:8px;font-size:13px;margin-top:8px">MAISON IU</div><p style="color:#B7B1A4;margin-top:14px;max-width:34ch;font-size:14px">Fine Watches · Jewellery · Bags. By appointment — Moscow · Dubai · Istanbul.</p></div>
+    <div><h4>Catalogue</h4><ul><li><a href="catalog.html">Watches</a></li><li><a href="catalog.html">Jewellery</a></li><li><a href="catalog.html">Bags</a></li><li><a href="catalog.html">Bespoke</a></li></ul></div>
+    <div><h4>Maison</h4><ul><li><a href="#">About</a></li><li><a href="#">Provenance</a></li><li><a href="#">Private viewing</a></li><li><a href="#">Contact</a></li></ul></div>
+    <div><h4>Connect</h4><ul><li><a href="#">Telegram</a></li><li><a href="#">WhatsApp</a></li><li><a href="#">Payment & delivery</a></li><li><a href="#">RU / EN</a></li></ul></div>
+  </div>
+  <div class="bottom"><span>© MAISON IU — Islam Utakaev</span><span>Provenance verified · Discreet service</span></div>
+</div></footer>
+
+<script>
+(function(){
+  var still = location.search.indexOf('still')>-1;
+  var reduce = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var nav=document.getElementById('nav');
+  // mobile drawer (always bound)
+  var burger=document.getElementById('burger'),drawer=document.getElementById('drawer'),dclose=document.getElementById('drawerClose');
+  function closeDrawer(){if(drawer)drawer.classList.remove('open');}
+  if(burger)burger.addEventListener('click',function(){drawer.classList.toggle('open');});
+  if(dclose)dclose.addEventListener('click',closeDrawer);
+  if(drawer)drawer.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeDrawer);});
+  if(drawer&&location.search.indexOf('drawer')>-1)drawer.classList.add('open');
+  // nav solidify
+  function onScrollNav(y){ if(y>60) nav.classList.add('solid'); else nav.classList.remove('solid'); }
+  // reveals via IntersectionObserver (robust, mobile+desktop)
+  if(!still){
+    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.18});
+    document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+  } else { document.documentElement.classList.add('still'); }
+
+  if(still||reduce||!window.gsap){
+    window.addEventListener('scroll',function(){onScrollNav(scrollY);}); onScrollNav(0);
+    var _s=document.querySelector('.hero .sig'),_f=document.querySelector('.hero .sig-fill'),_a=document.getElementById('heroArt');
+    if(_s)_s.style.opacity='0'; if(_f)_f.style.opacity='1'; if(_a)_a.style.opacity='0'; /* static: собранный финал — написанный логотип + текст, часы уже «ушли» */
+    return;
+  }
+
+  // Lenis smooth scroll
+  var lenis=new Lenis({lerp:.09,smoothWheel:true});
+  function raf(t){lenis.raf(t);requestAnimationFrame(raf);} requestAnimationFrame(raf);
+  /* ── Единый Lenis для страницы. Scrub-hero (Mobile&3D) подписывается НА ЭТОТ инстанс, свой НЕ создаёт ──
+     Контракт интеграции:
+       window.__maisonLenis            — общий Lenis instance
+       window.maisonOnScroll(fn)       — подписка на скролл (fn получает {scroll, progress})
+       window.__maisonGsap / ScrollTrigger — общий GSAP (registerPlugin уже вызван ниже)
+       Слот: <div id="heroArt"> — заменить <img#heroWatch> на <canvas> scrub-hero (сохранить id heroArt).
+       ScrollTrigger.refresh() вызвать после монтирования canvas. */
+  window.__maisonLenis=lenis;
+  window.maisonOnScroll=function(fn){lenis.on('scroll',fn);};
+  gsap.registerPlugin(ScrollTrigger);
+  lenis.on('scroll',ScrollTrigger.update);
+  lenis.on('scroll',function(e){onScrollNav(e.animatedScroll||e.scroll||0);}); onScrollNav(0);
+
+  // ===== HERO scroll narrative (3.5): часы уходят → логотип пишется пером → reveal =====
+  var heroArt=document.getElementById('heroArt'),
+      sig=document.querySelector('.hero .sig'),
+      sigfill=document.querySelector('.hero .sig-fill'),
+      heroCopy=document.getElementById('heroCopy');
+  var SIGLEN=2600, lastP=0;
+  function cl(a,b,x){return Math.max(0,Math.min(1,(x-a)/(b-a)));}
+  function setSig(){ if(!sig)return; try{var L=sig.getComputedTextLength()*3.4; if(L>200)SIGLEN=L;}catch(e){} sig.style.strokeDasharray=SIGLEN; }
+  function applyPhase(p){
+    lastP=p;
+    // 0.00–0.35 часы — главные; 0.35–0.55 улетают (fade+scale)
+    if(heroArt){ heroArt.style.opacity=(1-cl(0.35,0.55,p)); heroArt.style.transform='scale('+(1+0.18*cl(0,0.5,p))+') translateY('+(-6*cl(0.2,0.55,p))+'%)'; }
+    if(window.heroWatchSetProgress){ try{window.heroWatchSetProgress(cl(0,0.5,p));}catch(e){} }
+    // 0.40–0.62 логотип пишется пером (stroke-draw Pinyon), fill 0.58–0.66
+    if(sig) sig.style.strokeDashoffset=(SIGLEN*(1-cl(0.40,0.62,p)));
+    if(sigfill) sigfill.style.opacity=cl(0.58,0.66,p);
+    // 0.66–0.90 текст+CTA проявляются
+    if(heroCopy){ var c=cl(0.66,0.90,p); heroCopy.style.opacity=c; heroCopy.style.transform='translateY('+(22*(1-c))+'px)'; }
+    // 0.58–0.75 навигация проявляется
+    if(nav) nav.style.opacity=cl(0.58,0.75,p);
+  }
+  window.maisonHeroPhase=applyPhase; // мастер-таймлайн Mobile&3D может звать это, если владеет пином
+  if(nav) nav.style.opacity=0;
+  setSig(); applyPhase(0);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(function(){setSig();applyPhase(lastP);});
+
+  // QA-заморозка фазы: ?p=0.5 (без скролла/пина)
+  var pm=location.search.match(/[?&]p=([0-9.]+)/);
+  if(pm){ if(nav) nav.style.opacity=1; applyPhase(parseFloat(pm[1])); }
+  else {
+    // Единый пин на #hero (общий Lenis/ScrollTrigger). Часы (Mobile&3D) синхронятся по прогрессу.
+    ScrollTrigger.create({trigger:'#hero',start:'top top',end:'+=210%',scrub:.6,pin:true,
+      onUpdate:function(s){applyPhase(s.progress);}, onRefresh:setSig});
+  }
+
+  // parallax story image
+  gsap.to('#storyImg',{yPercent:-14,ease:'none',scrollTrigger:{trigger:'.split',start:'top bottom',end:'bottom top',scrub:true}});
+})();
+</script>
+<script src="assets/heroWatch-scrub.js" defer></script>
+</body></html>
