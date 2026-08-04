@@ -13,7 +13,7 @@ body{background:var(--ivory)}
 .toolrow .cnt{font-size:12px;letter-spacing:.08em;color:var(--ash);display:flex;align-items:center;gap:14px}
 .toolrow .cnt svg{width:14px;height:14px;stroke:var(--champ);fill:none;stroke-width:1.4}
 .toolrow .sort{border:1px solid var(--line);border-radius:999px;padding:9px 16px;font-size:12px;letter-spacing:.08em;display:flex;gap:10px;align-items:center;background:#fff}
-.rxgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:34px;max-width:var(--maxw);margin:40px auto 0;padding:0 40px 60px}
+.rxgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px;max-width:var(--maxw);margin:40px auto 0;padding:0 40px 60px}
 .rx{background:var(--white);border:1px solid rgba(20,18,16,.05);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 44px rgba(20,18,16,.06);transition:transform .45s var(--e),box-shadow .45s var(--e);text-decoration:none}
 .rx:hover{transform:translateY(-6px);box-shadow:0 26px 70px rgba(20,18,16,.13)}
 .rx .im{position:relative;aspect-ratio:1/1.12;overflow:hidden;background:var(--white)}
@@ -30,17 +30,26 @@ body{background:var(--ivory)}
 .pager a{width:42px;height:42px;border:1px solid var(--line);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;color:var(--ink2)}
 .pager a.on{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
 @media(max-width:860px){
- .nav{padding:12px 16px}.nav .links,.nav .tools{display:none}
- .rxgrid{grid-template-columns:1fr 1fr;gap:16px;padding:0 16px 60px}
- .toolrow{padding:0 16px}.rx .cap{padding:18px 12px 24px}.rx .cap h3{font-size:16px}
+ .cat-hero{padding:44px 0 20px}
+ .cat-hero .sub{white-space:normal;padding:0 20px}
+ .filterbar{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding:4px 16px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+ .filterbar::-webkit-scrollbar{display:none}
+ .chip{flex:0 0 auto}
+ .toolrow{flex-wrap:wrap;gap:10px;padding:0 16px}
+ .toolrow .cnt{flex-wrap:wrap}
+ .rxgrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:0 16px 60px}
+ .rx .cap{padding:18px 12px 24px}.rx .cap h3{font-size:16px}
 }
+@media(max-width:380px){ .rxgrid{grid-template-columns:1fr} }
 </style></head><body>
 <div class="announce">By appointment · Moscow<span class="sep">·</span>Dubai<span class="sep">·</span>Provenance verified<span class="sep">·</span>RU / EN</div>
 <nav class="nav">
+  <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
   <div class="links"><a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a><a href="catalog.html">Bespoke</a></div>
   <a href="home2.html" class="brand" style="color:inherit">MAISON IU</a>
   <div class="tools"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><svg class="ic" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z"/><path d="M9 8a3 3 0 016 0"/></svg><span class="pill">RU · EN</span></div>
 </nav>
+<div class="drawer" id="drawer"><button class="drawer-close" id="drawerClose" aria-label="Закрыть">✕</button><a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a><a href="catalog.html">Bespoke</a><div class="mini"><a href="catalog.html">Search</a><a href="#">Account</a><a href="#">Cart</a><a href="#">RU · EN</a></div></div>
 
 <div class="cat-hero">
   <div class="eyebrow">MAISON IU · Curated Timepieces</div>
@@ -64,4 +73,5 @@ body{background:var(--ivory)}
   <a class="rx" href="product.html"><div class="im"><img src="assets/products/watch-gold.jpg"><span class="fav"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z"/></svg></span></div><div class="cap"><h3>Omega Speedmaster</h3><div class="ref">Moonwatch</div><div class="price">$9,400</div></div></a>
 </div>
 <div class="pager"><a>‹</a><a class="on">1</a><a>2</a><a>3</a><a>›</a></div>
+<script src="site.js"></script>
 </body></html>

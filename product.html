@@ -22,13 +22,38 @@
 .trustline{display:flex;gap:22px;margin-top:22px;font-size:12px;color:var(--ash);letter-spacing:.08em}
 .trustline span{display:flex;align-items:center;gap:8px}
 .trustline svg{width:15px;height:15px;stroke:var(--champ);fill:none;stroke-width:1.4}
+@media(max-width:860px){
+ .pdp{grid-template-columns:1fr;gap:30px;padding-bottom:40px}
+ .pdp>*{min-width:0}
+ .gal{grid-template-columns:1fr;gap:12px}
+ .gal .main{order:-1;aspect-ratio:1/1}
+ .gal .thumbs{flex-direction:row;overflow-x:auto;gap:10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+ .gal .thumbs::-webkit-scrollbar{display:none}
+ .gal .thumbs .t{width:64px;height:64px;flex:0 0 auto}
+ .info h1{font-size:30px}
+ .info .price{font-size:26px}
+ .cta{flex-wrap:wrap}
+ .cta .btn{flex:1 1 auto;justify-content:center}
+ .verified{grid-template-columns:1fr;gap:12px}
+ .vip .top{flex-wrap:wrap;gap:6px}
+ .acc .body{max-width:100%}
+ .grid.g4{display:flex;overflow-x:auto;gap:14px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:6px}
+ .grid.g4::-webkit-scrollbar{display:none}
+ .grid.g4>*{flex:0 0 62%;scroll-snap-align:start}
+ .sec-head{flex-wrap:wrap;gap:12px}
+ .sticky-contact{flex-wrap:wrap;gap:10px;padding:12px 16px}
+ .sticky-contact>span:first-child{font-size:11px;flex:1 1 100%}
+}
+@media(max-width:380px){ .grid.g4>*{flex:0 0 78%} }
 </style></head><body>
 <div class="announce">By appointment · Moscow<span class="sep">·</span>Dubai<span class="sep">·</span>Provenance verified<span class="sep">·</span>RU / EN</div>
 <nav class="nav">
+  <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
   <div class="links"><a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a><a href="catalog.html">Bespoke</a></div>
   <a href="home2.html" class="brand" style="color:inherit">MAISON IU</a>
   <div class="tools"><svg class="ic" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><svg class="ic" viewBox="0 0 24 24"><path d="M6 8h12l-1 12H7z"/><path d="M9 8a3 3 0 016 0"/></svg><span class="pill">RU · EN</span></div>
 </nav>
+<div class="drawer" id="drawer"><button class="drawer-close" id="drawerClose" aria-label="Закрыть">✕</button><a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a><a href="catalog.html">Bespoke</a><div class="mini"><a href="catalog.html">Search</a><a href="#">Account</a><a href="#">Cart</a><a href="#">RU · EN</a></div></div>
 
 <div class="wrap">
   <div class="crumb">Home · Watches · Rolex Datejust 36</div>
@@ -82,4 +107,5 @@
   <span style="font-family:var(--serif);letter-spacing:3px">MAISON IU · Rolex Datejust 36 — <span class="tabular">$18,500</span></span>
   <span style="display:flex;gap:12px"><a class="btn btn-garnet">Связаться · Telegram</a><a class="btn btn-ghost" style="color:var(--ivory);border-color:rgba(244,240,231,.5)">WhatsApp</a></span>
 </div>
+<script src="site.js"></script>
 </body></html>
