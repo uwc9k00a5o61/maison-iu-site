@@ -305,6 +305,7 @@ section{padding:112px 0}
     // 0.00–0.35 часы — главные; 0.35–0.55 улетают (fade+scale)
     if(heroArt){ heroArt.style.opacity=(1-cl(0.35,0.55,p)); heroArt.style.transform='scale('+(1+0.18*cl(0,0.5,p))+') translateY('+(-6*cl(0.2,0.55,p))+'%)'; }
     if(window.heroWatchSetProgress){ try{window.heroWatchSetProgress(cl(0,0.5,p));}catch(e){} }
+    if(window.heroWatchExit){ try{window.heroWatchExit(cl(0.50,0.55,p));}catch(e){} } // fly-away 0.50–0.55 (Mobile&3D exit-frames)
     // 0.40–0.62 логотип пишется пером (stroke-draw Pinyon), fill 0.58–0.66
     if(sig) sig.style.strokeDashoffset=(SIGLEN*(1-cl(0.40,0.62,p)));
     if(sigfill) sigfill.style.opacity=cl(0.58,0.66,p);

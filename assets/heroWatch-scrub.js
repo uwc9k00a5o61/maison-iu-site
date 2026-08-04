@@ -91,6 +91,19 @@
       im.src = src(i); imgs[i] = im;
     })(i);
 
+    // --- fly-away exit sequence: window.heroWatchExit(t), t 0→1 (watch ascends + recedes into dark) ---
+    var EXN    = parseInt(cv.dataset.exitFrames || '15', 10);
+    var EXPATH = cv.dataset.exitPath || 'assets/hero-exit/exit_';
+    var exitImgs = new Array(EXN);
+    for (var e = 0; e < EXN; e++) (function(e){ var im = new Image(); im.src = EXPATH + pad(e + 1) + EXT; exitImgs[e] = im; })(e);
+    function drawExit(t){
+      var i = Math.max(0, Math.min(EXN - 1, Math.round(clamp(t, 0, 1) * (EXN - 1))));
+      var im = exitImgs[i]; if (!im || !im.complete || !im.naturalWidth) return;
+      var W = cv.clientWidth, H = W / RATIO, iw = im.naturalWidth, ih = im.naturalHeight;
+      var s = Math.max(W / iw, H / ih), w = iw * s, h = ih * s, x = (W - w) / 2, y = (H - h) / 2;
+      ctx.clearRect(0, 0, W, H); ctx.drawImage(im, x, y, w, h);
+    }
+
     var st = null;
     function bind(){
       if (reduce){ size(); setProgress(0.32); return; }               // reduced-motion → static ¾ frame
@@ -127,6 +140,8 @@
     // Master-timeline hook: Art Director's applyPhase() calls this to sync frames to the single pin.
     // p is 0→1 across the "watch" phase, e.g. heroWatchSetProgress(clamp(progress,0,0.5)/0.5).
     global.heroWatchSetProgress = setProgress;
+    // Fly-away hook: Art Director calls heroWatchExit(t) on band 0.50–0.55 (t 0→1) over the fade.
+    global.heroWatchExit = drawExit;
     return api;
   }
 
