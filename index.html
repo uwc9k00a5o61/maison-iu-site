@@ -5,12 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>MAISON IU — Live Hero</title>
 <link rel="icon" href="data:,">
-<script type="importmap">
-{ "imports": {
-  "three": "./assets/3d/vendor/three.module.js",
-  "three/addons/": "./assets/3d/vendor/addons/"
-}}
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Cormorant:wght@400;500;600&family=Inter:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
@@ -44,14 +38,12 @@ img{display:block;max-width:100%}
 .nav .brand{font-family:var(--serif);font-weight:500;font-size:15px;letter-spacing:.28em;text-align:center;color:var(--ivory)}
 @media(max-width:820px){ .nav .links,.nav .tools{display:none} .nav{grid-template-columns:1fr auto 1fr;padding:14px 18px} }
 
-/* flying watch — REAL 3D (WebGL / Three.js) */
-.flyer{position:absolute;left:50%;top:45%;width:min(84vh,820px);height:min(84vh,820px);transform:translate(-50%,-50%);
-  will-change:transform,opacity}
-.flyer::before{content:"";position:absolute;inset:8%;border-radius:50%;z-index:0;pointer-events:none;
-  background:radial-gradient(circle at 50% 46%, rgba(74,96,140,.30), rgba(20,20,26,0) 60%);filter:blur(10px)}
-.flyer canvas{position:relative;z-index:1;width:100%!important;height:100%!important;display:block}
-.flyer .loading{position:absolute;inset:0;z-index:2;display:flex;align-items:center;justify-content:center;
-  font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:#8f887a}
+/* hero watch — real product frame (sharp, brand-accurate; base for scroll frame-scrub) */
+.flyer{position:absolute;left:50%;top:46%;width:min(62vh,600px);transform:translate(-50%,-50%);
+  will-change:transform,opacity;filter:drop-shadow(0 50px 70px rgba(0,0,0,.55))}
+.flyer img,.flyer canvas{width:100%;height:auto;display:block;
+  -webkit-mask-image:radial-gradient(ellipse 76% 76% at 50% 48%, #000 55%, transparent 82%);
+          mask-image:radial-gradient(ellipse 76% 76% at 50% 48%, #000 55%, transparent 82%);}
 
 /* model caption */
 .modelcap{position:absolute;left:0;right:0;bottom:12%;text-align:center;z-index:6;will-change:opacity,transform}
@@ -109,7 +101,7 @@ img{display:block;max-width:100%}
 
 <div class="scroller">
 <div class="stage" id="stage">
-  <div class="flyer" id="flyer"><div class="loading" id="loading3d">3D · загрузка…</div><canvas id="watch3d"></canvas></div>
+  <div class="flyer" id="flyer"><img id="watchImg" src="assets/watch-options/1-royal-oak.jpg" alt=""></div>
 
   <div class="modelcap" id="modelcap">
     <div class="k">Limited · Live selection</div>
@@ -156,13 +148,13 @@ img{display:block;max-width:100%}
 
   // --- watch models ---
   var WATCHES={
-    '1':{glb:'assets/3d/royal-oak.glb', nm:'Audemars Piguet Royal Oak', meta:'Ref. 15500ST · Blue dial', price:'52,000'},
+    '1':{img:'assets/watch-options/1-royal-oak.jpg', nm:'Audemars Piguet Royal Oak', meta:'Ref. 15500ST · Blue dial', price:'52,000'},
     '2':{img:'assets/watch-options/2-richard-mille.jpg', nm:'Richard Mille RM',          meta:'Skeleton · Titanium',    price:'POA'},
     '3':{img:'assets/watch-options/3-nautilus.jpg',      nm:'Patek Philippe Nautilus',   meta:'Ref. 5711 · Steel',      price:'POA'},
     '4':{img:'assets/watch-options/4-daytona.jpg',       nm:'Rolex Cosmograph Daytona',  meta:'Ref. 116500LN · Steel',  price:'38,000'}
   };
   var w=WATCHES[q.get('watch')]||WATCHES['1'];
-  window.__watchGlb=w.glb||'assets/3d/royal-oak.glb';   // per-variant 3D model (others generating)
+  document.getElementById('watchImg').src=w.img;
   document.getElementById('modelName').textContent=w.nm;
   document.getElementById('modelMeta').textContent=w.meta;
   var priceEl=document.getElementById('modelPrice');
@@ -196,10 +188,10 @@ img{display:block;max-width:100%}
     var grow=lerp(0.96,1.10, band(p,0,0.40));
     var leave=band(p,0.40,0.56);
     var scale=grow*lerp(1,0.66, leave);
-    var driftUp=lerp(0,-170, easeIO(leave));                // whole 3D watch lifts away on scroll
+    var bob=Math.sin(t*0.7)*8;                              // gentle float
+    var driftUp=lerp(0,-150, easeIO(leave));
     flyer.style.opacity=fly;
-    flyer.style.transform='translate(-50%,-50%) translateY('+driftUp+'px) scale('+scale+')';
-    window.__heroP=p;                                       // feed scroll progress to the WebGL module
+    flyer.style.transform='translate(-50%,-50%) translateY('+(bob+driftUp)+'px) scale('+scale+')';
 
     // ---- model caption (with the watch) ----
     modelcap.style.opacity=(1-band(p,0.34,0.48));
@@ -257,77 +249,6 @@ img{display:block;max-width:100%}
   computeProgress();
   requestAnimationFrame(raf);
 })();
-</script>
-
-<!-- REAL 3D watch — self-hosted Three.js (no external CDN); import map is in <head> -->
-<script type="module">
-import * as THREE from 'three';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-
-const canvas = document.getElementById('watch3d');
-const loading = document.getElementById('loading3d');
-const wrap = document.getElementById('flyer');
-if (canvas && wrap) {
-  const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true, powerPreference:'high-performance' });
-  renderer.setClearColor(0x000000, 0);
-  renderer.outputColorSpace = THREE.SRGBColorSpace;
-  renderer.toneMapping = THREE.ACESFilmicToneMapping;
-  renderer.toneMappingExposure = 1.5;
-
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
-  camera.position.set(0, 0, 6);
-
-  const pmrem = new THREE.PMREMGenerator(renderer);
-  scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
-
-  const key  = new THREE.DirectionalLight(0xffffff, 3.5); key.position.set(3, 4, 5);   scene.add(key);
-  const fill = new THREE.DirectionalLight(0xffffff, 2.0); fill.position.set(-2, 1, 4);  scene.add(fill);
-  const rim  = new THREE.DirectionalLight(0x9ab8ff, 2.0); rim.position.set(-5, 2, -4);  scene.add(rim);
-  scene.add(new THREE.AmbientLight(0xffffff, 0.5));
-
-  const pivot = new THREE.Group(); scene.add(pivot);
-  let model = null;
-
-  function resize(){
-    const r = wrap.getBoundingClientRect();
-    const s = Math.max(1, Math.min(r.width, r.height));
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    renderer.setSize(s, s, false);
-    camera.aspect = 1; camera.updateProjectionMatrix();
-  }
-  new ResizeObserver(resize).observe(wrap); resize();
-
-  const src = window.__watchGlb || 'assets/3d/watch.glb';
-  new GLTFLoader().load(src, (gltf) => {
-    model = gltf.scene;
-    const box = new THREE.Box3().setFromObject(model);
-    const size = box.getSize(new THREE.Vector3());
-    const center = box.getCenter(new THREE.Vector3());
-    model.position.sub(center);
-    const maxDim = Math.max(size.x, size.y, size.z) || 1;
-    model.scale.setScalar(2.7 / maxDim);
-    pivot.add(model);
-    pivot.rotation.x = -0.12;
-    if (loading) loading.style.display = 'none';
-  }, undefined, (err) => { if (loading) loading.textContent = '3D недоступно'; console.error('GLB load failed', err); });
-
-  let t0 = null;
-  function loop(ts){
-    if (t0 === null) t0 = ts; const t = (ts - t0) / 1000;
-    if (model){
-      const p = window.__heroP || 0;
-      // idle: dial stays toward viewer, gently turning in 3D (±34°); on scroll it spins away
-      pivot.rotation.y = Math.sin(t * 0.45) * 0.6 + p * 3.4;
-      pivot.position.y = Math.sin(t * 0.9) * 0.10; // gentle float
-      pivot.rotation.z = Math.sin(t * 0.5) * 0.03;
-    }
-    renderer.render(scene, camera);
-    requestAnimationFrame(loop);
-  }
-  requestAnimationFrame(loop);
-}
 </script>
 </body>
 </html>
