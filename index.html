@@ -171,9 +171,13 @@ img{display:block;max-width:100%}
   function drawFrame(idx){
     if(!NF) return; idx=cl(Math.round(idx),0,NF-1);
     var im=frames[idx]; if(!im||!im.complete||!im.naturalWidth) return;
-    var cw=scrub.width, ch=scrub.height, s=Math.max(cw/im.naturalWidth,ch/im.naturalHeight);
-    var dw=im.naturalWidth*s, dh=im.naturalHeight*s;
-    sctx.clearRect(0,0,cw,ch); sctx.drawImage(im,(cw-dw)/2,(ch-dh)/2,dw,dh);
+    var cw=scrub.width, ch=scrub.height, fw=im.naturalWidth, fh=im.naturalHeight;
+    sctx.fillStyle='#080706'; sctx.fillRect(0,0,cw,ch);           // seamless dark bg (blends with hero)
+    // fit the centered watch prominently & fully-visible on ANY viewport (desktop or tall mobile)
+    var WBOX_W=fw*0.47, WBOX_H=fh*0.96;
+    var s=Math.min(cw*0.95/WBOX_W, ch*0.92/WBOX_H);
+    var dw=fw*s, dh=fh*s;
+    sctx.drawImage(im,(cw-dw)/2,(ch-dh)/2,dw,dh);                  // watch is centered in the frame
   }
   if(w.frames){
     NF=w.frames.n;
