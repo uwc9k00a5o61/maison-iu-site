@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MAISON IU — 08 · Maison Concierge</title>
+<link rel="stylesheet" href="base.css">
+<style>
+body{background:#EFE7DA}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .85s var(--e),transform .85s var(--e)}.reveal.in{opacity:1;transform:none}
+.drawer{position:fixed;inset:0;z-index:60;background:rgba(14,13,12,.985);color:var(--ivory);display:flex;flex-direction:column;justify-content:center;gap:2px;padding:56px 32px;transform:translateY(-102%);transition:transform .5s var(--e)}
+.drawer.open{transform:none}.drawer a{font-family:var(--serif);font-size:30px;color:var(--ivory);padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}.drawer .x{position:absolute;top:18px;right:20px;font-size:24px;color:var(--ivory);background:none;border:0;cursor:pointer}
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,4vw,64px);align-items:center;padding:clamp(50px,7vw,96px) 0}
+.hero .scr{font-family:var(--script);font-size:clamp(56px,8vw,110px);line-height:.82;color:var(--ink);-webkit-text-stroke:.5px var(--ink)}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(24px,3vw,40px);line-height:1.1;margin:10px 0 16px}
+.hero .slg{font-size:16px;font-weight:500;color:var(--ink2);max-width:44ch;line-height:1.75;margin-bottom:26px}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+.stack{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:14px}
+.stack img{width:100%;height:100%;object-fit:cover;border-radius:14px}
+.stack .tall{grid-row:span 2;aspect-ratio:.72/1}
+.stack .sq{aspect-ratio:1/1}
+.steps{padding:70px 0 30px}
+.steps .ey{display:block;text-align:center}
+.steps h2{font-family:var(--serif);font-weight:500;font-size:clamp(24px,3vw,34px);text-align:center;margin:10px 0 40px}
+.stepgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.step{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:30px 26px}
+.step .no{font-family:var(--serif);font-size:14px;color:var(--garnet);font-weight:600}
+.step h3{font-family:var(--serif);font-weight:500;font-size:20px;margin:10px 0 8px}
+.step p{color:var(--ink2);font-size:14.5px;line-height:1.65}
+.contact{background:var(--ink);color:var(--ivory);border-radius:20px;text-align:center;padding:clamp(44px,6vw,84px);margin:50px 0 90px}
+.contact .scr{font-family:var(--script);font-size:clamp(40px,6vw,64px);color:var(--champ);-webkit-text-stroke:.4px var(--champ)}
+.contact p{font-size:16px;color:#D9D3C6;max-width:48ch;margin:8px auto 26px;line-height:1.7}
+@media(max-width:860px){.hero{grid-template-columns:1fr;gap:28px}.stepgrid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}}
+</style></head><body>
+<nav class="nav"><div class="in wrap">
+  <div class="l"><a href="#">Watches</a><a href="#">Jewellery</a><a href="#">Bags</a></div>
+  <div class="brand">Maison IU</div>
+  <div class="r"><a href="#">Search</a><a href="#">Contact</a><a href="#">RU · EN</a></div>
+  <button class="burger" id="burger"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="drawer" id="drawer"><button class="x" id="dx">✕</button><a href="#">Watches</a><a href="#">Jewellery</a><a href="#">Bags</a><a href="#">Bespoke</a></div>
+
+<header class="wrap hero">
+  <div>
+    <div class="ey reveal">Личный подбор · по записи</div>
+    <div class="scr reveal">Maison IU</div>
+    <h1 class="reveal">Оригинальные часы, украшения и сумки премиум-класса</h1>
+    <p class="slg reveal">Проверенная подлинность, box &amp; papers. Мы находим редкие референции под ваш запрос — дискретно, за один разговор.</p>
+    <div class="cta reveal"><a class="btn g" href="#contact">Связаться в Telegram</a><a class="btn o" href="#steps">Как это работает</a></div>
+  </div>
+  <div class="stack reveal">
+    <img class="tall" src="../assets/products/watch-gold.jpg" alt="">
+    <img class="sq" src="../assets/products/ring.jpg" alt="">
+    <img class="sq" src="../assets/products/bag.jpg" alt="">
+  </div>
+</header>
+
+<section class="wrap steps" id="steps">
+  <span class="ey">Сервис</span><h2>Как работает MAISON IU</h2>
+  <div class="stepgrid">
+    <div class="step reveal"><div class="no">01</div><h3>Запрос</h3><p>Опишите модель или задачу — от конкретной референции до подарка. Отвечаем в Telegram / WhatsApp.</p></div>
+    <div class="step reveal"><div class="no">02</div><h3>Подбор и экспертиза</h3><p>Находим экземпляр, проверяем подлинность, комплект box &amp; papers, провенанс.</p></div>
+    <div class="step reveal"><div class="no">03</div><h3>Приватная передача</h3><p>Просмотр по записи, гарантия дома, доставка Москва · Дубай · Стамбул.</p></div>
+  </div>
+</section>
+
+<section class="wrap"><div class="contact reveal" id="contact">
+  <div class="scr">Личный подбор</div>
+  <p>Один разговор — и мы найдём нужное с подтверждённой подлинностью. По записи, дискретно.</p>
+  <div class="cta" style="justify-content:center;display:flex;gap:12px;flex-wrap:wrap"><a class="btn g" href="#">Telegram</a><a class="btn ow" href="#">WhatsApp</a></div>
+</div></section>
+
+<footer class="foot"><div class="in wrap"><span class="lg">Maison IU</span><span>Оригинальные часы, украшения и сумки премиум-класса · box &amp; papers</span><span>© MAISON IU</span></div></footer>
+<div class="ribbon">08 · Maison Concierge<a href="#">ref: Emmalewisham / Aesop</a></div>
+<script>
+(function(){var b=document.getElementById('burger'),d=document.getElementById('drawer'),x=document.getElementById('dx');
+if(b)b.onclick=()=>d.classList.add('open');if(x)x.onclick=()=>d.classList.remove('open');d&&d.querySelectorAll('a').forEach(a=>a.onclick=()=>d.classList.remove('open'));
+var io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));})();
+</script>
+</body></html>

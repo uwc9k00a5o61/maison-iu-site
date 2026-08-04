@@ -1,0 +1,100 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAISON IU — Concept 04 · Gallery Plinth</title><link rel="icon" href="data:,">
+<link rel="stylesheet" href="base.css">
+<style>
+body{background:#FBFAF6}
+.top{padding:clamp(34px,6vw,72px) 0 clamp(20px,3vw,30px);text-align:center}
+.top .ey{letter-spacing:.32em}
+.top h1{font-family:var(--serif);font-weight:600;font-size:clamp(38px,7vw,86px);line-height:.98;margin:14px 0 8px;letter-spacing:-.01em}
+.top .lede{color:var(--ink2);max-width:52ch;margin:0 auto;font-size:15.5px}
+.chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:24px}
+.chip{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:9px 16px;transition:.3s var(--e);cursor:pointer}
+.chip:hover,.chip.on{background:var(--ink);color:var(--ivory);border-color:var(--ink)}
+.feature{margin:clamp(30px,5vw,54px) 0;border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative;
+  display:grid;grid-template-columns:1.1fr .9fr;min-height:clamp(300px,42vw,440px)}
+.feature .art{position:relative;overflow:hidden;background:#EFE6D7}
+.feature .art .silk{position:absolute;inset:0}
+.feature .art .silk img{width:100%;height:100%;object-fit:cover}
+.feature .art .prod{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:6%}
+.feature .art .prod img{max-height:100%;width:auto;object-fit:contain;border-radius:8px;box-shadow:0 30px 60px rgba(22,19,14,.28)}
+.feature .info{padding:clamp(24px,4vw,52px);display:flex;flex-direction:column;justify-content:center;background:var(--paper)}
+.feature .info .badge{position:static;margin-bottom:14px}
+.feature .info h2{font-family:var(--serif);font-weight:600;font-size:clamp(26px,4vw,42px);line-height:1.02}
+.feature .info .m{color:var(--ash);font-weight:500;margin:8px 0 18px}
+.feature .info .price{font-family:var(--serif);font-weight:600;font-size:clamp(22px,3vw,30px)}
+.feature .info .row{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
+.gwrap{padding:0 0 clamp(56px,9vw,100px)}
+.gwrap .gh{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:24px}
+.gwrap .gh h2{font-family:var(--serif);font-weight:600;font-size:clamp(22px,3vw,30px)}
+.plinths{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.2vw,30px)}
+@media(max-width:880px){.plinths{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.feature{grid-template-columns:1fr}.feature .art{min-height:300px}}
+@media(max-width:460px){.plinths{grid-template-columns:1fr}}
+.plinth{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px;transition:transform .5s var(--e),box-shadow .5s var(--e),border-color .5s var(--e)}
+.plinth:hover{transform:translateY(-5px);box-shadow:0 24px 50px rgba(22,19,14,.10);border-color:var(--line2)}
+.plinth .stand{aspect-ratio:1/1;display:flex;align-items:flex-end;justify-content:center;padding:8% 8% 0;position:relative}
+.plinth .stand::after{content:"";position:absolute;left:16%;right:16%;bottom:8%;height:12px;border-radius:50%;background:radial-gradient(closest-side,rgba(22,19,14,.20),rgba(22,19,14,0));filter:blur(2px)}
+.plinth .stand img{max-height:100%;width:auto;object-fit:contain;position:relative;z-index:1;transition:transform .6s var(--e)}
+.plinth:hover .stand img{transform:translateY(-4px) scale(1.03)}
+.plinth .cat{font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);margin:14px 0 6px}
+.plinth h3{font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.12}
+.plinth .m{color:var(--ash);font-size:12.5px;font-weight:500;margin:3px 0 12px}
+.plinth .foot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:12px}
+.plinth .p{font-family:var(--serif);font-weight:600;font-size:17px}
+.plinth .ask{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--ink2)}
+.plinth:hover .ask{color:var(--garnet)}
+.plinth .badge-ov{top:14px;left:14px}
+</style></head><body>
+<header class="nav"><div class="wrap"><div class="in">
+  <div class="l"><a href="#grid">Watches</a><a href="#grid">Jewellery</a><a href="#grid">Bags</a></div>
+  <div class="brand">Maison IU</div>
+  <div class="r"><a href="#grid">Каталог</a><a href="#">Контакты</a><span class="u">RU · EN</span></div>
+  <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+</div></div></header>
+<nav class="mmenu" id="mmenu"><span class="mm-b">Maison IU</span><span class="mx">Закрыть</span>
+  <a href="#grid">Watches</a><a href="#grid">Jewellery</a><a href="#grid">Bags</a><a href="#grid">Каталог</a><a href="#">Контакты</a></nav>
+
+<main class="wrap">
+  <section class="top">
+    <div class="ey" data-reveal="fade">Коллекция · С 2013</div>
+    <h1 data-reveal="fade" data-delay="80">The Collection</h1>
+    <p class="lede" data-reveal data-delay="150">Оригинальные часы, украшения и сумки премиум-класса. Проверенная подлинность, box&nbsp;&amp;&nbsp;papers.</p>
+    <div class="chips stagger">
+      <span class="chip on">Всё</span><span class="chip">Watches</span><span class="chip">Jewellery</span><span class="chip">Bags</span><span class="chip">Single-piece</span>
+    </div>
+  </section>
+
+  <section class="feature" data-reveal>
+    <div class="art">
+      <div class="silk parallax" data-speed="0.05"><img src="../assets/tex/ivory-silk.jpg" alt=""></div>
+      <div class="prod"><img src="../assets/products/bag.jpg" alt="Hermès Kelly 28"></div>
+    </div>
+    <div class="info">
+      <span class="badge">Единственный экземпляр</span>
+      <h2>Hermès Kelly 28</h2>
+      <div class="m">Box calf · Palladium hardware · полный комплект</div>
+      <div class="price tab">$42,000</div>
+      <div class="row"><a class="btn g" href="#">Запросить предмет</a><a class="btn o" href="#">Детали &amp; провенанс</a></div>
+    </div>
+  </section>
+
+  <section class="gwrap" id="grid">
+    <div class="gh"><h2 data-reveal="left">Избранное в наличии</h2><a class="lnk" data-reveal="right" href="#">Показать всё · 136</a></div>
+    <div class="plinths stagger">
+      <a class="plinth" href="#"><span class="badge-ov">Everose</span><div class="stand"><img src="../assets/products/watch-gold.jpg" alt=""></div><div class="cat">Watches</div><h3>Rolex Datejust 36</h3><div class="m">Ref. 126231 · box &amp; papers</div><div class="foot"><span class="p tab">$18,500</span><span class="ask">Запросить →</span></div></a>
+      <a class="plinth" href="#"><div class="stand"><img src="../assets/products/watch-twotone.jpg" alt=""></div><div class="cat">Watches</div><h3>Cartier Santos</h3><div class="m">Large · Steel / Gold</div><div class="foot"><span class="p tab">$12,900</span><span class="ask">Запросить →</span></div></a>
+      <a class="plinth" href="#"><span class="badge-ov q">GIA</span><div class="stand"><img src="../assets/products/ring.jpg" alt=""></div><div class="cat">Jewellery</div><h3>Solitaire 2.0 ct</h3><div class="m">Platinum · сертификат</div><div class="foot"><span class="p tab">$31,800</span><span class="ask">Запросить →</span></div></a>
+      <a class="plinth" href="#"><div class="stand"><img src="../assets/products/necklace.jpg" alt=""></div><div class="cat">Jewellery</div><h3>Van Cleef Alhambra</h3><div class="m">5 motifs · Yellow gold</div><div class="foot"><span class="p tab">$9,400</span><span class="ask">Запросить →</span></div></a>
+      <a class="plinth" href="#"><span class="badge-ov">Atelier</span><div class="stand"><img src="../assets/products/bracelet.jpg" alt=""></div><div class="cat">Jewellery</div><h3>Tennis Bracelet</h3><div class="m">Diamonds · Rose gold</div><div class="foot"><span class="p tab">$16,200</span><span class="ask">Запросить →</span></div></a>
+      <a class="plinth" href="#"><span class="badge-ov q">New</span><div class="stand"><img src="../assets/products/bag.jpg" alt=""></div><div class="cat">Bags</div><h3>Hermès Kelly 28</h3><div class="m">Box calf · PHW</div><div class="foot"><span class="p tab">$42,000</span><span class="ask">Запросить →</span></div></a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot"><div class="wrap in">
+  <span class="lg">Maison IU</span>
+  <span>Оригинальные часы · украшения · сумки · с 2013</span>
+  <span>Москва · Dubai · Istanbul</span>
+</div></footer>
+<div class="ribbon">04 · <b>Gallery Plinth</b> · réf. INO Jewelry<a href="../concepts.html">← все</a></div>
+<script src="app.js"></script>
+</body></html>

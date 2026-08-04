@@ -1,0 +1,77 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAISON IU — Concept 02 · Dark Gallery Cutout</title><link rel="icon" href="data:,">
+<link rel="stylesheet" href="base.css">
+<style>
+body{background:var(--coal);color:var(--onlight)}
+.stage{position:relative;min-height:92vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:80px 0 40px;
+  background:radial-gradient(120% 90% at 50% 8%, #201b14 0%, #14110C 62%, #100D09 100%)}
+.colossus{position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);z-index:1;
+  font-family:var(--serif);font-weight:700;color:#2A2318;line-height:.82;text-align:center;
+  font-size:clamp(66px,18.5vw,236px);letter-spacing:.02em;white-space:nowrap;pointer-events:none;user-select:none}
+.centerpiece{position:relative;z-index:2;width:min(78vw,420px);aspect-ratio:3/4;display:flex;align-items:center;justify-content:center}
+.centerpiece img{width:100%;height:100%;object-fit:cover;border-radius:12px;box-shadow:0 40px 90px rgba(0,0,0,.6)}
+.centerpiece .tag{position:absolute;left:14px;top:14px;background:var(--garnet);color:var(--cream);font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 11px;border-radius:999px;z-index:3}
+.stage .caption{position:relative;z-index:2;text-align:center;margin-top:30px;max-width:52ch;padding:0 20px}
+.stage .caption .ey{color:var(--onmute)}
+.stage .caption h1{font-family:var(--serif);font-weight:600;font-size:clamp(24px,4vw,40px);line-height:1.08;margin:14px 0 12px;color:#F5F0E6}
+.stage .caption p{color:#CFC7B6;font-size:15.5px;margin:0 auto 24px;max-width:46ch}
+.stage .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:2}
+.scut{background:#100D09;padding:clamp(46px,7vw,86px) 0}
+.scut .head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:26px}
+.scut .head h2{font-family:var(--serif);font-weight:600;font-size:clamp(22px,3vw,32px);color:#F2ECDF}
+.scut .lnk{color:#E5DECF;border-color:rgba(255,255,255,.28)}.scut .lnk:hover{color:#fff;border-color:#fff}
+.dcards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,24px)}
+@media(max-width:880px){.dcards{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
+@media(max-width:460px){.dcards{grid-template-columns:1fr}}
+.dcard{position:relative;border:1px solid rgba(255,255,255,.12);border-radius:12px;overflow:hidden;background:#17130D;transition:transform .5s var(--e),border-color .5s var(--e)}
+.dcard:hover{transform:translateY(-5px);border-color:rgba(154,126,78,.5)}
+.dcard .ph{aspect-ratio:1/1;overflow:hidden}
+.dcard .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--e)}
+.dcard:hover .ph img{transform:scale(1.05)}
+.dcard .bd{padding:15px 16px 18px}
+.dcard h3{font-family:var(--serif);font-weight:600;font-size:16.5px;color:#F2ECDF}
+.dcard .m{color:#A79E8C;font-size:12px;font-weight:500;margin:3px 0 7px}
+.dcard .p{font-family:var(--serif);font-weight:600;font-size:16.5px;color:#EFE7D6}
+.dcard .badge-ov{background:var(--garnet)}
+.foot{background:#0C0A07}
+@media(max-width:520px){.colossus{transform:translate(-50%,-58%)}}
+</style></head><body>
+<header class="nav dark flat"><div class="wrap"><div class="in">
+  <div class="l"><a href="#scut">Watches</a><a href="#scut">Jewellery</a><a href="#scut">Bags</a></div>
+  <div class="brand">Maison IU</div>
+  <div class="r"><a href="#scut">Каталог</a><a href="#">Контакты</a><span class="u">RU · EN</span></div>
+  <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+</div></div></header>
+<nav class="mmenu" id="mmenu" style="background:var(--coal)"><span class="mm-b on-dark" style="color:var(--ivory);-webkit-text-stroke:.6px var(--ivory)">Maison IU</span><span class="mx" style="color:var(--onmute)">Закрыть</span>
+  <a href="#scut" style="color:var(--ivory)">Watches</a><a href="#scut" style="color:var(--ivory)">Jewellery</a><a href="#scut" style="color:var(--ivory)">Bags</a><a href="#scut" style="color:var(--ivory)">Каталог</a><a href="#" style="color:var(--ivory)">Контакты</a></nav>
+
+<main>
+  <section class="stage">
+    <div class="colossus parallax" data-speed="0.05" aria-hidden="true">IU</div>
+    <div class="centerpiece" data-reveal="fade"><span class="tag">Единственный экземпляр</span><img src="../assets/products/watch-twotone.jpg" alt="Cartier Santos"></div>
+    <div class="caption">
+      <div class="ey" data-reveal>С 2013 · Москва · Dubai · Istanbul</div>
+      <h1 data-reveal data-delay="80">Тихая роскошь. Проверенная подлинность.</h1>
+      <p data-reveal data-delay="140">Оригинальные часы, украшения и сумки премиум-класса. Каждый предмет — с box&nbsp;&amp;&nbsp;papers.</p>
+      <div class="cta" data-reveal data-delay="200"><a class="btn g" href="#scut">Смотреть каталог</a><a class="btn ow" href="#">Связаться · Telegram</a></div>
+    </div>
+  </section>
+
+  <section class="scut" id="scut"><div class="wrap">
+    <div class="head"><h2 data-reveal="left">Новые поступления</h2><a class="lnk" data-reveal="right" href="#">Весь каталог</a></div>
+    <div class="dcards stagger">
+      <a class="dcard" href="#"><span class="badge-ov">Everose</span><div class="ph"><img src="../assets/products/watch-gold.jpg" alt=""></div><div class="bd"><h3>Rolex Datejust 36</h3><div class="m">Ref. 126231</div><div class="p tab">$18,500</div></div></a>
+      <a class="dcard" href="#"><div class="ph"><img src="../assets/products/ring.jpg" alt=""></div><div class="bd"><h3>Solitaire 2.0 ct</h3><div class="m">Platinum · GIA</div><div class="p tab">$31,800</div></div></a>
+      <a class="dcard" href="#"><span class="badge-ov">Atelier</span><div class="ph"><img src="../assets/products/bracelet.jpg" alt=""></div><div class="bd"><h3>Tennis Bracelet</h3><div class="m">Diamonds · Rose gold</div><div class="p tab">$16,200</div></div></a>
+    </div>
+  </div></section>
+</main>
+
+<footer class="foot"><div class="wrap in">
+  <span class="lg">Maison IU</span>
+  <span>Оригинальные часы · украшения · сумки · с 2013</span>
+  <span>Москва · Dubai · Istanbul</span>
+</div></footer>
+<div class="ribbon">02 · <b>Dark Gallery Cutout</b> · réf. Liron Moran<a href="../concepts.html">← все</a></div>
+<script src="app.js"></script>
+</body></html>

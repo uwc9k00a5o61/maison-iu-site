@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MAISON IU — 06 · Editorial Vault</title>
+<link rel="stylesheet" href="base.css">
+<style>
+body{background:var(--ink);color:var(--ivory)}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--e),transform .9s var(--e)}
+.reveal.in{opacity:1;transform:none}
+.drawer{position:fixed;inset:0;z-index:60;background:rgba(14,13,12,.985);display:flex;flex-direction:column;justify-content:center;gap:2px;padding:56px 32px;transform:translateY(-102%);transition:transform .5s var(--e)}
+.drawer.open{transform:none}.drawer a{font-family:var(--serif);font-size:30px;color:var(--ivory);padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.drawer .x{position:absolute;top:18px;right:20px;font-size:24px;color:var(--ivory);background:none;border:0;cursor:pointer}
+/* hero */
+.hero{position:relative;min-height:100svh;display:grid;grid-template-columns:1.05fr .95fr;align-items:center;gap:40px;padding:90px 0 60px;background:radial-gradient(130% 120% at 78% 18%,#241f18,#100e0c 66%)}
+.hero .l{position:relative;z-index:2}
+.hero .scr{font-family:var(--script);font-size:clamp(52px,8vw,104px);line-height:.82;color:var(--ivory);-webkit-text-stroke:.6px var(--ivory);margin-bottom:6px}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(30px,4.2vw,56px);line-height:1.04;letter-spacing:-.01em;margin:6px 0 18px}
+.hero h1 em{font-style:italic;color:var(--champ)}
+.hero .slg{font-size:16px;font-weight:500;color:#D9D3C6;max-width:46ch;margin-bottom:28px;line-height:1.7}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero .art{position:relative}
+.hero .art img{width:100%;border-radius:16px;box-shadow:0 50px 110px rgba(0,0,0,.6);will-change:transform}
+.hero .stamp{position:absolute;left:-10px;bottom:24px;background:var(--garnet);color:var(--cream);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:9px 14px;border-radius:999px}
+.hair{height:1px;background:linear-gradient(90deg,transparent,var(--champ),transparent);opacity:.55;margin:0}
+/* rail */
+.rail-h{display:flex;justify-content:space-between;align-items:baseline;padding:70px 0 22px}
+.rail-h h2{font-family:var(--serif);font-weight:500;font-size:clamp(24px,3vw,34px)}
+.rail{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:34px}
+.rail::-webkit-scrollbar{display:none}
+.pc{flex:0 0 300px;scroll-snap-align:start;background:#1c1a16;border:1px solid rgba(255,255,255,.09);border-radius:16px;overflow:hidden;transition:.4s var(--e)}
+.pc:hover{transform:translateY(-4px);border-color:rgba(154,126,78,.5)}
+.pc .ph{aspect-ratio:1/1.08;overflow:hidden}.pc .ph img{width:100%;height:100%;object-fit:cover}
+.pc .bd{padding:16px 18px 20px}
+.pc h3{font-family:var(--serif);font-weight:500;font-size:17px}
+.pc .m{color:#9A9384;font-size:12.5px;font-weight:500;margin:3px 0 8px}
+.pc .p{font-family:var(--serif);font-size:17px;color:var(--ivory)}
+.pc .b{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--champ);border:1px solid rgba(154,126,78,.5);border-radius:999px;padding:3px 8px;margin-bottom:8px}
+/* manifesto */
+.man{background:var(--garnet);color:var(--cream);border-radius:18px;padding:clamp(40px,6vw,80px);text-align:center;margin:40px 0 90px}
+.man .scr{font-family:var(--script);font-size:clamp(40px,6vw,68px);-webkit-text-stroke:.5px var(--cream)}
+.man p{font-family:var(--serif);font-weight:500;font-size:clamp(20px,2.6vw,30px);line-height:1.3;max-width:20ch;margin:8px auto 0}
+.man .row{display:flex;gap:36px;justify-content:center;flex-wrap:wrap;margin-top:34px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;opacity:.9}
+@media(max-width:860px){.hero{grid-template-columns:1fr;min-height:auto;padding:110px 0 50px;gap:30px}.hero .art{order:-1}.rail-h{flex-direction:column;gap:8px}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.hero .art img{transform:none!important}}
+</style></head><body>
+<nav class="nav dark"><div class="in wrap">
+  <div class="l"><a href="#">Watches</a><a href="#">Jewellery</a><a href="#">Bags</a></div>
+  <div class="brand">Maison IU</div>
+  <div class="r"><a href="#">Search</a><a href="#">Contact</a><a href="#">RU · EN</a></div>
+  <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="drawer" id="drawer"><button class="x" id="dx">✕</button><a href="#">Watches</a><a href="#">Jewellery</a><a href="#">Bags</a><a href="#">Bespoke</a><a href="#" style="font-family:var(--sans);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--champ);border:0">Telegram · WhatsApp · RU/EN</a></div>
+
+<header class="hero"><div class="wrap" style="display:contents">
+  <div class="l">
+    <div class="ey" style="color:var(--champ)">Частный дом · Provenance verified</div>
+    <div class="scr">Maison IU</div>
+    <h1>Оригинальные часы, украшения и сумки <em>премиум-класса</em></h1>
+    <p class="slg">Проверенная подлинность, box &amp; papers. Rolex · Patek Philippe · Cartier · Van Cleef &amp; Arpels · Hermès — по записи.</p>
+    <div class="cta"><a class="btn g" href="#rail">Смотреть коллекцию</a><a class="btn ow" href="#">Связаться в Telegram</a></div>
+  </div>
+  <div class="art"><img id="heroImg" src="../assets/products/watch-gold.jpg" alt="Rolex Datejust — MAISON IU"><span class="stamp">Box &amp; Papers · Verified</span></div>
+</div></header>
+
+<div class="wrap"><div class="hair"></div></div>
+
+<section class="wrap" id="rail">
+  <div class="rail-h reveal"><h2>Хранилище недели</h2><a class="btn ow" href="#">Весь каталог</a></div>
+  <div class="rail">
+    <a class="pc reveal" href="#"><div class="ph"><img src="../assets/products/watch-gold.jpg"></div><div class="bd"><span class="b">1 in stock</span><h3>Rolex Datejust 36</h3><div class="m tab">Reference 126231 · Everose</div><div class="p tab">$18,500</div></div></a>
+    <a class="pc reveal" href="#"><div class="ph"><img src="../assets/products/watch-twotone.jpg"></div><div class="bd"><h3>Rolex Daytona</h3><div class="m tab">Reference 126503</div><div class="p tab">$52,000</div></div></a>
+    <a class="pc reveal" href="#"><div class="ph"><img src="../assets/products/bracelet.jpg"></div><div class="bd"><span class="b">Atelier</span><h3>Tennis Bracelet</h3><div class="m tab">Diamonds · RG</div><div class="p tab">$24,000</div></div></a>
+    <a class="pc reveal" href="#"><div class="ph"><img src="../assets/products/bag.jpg"></div><div class="bd"><span class="b">Only one</span><h3>Hermès Kelly 28</h3><div class="m tab">Box calf · PHW</div><div class="p tab">$42,000</div></div></a>
+    <a class="pc reveal" href="#"><div class="ph"><img src="../assets/products/necklace.jpg"></div><div class="bd"><h3>VCA Alhambra</h3><div class="m tab">5 motifs · YG</div><div class="p tab">$9,400</div></div></a>
+  </div>
+</section>
+
+<section class="wrap"><div class="man reveal">
+  <div class="scr">Provenance</div>
+  <p>Каждое изделие проходит экспертизу дома и передаётся с полным комплектом.</p>
+  <div class="row"><span>Экспертиза дома</span><span>Box &amp; papers</span><span>Гарантия MAISON IU</span><span>По записи · Мск · Дубай · Стамбул</span></div>
+</div></section>
+
+<footer class="foot"><div class="in wrap"><span class="lg">Maison IU</span><span>Оригинальные часы, украшения и сумки премиум-класса · box &amp; papers</span><span>© MAISON IU — Islam Utakaev</span></div></footer>
+
+<div class="ribbon">06 · Editorial Vault<a href="#">ref: Sequel / Bibliothèque</a></div>
+<script>
+(function(){var b=document.getElementById('burger'),d=document.getElementById('drawer'),x=document.getElementById('dx');
+if(b)b.onclick=function(){d.classList.add('open')};if(x)x.onclick=function(){d.classList.remove('open')};
+d&&d.querySelectorAll('a').forEach(a=>a.onclick=()=>d.classList.remove('open'));
+var io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+var img=document.getElementById('heroImg'),red=matchMedia('(prefers-reduced-motion:reduce)').matches;
+if(img&&!red){addEventListener('scroll',()=>{var y=scrollY;if(y<800)img.style.transform='translateY('+(y*-0.05)+'px)';},{passive:true});}
+})();
+</script>
+</body></html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAISON IU — Concept 01 · Editorial Masthead</title><link rel="icon" href="data:,">
+<link rel="stylesheet" href="base.css">
+<style>
+.hero{padding:clamp(30px,5vw,60px) 0 clamp(20px,3vw,34px)}
+.mast{font-family:var(--script);color:var(--ink);-webkit-text-stroke:1px var(--ink);paint-order:stroke fill;
+  font-size:clamp(88px,20vw,300px);line-height:.78;letter-spacing:.01em;text-align:center}
+.mast-sub{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:10px}
+.mast-sub .rule-g{width:clamp(40px,8vw,90px)}
+.mast-sub span{font-family:var(--serif);font-weight:600;letter-spacing:.34em;text-transform:uppercase;font-size:clamp(10px,1.4vw,13px);color:var(--ink2);white-space:nowrap}
+.edit{display:grid;grid-template-columns:1fr 1.02fr;gap:clamp(26px,5vw,68px);align-items:center;padding:clamp(30px,5vw,64px) 0}
+.idx{display:flex;flex-direction:column}
+.idx .ey{margin-bottom:18px}
+.idx a{display:flex;align-items:baseline;justify-content:space-between;gap:16px;border-top:1px solid var(--line);padding:18px 2px;transition:padding .4s var(--e),color .3s var(--e)}
+.idx a:last-child{border-bottom:1px solid var(--line)}
+.idx a:hover{padding-left:12px;color:var(--garnet)}
+.idx a .n{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,52px);line-height:1}
+.idx a .c{font-size:12px;font-weight:600;letter-spacing:.06em;color:var(--ash)}
+.idx p{margin:26px 0 30px;font-size:16px;color:var(--ink2);max-width:44ch}
+.idx .cta{display:flex;gap:14px;flex-wrap:wrap}
+.figw{position:relative}
+.fig{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:4/5;box-shadow:0 34px 74px rgba(22,19,14,.16)}
+.fig img{width:100%;height:112%;object-fit:cover}
+.fig .cap{position:absolute;left:16px;bottom:16px;background:rgba(18,16,13,.74);color:#fff;font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:8px 13px;border-radius:999px}
+.fig .prov{position:absolute;right:16px;top:16px;background:var(--garnet);color:var(--cream);font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 11px;border-radius:999px}
+.sel{padding:clamp(20px,3vw,30px) 0 clamp(50px,8vw,90px)}
+.sel .head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px}
+.sel .head h2{font-family:var(--serif);font-weight:600;font-size:clamp(22px,3vw,30px)}
+@media(max-width:880px){.edit{grid-template-columns:1fr;gap:30px}.figw{order:-1}.fig{aspect-ratio:16/12}.fig img{height:118%}}
+</style></head><body>
+<header class="nav"><div class="wrap"><div class="in">
+  <div class="l"><a href="#idx">Watches</a><a href="#idx">Jewellery</a><a href="#idx">Bags</a></div>
+  <div class="brand">Maison IU</div>
+  <div class="r"><a href="#sel">Каталог</a><a href="#">Контакты</a><span class="u">RU · EN</span></div>
+  <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+</div></div></header>
+<nav class="mmenu" id="mmenu"><span class="mm-b">Maison IU</span><span class="mx">Закрыть</span>
+  <a href="#idx">Watches</a><a href="#idx">Jewellery</a><a href="#idx">Bags</a><a href="#sel">Каталог</a><a href="#">Контакты</a></nav>
+
+<main>
+  <section class="wrap hero">
+    <div class="mast" data-reveal="fade">Maison IU</div>
+    <div class="mast-sub" data-reveal="fade" data-delay="120"><hr class="rule-g"><span>Fine Watches · Jewellery · Bags</span><hr class="rule-g"></div>
+  </section>
+
+  <section class="wrap edit" id="idx">
+    <div class="idx">
+      <div class="ey" data-reveal="left">С 2013 · Москва · Dubai · Istanbul</div>
+      <div class="stagger">
+        <a href="#sel"><span class="n">Watches</span><span class="c">48 в наличии →</span></a>
+        <a href="#sel"><span class="n">Jewellery</span><span class="c">61 в наличии →</span></a>
+        <a href="#sel"><span class="n">Bags</span><span class="c">27 в наличии →</span></a>
+      </div>
+      <p data-reveal>Оригинальные часы, украшения и сумки премиум-класса. Проверенная подлинность, box&nbsp;&amp;&nbsp;papers.</p>
+      <div class="cta" data-reveal data-delay="80"><a class="btn g" href="#sel">Смотреть каталог</a><a class="btn o" href="#">Связаться · Telegram</a></div>
+    </div>
+    <div class="figw" data-reveal="right">
+      <div class="fig"><span class="prov">Провенанс подтверждён</span><img class="parallax" data-speed="0.06" src="../assets/products/watch-gold.jpg" alt="Rolex Datejust 36 Everose"><span class="cap">Rolex Datejust 36 · Everose · $18,500</span></div>
+    </div>
+  </section>
+
+  <section class="wrap sel" id="sel">
+    <div class="head"><h2 data-reveal="left">Избранные экземпляры</h2><a class="lnk" data-reveal="right" href="#">Весь каталог</a></div>
+    <div class="cards stagger">
+      <a class="card" href="#"><span class="badge-ov">Единственный</span><div class="ph"><img src="../assets/products/watch-twotone.jpg" alt=""></div><div class="bd"><h3>Cartier Santos</h3><div class="m">Large · Steel / Gold</div><div class="p tab">$12,900</div></div></a>
+      <a class="card" href="#"><span class="badge-ov q">New</span><div class="ph"><img src="../assets/products/bag.jpg" alt=""></div><div class="bd"><h3>Hermès Kelly 28</h3><div class="m">Box calf · PHW</div><div class="p tab">$42,000</div></div></a>
+      <a class="card" href="#"><div class="ph"><img src="../assets/products/necklace.jpg" alt=""></div><div class="bd"><h3>Van Cleef Alhambra</h3><div class="m">5 motifs · Yellow gold</div><div class="p tab">$9,400</div></div></a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot"><div class="wrap in">
+  <span class="lg">Maison IU</span>
+  <span>Оригинальные часы · украшения · сумки · с 2013</span>
+  <span>Москва · Dubai · Istanbul</span>
+</div></footer>
+<div class="ribbon">01 · <b>Editorial Masthead</b> · réf. Christopher Ireland<a href="../concepts.html">← все</a></div>
+<script src="app.js"></script>
+</body></html>

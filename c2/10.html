@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MAISON IU — 10 · Cinematic</title>
+<link rel="stylesheet" href="base.css">
+<style>
+body{background:var(--ink);color:var(--ivory)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .85s var(--e),transform .85s var(--e)}.reveal.in{opacity:1;transform:none}
+.drawer{position:fixed;inset:0;z-index:60;background:rgba(14,13,12,.985);display:flex;flex-direction:column;justify-content:center;gap:2px;padding:56px 32px;transform:translateY(-102%);transition:transform .5s var(--e)}
+.drawer.open{transform:none}.drawer a{font-family:var(--serif);font-size:30px;color:var(--ivory);padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}.drawer .x{position:absolute;top:18px;right:20px;font-size:24px;color:var(--ivory);background:none;border:0;cursor:pointer}
+.intro{min-height:92svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(120% 120% at 50% 12%,#241f18,#0f0d0b 70%)}
+.intro .scr{font-family:var(--script);font-size:clamp(56px,10vw,120px);line-height:.82;-webkit-text-stroke:.6px var(--ivory)}
+.intro .slg{font-size:15.5px;font-weight:500;color:#D9D3C6;max-width:50ch;margin:14px auto 0;line-height:1.7}
+.intro .sc{margin-top:34px;font-size:11px;letter-spacing:.25em;text-transform:uppercase;color:#9A8F7C}
+.cine{position:relative;height:300vh}
+.pin{position:sticky;top:0;height:100svh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.pin .obj{width:min(64vh,520px);aspect-ratio:1/1.05;border-radius:20px;overflow:hidden;will-change:transform;box-shadow:0 50px 120px rgba(0,0,0,.6)}
+.pin .obj img{width:100%;height:100%;object-fit:cover}
+.pin .cap{position:absolute;left:0;right:0;bottom:12svh;text-align:center;padding:0 20px}
+.pin .cap h2{font-family:var(--serif);font-weight:500;font-size:clamp(24px,3.4vw,42px)}
+.pin .cap p{color:#CFC7B7;font-size:14px;margin-top:8px;font-variant-numeric:tabular-nums}
+.hair{height:1px;background:linear-gradient(90deg,transparent,var(--champ),transparent);opacity:.55}
+.seal{text-align:center;padding:90px 0}
+.seal .ring{width:120px;height:120px;border-radius:50%;border:1px solid rgba(154,126,78,.6);display:flex;align-items:center;justify-content:center;margin:0 auto 22px}
+.seal .ring .scr{font-family:var(--script);font-size:42px;color:var(--champ);-webkit-text-stroke:.4px var(--champ)}
+.seal h2{font-family:var(--serif);font-weight:500;font-size:clamp(24px,3.2vw,36px);max-width:22ch;margin:0 auto}
+.seal .row{display:flex;gap:34px;justify-content:center;flex-wrap:wrap;margin-top:26px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B7AF9E}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;padding:0 0 40px}
+.trio a{background:#1c1a16;border:1px solid rgba(255,255,255,.09);border-radius:16px;overflow:hidden}
+.trio .ph{aspect-ratio:1/1.05;overflow:hidden}.trio img{width:100%;height:100%;object-fit:cover}
+.trio .bd{padding:14px 16px 18px}.trio h3{font-family:var(--serif);font-weight:500;font-size:16px}.trio .m{color:#9A9384;font-size:12px;margin:3px 0 6px}.trio .p{font-family:var(--serif);font-variant-numeric:tabular-nums}
+.cta-band{text-align:center;padding:0 0 90px}
+@media(max-width:640px){.trio{grid-template-columns:1fr}.cine{height:240vh}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.cine{height:auto}.pin{position:relative;height:auto;padding:60px 0}.pin .obj{transform:none!important}.pin .cap{position:static;margin-top:24px}}
+</style></head><body>
+<nav class="nav dark"><div class="in wrap">
+  <div class="l"><a href="#">Watches</a><a href="#">Jewellery</a><a href="#">Bags</a></div>
+  <div class="brand">Maison IU</div>
+  <div class="r"><a href="#">Search</a><a href="#">Contact</a><a href="#">RU · EN</a></div>
+  <button class="burger" id="burger"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="drawer" id="drawer"><button class="x" id="dx">✕</button><a href="#">Watches</a><a href="#">Jewellery</a><a href="#">Bags</a><a href="#">Bespoke</a></div>
+
+<header class="intro">
+  <div class="ey" style="color:var(--champ)">Provenance verified · box &amp; papers</div>
+  <div class="scr">Maison IU</div>
+  <p class="slg">Оригинальные часы, украшения и сумки премиум-класса. Проверенная подлинность.</p>
+  <div class="sc">Scroll</div>
+</header>
+
+<section class="cine" id="cine">
+  <div class="pin">
+    <div class="obj" id="obj"><img src="../assets/products/watch-gold.jpg" alt="MAISON IU"></div>
+    <div class="cap" id="cap"><h2>Rolex Datejust 36</h2><p>Reference 126231 · Oystersteel &amp; Everose · $18,500</p></div>
+  </div>
+</section>
+
+<div class="wrap"><div class="hair"></div></div>
+
+<section class="wrap"><div class="seal reveal">
+  <div class="ring"><span class="scr">IU</span></div>
+  <h2>Экспертиза дома и полный комплект — с каждым изделием</h2>
+  <div class="row"><span>Экспертиза</span><span>Box &amp; papers</span><span>Гарантия</span><span>По записи</span></div>
+</div></section>
+
+<section class="wrap">
+  <div class="trio">
+    <a class="reveal" href="#"><div class="ph"><img src="../assets/products/watch-twotone.jpg"></div><div class="bd"><h3>Rolex Daytona</h3><div class="m tab">Reference 126503</div><div class="p tab">$52,000</div></div></a>
+    <a class="reveal" href="#"><div class="ph"><img src="../assets/products/bag.jpg"></div><div class="bd"><h3>Hermès Kelly 28</h3><div class="m tab">Box calf</div><div class="p tab">$42,000</div></div></a>
+    <a class="reveal" href="#"><div class="ph"><img src="../assets/products/necklace.jpg"></div><div class="bd"><h3>VCA Alhambra</h3><div class="m tab">5 motifs · YG</div><div class="p tab">$9,400</div></div></a>
+  </div>
+  <div class="cta-band reveal"><a class="btn g" href="#">Связаться в Telegram</a></div>
+</section>
+
+<footer class="foot"><div class="in wrap"><span class="lg">Maison IU</span><span>Оригинальные часы, украшения и сумки премиум-класса · box &amp; papers</span><span>© MAISON IU</span></div></footer>
+<div class="ribbon">10 · Cinematic Scroll<a href="#">ref: Analogue / Apple</a></div>
+<script>
+(function(){var b=document.getElementById('burger'),d=document.getElementById('drawer'),x=document.getElementById('dx');
+if(b)b.onclick=()=>d.classList.add('open');if(x)x.onclick=()=>d.classList.remove('open');d&&d.querySelectorAll('a').forEach(a=>a.onclick=()=>d.classList.remove('open'));
+var io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+var cine=document.getElementById('cine'),obj=document.getElementById('obj'),cap=document.getElementById('cap'),red=matchMedia('(prefers-reduced-motion:reduce)').matches;
+if(!red&&cine){addEventListener('scroll',function(){var r=cine.getBoundingClientRect(),h=cine.offsetHeight-innerHeight;var p=Math.min(1,Math.max(0,(-r.top)/h));obj.style.transform='scale('+(1+p*0.42)+') rotate('+(p*3)+'deg)';cap.style.opacity=(p>0.12&&p<0.9)?1:.0;},{passive:true});}
+})();
+</script>
+</body></html>

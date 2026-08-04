@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MAISON IU — 07 · Gallery Plinth</title>
+<link rel="stylesheet" href="base.css">
+<style>
+body{background:var(--paper)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s var(--e),transform .8s var(--e)}.reveal.in{opacity:1;transform:none}
+.drawer{position:fixed;inset:0;z-index:60;background:rgba(14,13,12,.985);color:var(--ivory);display:flex;flex-direction:column;justify-content:center;gap:2px;padding:56px 32px;transform:translateY(-102%);transition:transform .5s var(--e)}
+.drawer.open{transform:none}.drawer a{font-family:var(--serif);font-size:30px;color:var(--ivory);padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}.drawer .x{position:absolute;top:18px;right:20px;font-size:24px;color:var(--ivory);background:none;border:0;cursor:pointer}
+/* hero */
+.hero{text-align:center;padding:clamp(70px,10vw,120px) 0 40px}
+.hero .scr{font-family:var(--script);font-size:clamp(60px,11vw,132px);line-height:.82;color:var(--ink);-webkit-text-stroke:.5px var(--ink)}
+.hero h1{font-family:var(--serif);font-weight:500;font-size:clamp(20px,2.4vw,30px);letter-spacing:.02em;margin:14px 0 10px}
+.hero .slg{font-size:15.5px;font-weight:500;color:var(--ink2);max-width:52ch;margin:0 auto 26px;line-height:1.7}
+.hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.plinth{margin:44px auto 0;max-width:560px;position:relative}
+.plinth img{width:100%;border-radius:18px}
+.plinth::after{content:"";position:absolute;left:8%;right:8%;bottom:-2px;height:26px;background:radial-gradient(60% 100% at 50% 0,rgba(22,19,14,.16),transparent 70%);filter:blur(4px)}
+.foilline{height:1px;background:linear-gradient(90deg,transparent,var(--champ),transparent);opacity:.6}
+.sec-h{text-align:center;padding:80px 0 34px}
+.sec-h .ey{display:block}.sec-h h2{font-family:var(--serif);font-weight:500;font-size:clamp(26px,3.2vw,38px);margin-top:10px}
+/* foil sweep on card */
+.card{position:relative}
+.card .ph{position:relative}
+.card .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 42%,rgba(154,126,78,.35) 50%,transparent 58%);background-size:220% 100%;background-position:220% 0;opacity:0;transition:opacity .3s}
+.card:hover .ph::after{opacity:1;animation:sweep 1.1s var(--e)}
+@keyframes sweep{to{background-position:-40% 0}}
+.card .fav{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center}
+.card .fav svg{width:15px;height:15px;stroke:var(--ink);fill:none;stroke-width:1.4}
+.trust3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;text-align:center;padding:0 0 90px}
+.trust3 .n{font-family:var(--serif);font-size:clamp(30px,4vw,46px)}
+.trust3 .l{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ash);margin-top:8px}
+@media(max-width:560px){.trust3{grid-template-columns:1fr;gap:26px}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.card:hover .ph::after{animation:none}}
+</style></head><body>
+<nav class="nav"><div class="in wrap">
+  <div class="l"><a href="#">Watches</a><a href="#">Jewellery</a><a href="#">Bags</a></div>
+  <div class="brand">Maison IU</div>
+  <div class="r"><a href="#">Search</a><a href="#">Contact</a><a href="#">RU · EN</a></div>
+  <button class="burger" id="burger"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="drawer" id="drawer"><button class="x" id="dx">✕</button><a href="#">Watches</a><a href="#">Jewellery</a><a href="#">Bags</a><a href="#">Bespoke</a></div>
+
+<header class="hero"><div class="wrap">
+  <div class="ey reveal">MAISON IU · curated maison</div>
+  <div class="scr reveal">Maison IU</div>
+  <h1 class="reveal">Оригинальные часы, украшения и сумки премиум-класса</h1>
+  <p class="slg reveal">Проверенная подлинность, box &amp; papers. Кураторский отбор — Rolex, Patek Philippe, Cartier, Van Cleef &amp; Arpels, Hermès.</p>
+  <div class="cta reveal"><a class="btn ink" href="#grid">Смотреть коллекцию</a><a class="btn o" href="#">По записи</a></div>
+  <div class="plinth reveal"><img src="../assets/products/watch-gold.jpg" alt="MAISON IU"></div>
+</div></header>
+
+<div class="wrap"><div class="foilline"></div></div>
+
+<section class="wrap" id="grid">
+  <div class="sec-h reveal"><span class="ey">Избранное</span><h2>Коллекция недели</h2></div>
+  <div class="cards">
+    <a class="card reveal" href="#"><div class="ph"><img src="../assets/products/watch-gold.jpg"><span class="fav"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z"/></svg></span></div><div class="bd"><span class="badge">1 in stock</span><h3>Rolex Datejust 36</h3><div class="m tab">Reference 126231</div><div class="p tab">$18,500</div></div></a>
+    <a class="card reveal" href="#"><div class="ph"><img src="../assets/products/ring.jpg"><span class="fav"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z"/></svg></span></div><div class="bd"><span class="badge">Atelier</span><h3>Solitaire Ring</h3><div class="m tab">2.0ct · YG</div><div class="p tab">$36,000</div></div></a>
+    <a class="card reveal" href="#"><div class="ph"><img src="../assets/products/bag.jpg"><span class="fav"><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.5-7-10a4 4 0 017-2 4 4 0 017 2c0 5.5-7 10-7 10z"/></svg></span></div><div class="bd"><h3>Hermès Kelly 28</h3><div class="m tab">Box calf · PHW</div><div class="p tab">$42,000</div></div></a>
+    <a class="card reveal" href="#"><div class="ph"><img src="../assets/products/watch-twotone.jpg"></div><div class="bd"><h3>Cartier Santos</h3><div class="m tab">Large Model</div><div class="p tab">$12,900</div></div></a>
+    <a class="card reveal" href="#"><div class="ph"><img src="../assets/products/necklace.jpg"></div><div class="bd"><h3>VCA Alhambra</h3><div class="m tab">5 motifs · YG</div><div class="p tab">$9,400</div></div></a>
+    <a class="card reveal" href="#"><div class="ph"><img src="../assets/products/bracelet.jpg"></div><div class="bd"><span class="badge">Bespoke</span><h3>Tennis Bracelet</h3><div class="m tab">Diamonds · RG</div><div class="p tab">$24,000</div></div></a>
+  </div>
+  <div class="sec-h reveal"><span class="ey">Почему MAISON IU</span></div>
+  <div class="trust3 reveal">
+    <div><div class="n">11–12</div><div class="l">лет на рынке</div></div>
+    <div><div class="n script" style="-webkit-text-stroke:.4px var(--ink)">Provenance</div><div class="l">подлинность · box &amp; papers</div></div>
+    <div><div class="n script" style="-webkit-text-stroke:.4px var(--ink)">By appointment</div><div class="l">частный сервис</div></div>
+  </div>
+</section>
+
+<footer class="foot"><div class="in wrap"><span class="lg">Maison IU</span><span>Оригинальные часы, украшения и сумки премиум-класса · box &amp; papers</span><span>© MAISON IU</span></div></footer>
+<div class="ribbon">07 · Gallery Plinth<a href="#">ref: INO</a></div>
+<script>
+(function(){var b=document.getElementById('burger'),d=document.getElementById('drawer'),x=document.getElementById('dx');
+if(b)b.onclick=()=>d.classList.add('open');if(x)x.onclick=()=>d.classList.remove('open');d&&d.querySelectorAll('a').forEach(a=>a.onclick=()=>d.classList.remove('open'));
+var io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));})();
+</script>
+</body></html>

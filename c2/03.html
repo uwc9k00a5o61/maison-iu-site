@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAISON IU — Concept 03 · Full-bleed Campaign</title><link rel="icon" href="data:,">
+<link rel="stylesheet" href="base.css">
+<style>
+.nav.abs{position:absolute;top:0;left:0;right:0;z-index:40}
+.campaign{position:relative;min-height:100svh;margin-top:0;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.campaign .bg{position:absolute;inset:0;z-index:0}
+.campaign .bg img{width:100%;height:100%;object-fit:cover}
+.campaign .scrim{position:absolute;inset:0;z-index:1;background:
+  radial-gradient(72% 56% at 50% 52%,rgba(12,10,7,.64),rgba(12,10,7,0) 72%),
+  linear-gradient(180deg,rgba(12,10,7,.56) 0%,rgba(12,10,7,.22) 30%,rgba(12,10,7,.34) 60%,rgba(12,10,7,.76) 100%)}
+.campaign .in{position:relative;z-index:2;color:#fff;padding:0 22px;max-width:920px}
+.campaign .ey{color:rgba(255,255,255,.82);letter-spacing:.32em}
+.campaign .sig{font-family:var(--script);color:#fff;-webkit-text-stroke:.9px #fff;paint-order:stroke fill;
+  font-size:clamp(72px,15vw,190px);line-height:.82;margin:14px 0 6px;text-shadow:0 12px 40px rgba(0,0,0,.4)}
+.campaign .tl{font-family:var(--serif);font-weight:600;letter-spacing:.30em;text-transform:uppercase;font-size:clamp(11px,1.7vw,15px);color:#F6F1E7;text-shadow:0 2px 16px rgba(0,0,0,.6)}
+.campaign .ey{text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.campaign p{text-shadow:0 2px 16px rgba(0,0,0,.5)}
+.campaign p{margin:22px auto 30px;max-width:44ch;color:rgba(255,255,255,.9);font-size:15.5px;font-weight:500}
+.campaign .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.campaign .scroll{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.8);font-size:10px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+.campaign .scroll i{display:block;width:1px;height:34px;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,0));animation:drop 2.2s var(--e) infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+.manifesto{padding:clamp(56px,9vw,120px) 0;text-align:center}
+.manifesto .q{font-family:var(--serif);font-weight:500;font-size:clamp(24px,3.8vw,44px);line-height:1.22;letter-spacing:-.005em;max-width:20ch;margin:0 auto}
+.manifesto .q b{color:var(--garnet);font-weight:600}
+.manifesto .meta{display:flex;justify-content:center;gap:clamp(18px,4vw,52px);flex-wrap:wrap;margin-top:34px}
+.manifesto .meta div{text-align:center}
+.manifesto .meta .k{font-family:var(--serif);font-weight:600;font-size:clamp(26px,3vw,38px)}
+.manifesto .meta .l{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ash);margin-top:4px}
+.strip{padding:0 0 clamp(56px,9vw,100px)}
+.strip .head{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:22px}
+.strip .head h2{font-family:var(--serif);font-weight:600;font-size:clamp(22px,3vw,30px)}
+@media (prefers-reduced-motion:reduce){.campaign .scroll i{animation:none;opacity:.6}}
+</style></head><body>
+<header class="nav dark flat abs"><div class="wrap"><div class="in">
+  <div class="l"><a href="#strip">Watches</a><a href="#strip">Jewellery</a><a href="#strip">Bags</a></div>
+  <div class="brand">Maison IU</div>
+  <div class="r"><a href="#strip">Каталог</a><a href="#">Контакты</a><span class="u">RU · EN</span></div>
+  <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+</div></div></header>
+<nav class="mmenu" id="mmenu"><span class="mm-b">Maison IU</span><span class="mx">Закрыть</span>
+  <a href="#strip">Watches</a><a href="#strip">Jewellery</a><a href="#strip">Bags</a><a href="#strip">Каталог</a><a href="#">Контакты</a></nav>
+
+<main>
+  <section class="campaign">
+    <div class="bg"><img src="../assets/hero-watch-clean-surface.jpg" alt="Maison IU — часовая витрина"></div>
+    <div class="scrim"></div>
+    <div class="in">
+      <div class="ey" data-reveal="fade">С 2013 · Москва · Dubai · Istanbul</div>
+      <div class="sig" data-reveal="fade" data-delay="90">Maison IU</div>
+      <div class="tl" data-reveal="fade" data-delay="170">Fine Watches · Jewellery · Bags</div>
+      <p data-reveal data-delay="240">Оригинальные часы, украшения и сумки премиум-класса. Проверенная подлинность, box&nbsp;&amp;&nbsp;papers.</p>
+      <div class="cta" data-reveal data-delay="300"><a class="btn ow" href="#strip">Смотреть каталог</a><a class="btn g" href="#">Связаться · Telegram</a></div>
+    </div>
+    <div class="scroll">Листайте<i></i></div>
+  </section>
+
+  <section class="wrap manifesto">
+    <div class="q" data-reveal>Мы отбираем предметы, которые <b>переживут моду</b> — с подтверждённым провенансом и полной комплектацией.</div>
+    <div class="meta stagger">
+      <div><div class="k tab">12</div><div class="l">лет на рынке</div></div>
+      <div><div class="k">Box &amp; Papers</div><div class="l">полная комплектация</div></div>
+      <div><div class="k tab">3</div><div class="l">города · MSK · DXB · IST</div></div>
+    </div>
+  </section>
+
+  <section class="wrap strip" id="strip">
+    <div class="head"><h2 data-reveal="left">Из коллекции</h2><a class="lnk" data-reveal="right" href="#">Весь каталог</a></div>
+    <div class="cards stagger">
+      <a class="card" href="#"><span class="badge-ov">Everose</span><div class="ph"><img src="../assets/products/watch-gold.jpg" alt=""></div><div class="bd"><h3>Rolex Datejust 36</h3><div class="m">Ref. 126231</div><div class="p tab">$18,500</div></div></a>
+      <a class="card" href="#"><div class="ph"><img src="../assets/products/bag.jpg" alt=""></div><div class="bd"><h3>Hermès Kelly 28</h3><div class="m">Box calf · PHW</div><div class="p tab">$42,000</div></div></a>
+      <a class="card" href="#"><span class="badge-ov q">GIA</span><div class="ph"><img src="../assets/products/ring.jpg" alt=""></div><div class="bd"><h3>Solitaire 2.0 ct</h3><div class="m">Platinum</div><div class="p tab">$31,800</div></div></a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot"><div class="wrap in">
+  <span class="lg">Maison IU</span>
+  <span>Оригинальные часы · украшения · сумки · с 2013</span>
+  <span>Москва · Dubai · Istanbul</span>
+</div></footer>
+<div class="ribbon">03 · <b>Full-bleed Campaign</b> · réf. YSL<a href="../concepts.html">← все</a></div>
+<script src="app.js"></script>
+</body></html>
