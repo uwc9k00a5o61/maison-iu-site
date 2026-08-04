@@ -83,18 +83,19 @@ section{padding:112px 0}
 .sec-head p{color:var(--muted);font-size:15px;max-width:42ch;margin-top:6px}
 .grid{display:grid;gap:26px}.g4{grid-template-columns:repeat(4,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
 /* card */
-.card{cursor:pointer}
-.card .ph{aspect-ratio:1/1;border-radius:14px;overflow:hidden;background:linear-gradient(160deg,#F2ECDF,#E7DECB);position:relative}
+.card{background:var(--white);border:1px solid rgba(20,18,16,.05);border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(20,18,16,.06);text-align:center;padding-bottom:26px;transition:transform .4s var(--e),box-shadow .4s var(--e);text-decoration:none;display:block;cursor:pointer}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 64px rgba(20,18,16,.12)}
+.card .ph{aspect-ratio:1/1.05;overflow:hidden;background:var(--white);position:relative}
 .card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--e)}
-.card:hover .ph img{transform:scale(1.05)}
-.card .fav{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:rgba(245,241,232,.92);display:flex;align-items:center;justify-content:center}
+.card:hover .ph img{transform:scale(1.04)}
+.card .fav{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.05)}
 .card .fav svg{width:15px;height:15px;stroke:var(--ink);fill:none;stroke-width:1.5}
-.card .badge{position:absolute;top:12px;left:12px;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:var(--garnet);color:var(--cream)}
-.card h3{font-family:var(--serif);font-weight:500;font-size:17px;margin-top:15px}
-.card .meta{font-size:12.5px;color:var(--muted);margin-top:3px}
-.card .scar{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--garnet);margin-top:6px;display:flex;align-items:center;gap:6px}
+.card .badge{position:absolute;top:14px;left:14px;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:var(--garnet);color:var(--cream)}
+.card h3{font-family:var(--serif);font-weight:500;font-size:18px;margin-top:16px}
+.card .meta{font-size:12px;color:var(--muted);margin-top:5px;font-variant-numeric:tabular-nums}
+.card .scar{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--garnet);margin-top:8px;display:flex;align-items:center;justify-content:center;gap:6px}
 .card .scar .dot{width:5px;height:5px;border-radius:50%;background:var(--garnet)}
-.card .price{font-family:var(--serif);font-size:18px;margin-top:7px}
+.card .price{font-family:var(--serif);font-size:18px;margin-top:10px}
 /* split */
 .split{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
 .split .im{overflow:hidden;min-height:520px}.split .im img{width:100%;height:100%;object-fit:cover;will-change:transform}
@@ -159,7 +160,7 @@ section{padding:112px 0}
 <!-- HERO -->
 <header class="hero" id="hero">
   <div class="layer" id="heroArt">
-    <canvas class="hero-watch" id="heroWatch" data-frames="60" data-path="assets/hero-frames/orbit_" data-pad="3" data-ext=".jpg" data-poster="assets/hero-frames/poster.jpg" aria-label="Люкс-часы MAISON IU"></canvas>
+    <canvas class="hero-watch" id="heroWatch" data-external="1" data-frames="60" data-path="assets/hero-frames/orbit_" data-pad="3" data-ext=".jpg" data-poster="assets/hero-frames/poster.jpg" aria-label="Люкс-часы MAISON IU"></canvas>
   </div>
   <div class="layer">
     <div class="hero-center">

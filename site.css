@@ -41,16 +41,18 @@ section{padding:92px 0}
 .sec-head h2{font-family:var(--serif);font-weight:400;font-size:34px}
 .grid{display:grid;gap:26px}
 .g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
-/* product card */
-.card{background:transparent}
-.card .ph{aspect-ratio:1/1;border-radius:12px;overflow:hidden;background:linear-gradient(160deg,#F2ECDF,#E7DECB);position:relative}
-.card .ph img{width:100%;height:100%;object-fit:cover}
-.card .fav{position:absolute;top:12px;right:12px;width:30px;height:30px;border-radius:50%;background:rgba(244,240,231,.9);display:flex;align-items:center;justify-content:center}
+/* product card — tall white register (matches catalog .rx) */
+.card{background:#FDFCFA;border:1px solid rgba(22,19,14,.05);border-radius:20px;overflow:hidden;box-shadow:0 12px 40px rgba(22,19,14,.06);text-align:center;padding-bottom:26px;transition:transform .4s,box-shadow .4s;text-decoration:none;display:block}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 64px rgba(22,19,14,.12)}
+.card .ph{aspect-ratio:1/1.05;border-radius:0;overflow:hidden;background:#FDFCFA;position:relative}
+.card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.card:hover .ph img{transform:scale(1.04)}
+.card .fav{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.05)}
 .card .fav svg{width:15px;height:15px;stroke:var(--ink);fill:none;stroke-width:1.4}
-.card .badge{position:absolute;top:12px;left:12px}
-.card h3{font-family:var(--serif);font-weight:500;font-size:16px;margin-top:16px}
-.card .meta{font-size:12px;color:var(--ash);letter-spacing:.04em;margin-top:3px}
-.card .price{font-family:var(--serif);font-size:17px;margin-top:8px}
+.card .badge{position:absolute;top:14px;left:14px}
+.card h3{font-family:var(--serif);font-weight:500;font-size:17px;margin-top:16px}
+.card .meta{font-size:12px;color:var(--ash);letter-spacing:.04em;margin-top:5px}
+.card .price{font-family:var(--serif);font-size:17px;margin-top:10px}
 .badge{display:inline-block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
 .badge-line{border:1px solid var(--line);color:var(--ink2);background:rgba(244,240,231,.7)}
 .badge-garnet{background:var(--garnet);color:var(--cream)}
