@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html lang="ru" data-skin="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>MAISON IU — Главная</title><link rel="icon" href="data:,">
-<script>(function(){try{var p=new URLSearchParams(location.search).get('skin');if(p==='heritage'||p==='light')document.documentElement.setAttribute('data-skin',p);}catch(e){}})();</script>
+<script>(function(){try{
+  var q=new URLSearchParams(location.search).get('skin');
+  var ls=localStorage.getItem('miu_skin');
+  var s=(q==='light'||q==='heritage')?q:((ls==='light'||ls==='heritage')?ls:'light');
+  document.documentElement.setAttribute('data-skin',s);
+  if(q==='light'||q==='heritage'){try{localStorage.setItem('miu_skin',s);}catch(e){}}
+}catch(e){}})();</script>
 <link rel="stylesheet" href="c3/base.css">
 <style>
 /* ============ SKIN TOKENS — one markup, two registers ============ */
@@ -31,12 +37,31 @@ html[data-skin="heritage"]{
 body{background:var(--page-bg);background-color:var(--page-bg-color);color:var(--fg);transition:background-color .5s var(--e),color .35s var(--e)}
 .ey{color:var(--ey-col)}
 
-/* demo toggle bar (scrolls away; not part of the production chrome) */
-.demobar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px clamp(16px,4vw,40px);background:var(--nav-bg);border-bottom:1px solid var(--line-c);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
-.demobar .lbl{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ey-col);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.demobar .sw{display:flex;gap:8px;flex:none}
-.demobar .sw a{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);border:1px solid var(--line-c);border-radius:999px;padding:6px 13px;transition:.25s var(--e)}
-.demobar .sw a.on{background:var(--garnet);color:var(--cream);border-color:transparent}
+/* production theme toggle (Ivory / Heritage) — premium segmented control */
+.themebar{background:var(--nav-bg);border-bottom:1px solid var(--line-c);backdrop-filter:blur(10px) saturate(1.2);-webkit-backdrop-filter:blur(10px) saturate(1.2)}
+.tb-in{display:flex;align-items:center;justify-content:flex-end;gap:12px;height:44px}
+.tb-hint{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ey-col)}
+.seg{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line-c);border-radius:999px;padding:3px;background:transparent}
+.seg-b{appearance:none;-webkit-appearance:none;background:none;border:0;cursor:pointer;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fg2);padding:7px 15px;border-radius:999px;transition:background .25s var(--e),color .25s var(--e)}
+.seg-b:hover{color:var(--fg)}
+.seg-b.on{background:var(--garnet);color:var(--cream)}
+
+/* intro — script logo pen-writes, then dark curtains part to reveal the site (ported from index.html) */
+.intro{position:fixed;inset:0;z-index:100}
+.intro .curtain{position:absolute;left:0;right:0;height:50.5%;background:var(--ink);transition:transform .95s var(--e)}
+.intro .curtain.top{top:0}.intro .curtain.bot{bottom:0}
+.intro .lg{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .55s ease,transform .9s var(--e)}
+.intro .lg svg.sglogo{width:min(72vw,560px);height:auto}
+.intro .lg .sig{fill:none;stroke:var(--ivory);stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.intro .lg .sig-fill{fill:var(--ivory);opacity:0;transition:opacity .5s ease}
+.intro .lg .flr{display:block;margin:4px auto 0;width:min(48vw,360px);height:22px}
+.intro .lg .flr path{fill:none;stroke:var(--champ);stroke-width:1.6;stroke-linecap:round}
+.intro .lg .dsc{margin-top:16px;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:var(--champ);opacity:0;transition:opacity .6s ease}
+.intro.done .curtain.top{transform:translateY(-100%)}
+.intro.done .curtain.bot{transform:translateY(100%)}
+.intro.done .lg{opacity:0;transform:scale(.94)}
+.intro.gone{display:none}
+body.introing{overflow:hidden}
 
 /* nav (base .nav skinned via vars) */
 .nav{background:var(--nav-bg);border-bottom:1px solid var(--line-c)}
@@ -107,10 +132,26 @@ html[data-skin="light"] .foot{background:var(--ink)}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}body{transition:none}}
 </style></head><body>
 
-<div class="demobar">
-  <span class="lbl">MAISON IU · демо главной — выберите вид</span>
-  <span class="sw"><a href="?skin=light" data-skin="light">Светлый</a><a href="?skin=heritage" data-skin="heritage">Heritage</a></span>
+<div class="intro" id="intro">
+  <div class="curtain top"></div>
+  <div class="curtain bot"></div>
+  <div class="lg">
+    <svg class="sglogo" viewBox="0 0 1000 250" aria-label="Maison IU">
+      <text class="sig" x="500" y="176" text-anchor="middle" font-family="'Pinyon Script',cursive" font-size="150">Maison IU</text>
+      <text class="sig-fill" x="500" y="176" text-anchor="middle" font-family="'Pinyon Script',cursive" font-size="150">Maison IU</text>
+    </svg>
+    <svg class="flr" viewBox="0 0 360 22" preserveAspectRatio="none" aria-hidden="true"><path id="introFlr" d="M6 15 C 92 3, 182 3, 224 10 S 332 20, 354 6"/></svg>
+    <div class="dsc">Fine Watches · Jewellery · Bags</div>
+  </div>
 </div>
+
+<div class="themebar"><div class="wrap tb-in">
+  <span class="tb-hint">Тема</span>
+  <div class="seg" role="group" aria-label="Тема оформления">
+    <button type="button" class="seg-b" data-skin="light">Ivory</button>
+    <button type="button" class="seg-b" data-skin="heritage">Heritage</button>
+  </div>
+</div></div>
 
 <nav class="nav"><div class="in wrap">
   <div class="l"><a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a></div>
@@ -159,8 +200,6 @@ html[data-skin="light"] .foot{background:var(--ink)}
   <span>Moscow · Dubai · Istanbul</span>
 </div></footer>
 
-<div class="ribbon">Главная · <b id="skinLabel">Светлый</b> · демо</div>
-
 <script>
 (function(){
   var b=document.getElementById('burger'),d=document.getElementById('drawer'),x=document.getElementById('dx');
@@ -169,16 +208,44 @@ html[data-skin="light"] .foot{background:var(--ink)}
   if(d)d.querySelectorAll('a').forEach(function(a){a.onclick=function(){d.classList.remove('open')}});
 
   function setSkin(s){
+    if(s!=='light'&&s!=='heritage')s='light';
     document.documentElement.setAttribute('data-skin',s);
-    document.querySelectorAll('.sw a').forEach(function(a){a.classList.toggle('on',a.dataset.skin===s)});
-    var lb=document.getElementById('skinLabel');if(lb)lb.textContent=(s==='heritage'?'Heritage':'Светлый');
+    document.querySelectorAll('.seg-b').forEach(function(bn){var on=bn.dataset.skin===s;bn.classList.toggle('on',on);bn.setAttribute('aria-pressed',on);});
+    try{localStorage.setItem('miu_skin',s);}catch(e){}
     try{var u=new URL(location.href);u.searchParams.set('skin',s);history.replaceState(null,'',u);}catch(e){}
   }
-  document.querySelectorAll('.sw a').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();setSkin(a.dataset.skin)})});
+  document.querySelectorAll('.seg-b').forEach(function(bn){bn.addEventListener('click',function(){setSkin(bn.dataset.skin)})});
   setSkin(document.documentElement.getAttribute('data-skin')||'light');
 
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+
+  /* intro: script logo pen-writes → dark curtains part; once per session, ?intro=1 forces replay, reduced-motion skips */
+  (function(){
+    var intro=document.getElementById('intro'); if(!intro) return;
+    var force=new URLSearchParams(location.search).get('intro')==='1';
+    var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+    var seen=false; try{seen=sessionStorage.getItem('miu_intro')==='1';}catch(e){}
+    if(reduce || (seen && !force)){ intro.classList.add('gone'); return; }
+    try{sessionStorage.setItem('miu_intro','1');}catch(e){}
+    document.body.classList.add('introing');
+    var sig=intro.querySelector('.sig'), fill=intro.querySelector('.sig-fill'),
+        flr=document.getElementById('introFlr'), dsc=intro.querySelector('.dsc'), played=false, L=2600, fl=1;
+    function play(){ if(played)return; played=true;
+      try{var l=sig.getComputedTextLength()*3.4; if(l>200)L=l;}catch(e){}
+      sig.style.strokeDasharray=L; sig.style.strokeDashoffset=L;
+      try{fl=flr.getTotalLength();}catch(e){} flr.style.strokeDasharray=fl; flr.style.strokeDashoffset=fl;
+      requestAnimationFrame(function(){
+        sig.style.transition='stroke-dashoffset 1.5s cubic-bezier(.66,0,.34,1)'; sig.style.strokeDashoffset=0;
+        setTimeout(function(){ fill.style.opacity=1; },1250);
+        setTimeout(function(){ flr.style.transition='stroke-dashoffset .7s ease'; flr.style.strokeDashoffset=0; dsc.style.opacity=1; },1400);
+        setTimeout(function(){ intro.classList.add('done'); document.body.classList.remove('introing'); },2550);
+        setTimeout(function(){ intro.classList.add('gone'); },3600);
+      });
+    }
+    if(document.fonts&&document.fonts.ready){ document.fonts.ready.then(play); }
+    setTimeout(play,1000);
+  })();
 })();
 </script>
 </body></html>
