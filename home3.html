@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ru" data-skin="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MAISON IU — Главная</title><link rel="icon" href="data:,">
+<script>(function(){try{var p=new URLSearchParams(location.search).get('skin');if(p==='heritage'||p==='light')document.documentElement.setAttribute('data-skin',p);}catch(e){}})();</script>
+<link rel="stylesheet" href="c3/base.css">
+<style>
+/* ============ SKIN TOKENS — one markup, two registers ============ */
+html[data-skin="light"]{
+  --page-bg:#FBF8F2; --page-bg-color:#FBF8F2;
+  --fg:var(--ink); --fg2:var(--ink2); --ey-col:var(--ash);
+  --logo-col:var(--ink); --nav-bg:rgba(251,248,242,.9);
+  --line-c:var(--line); --foil:var(--line2);
+  --panel-bg:#ffffff; --panel-line:var(--line);
+  --script-accent:var(--garnet);
+  --ph-grad:linear-gradient(165deg,#F2ECDF,#E7DECB);
+  --cta-a-bg:var(--garnet); --cta-a-fg:var(--cream); --cta-a-bg-h:var(--garnet2);
+  --cta-b-bd:var(--ink); --cta-b-fg:var(--ink); --cta-b-bg-h:var(--ink); --cta-b-fg-h:var(--ivory);
+}
+html[data-skin="heritage"]{
+  --page-bg:radial-gradient(60% 46% at 50% 20%,rgba(244,240,231,.05),rgba(244,240,231,0) 70%),repeating-radial-gradient(circle at 50% 18%,rgba(244,240,231,.04) 0 1px,rgba(244,240,231,0) 1px 13px),linear-gradient(180deg,#43141E 0%,#2C0E15 60%,#20090F 100%);
+  --page-bg-color:#2C0E15;
+  --fg:#ffffff; --fg2:rgba(244,240,231,.84); --ey-col:rgba(244,240,231,.72);
+  --logo-col:var(--ivory); --nav-bg:rgba(20,9,15,.55);
+  --line-c:var(--heritage-line); --foil:var(--champ);
+  --panel-bg:linear-gradient(180deg,#38111B,#2A0C13); --panel-line:var(--heritage-line);
+  --script-accent:var(--ivory);
+  --ph-grad:linear-gradient(165deg,#2A0C13,#1C0A0F);
+  --cta-a-bg:var(--ivory); --cta-a-fg:var(--ink); --cta-a-bg-h:#ffffff;
+  --cta-b-bd:rgba(255,255,255,.5); --cta-b-fg:#ffffff; --cta-b-bg-h:#ffffff; --cta-b-fg-h:var(--ink);
+}
+body{background:var(--page-bg);background-color:var(--page-bg-color);color:var(--fg);transition:background-color .5s var(--e),color .35s var(--e)}
+.ey{color:var(--ey-col)}
+
+/* demo toggle bar (scrolls away; not part of the production chrome) */
+.demobar{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px clamp(16px,4vw,40px);background:var(--nav-bg);border-bottom:1px solid var(--line-c);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.demobar .lbl{font-size:10px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ey-col);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.demobar .sw{display:flex;gap:8px;flex:none}
+.demobar .sw a{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fg);border:1px solid var(--line-c);border-radius:999px;padding:6px 13px;transition:.25s var(--e)}
+.demobar .sw a.on{background:var(--garnet);color:var(--cream);border-color:transparent}
+
+/* nav (base .nav skinned via vars) */
+.nav{background:var(--nav-bg);border-bottom:1px solid var(--line-c)}
+.nav .brand{color:var(--logo-col)}
+.nav a,.nav .u{color:var(--fg2)}
+.nav a:hover{color:var(--script-accent)}
+.nav .burger span{background:var(--fg)}
+.nav .uen b{color:var(--fg)}
+
+/* drawer */
+.drawer{position:fixed;inset:0;z-index:70;background:rgba(14,11,10,.985);color:var(--ivory);display:flex;flex-direction:column;justify-content:center;gap:2px;padding:56px 32px;transform:translateY(-102%);transition:transform .5s var(--e)}
+.drawer.open{transform:none}
+.drawer a{font-family:var(--serif);font-weight:600;font-size:30px;color:var(--ivory);padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}
+.drawer .x{position:absolute;top:18px;right:20px;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ivory);background:none;border:0;cursor:pointer}
+
+/* hero */
+.hero{text-align:center;padding:clamp(46px,8vw,104px) 0 clamp(30px,5vw,58px)}
+.brandmark{font-family:var(--script);line-height:.86;color:var(--logo-col);-webkit-text-stroke:.85px var(--logo-col);paint-order:stroke fill;font-size:clamp(62px,13vw,148px);margin:12px 0 2px}
+.lock{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px 0 18px}
+.lock hr{width:clamp(22px,6vw,60px);height:1px;border:0;background:var(--foil);opacity:.85}
+.lock span{font-family:var(--serif);font-weight:600;letter-spacing:.28em;text-transform:uppercase;font-size:clamp(10px,1.4vw,12.5px);color:var(--ey-col);white-space:nowrap}
+.hero h1{font-family:var(--serif);font-weight:600;color:var(--fg);font-size:clamp(30px,5vw,58px);line-height:1.03;letter-spacing:-.01em}
+.hero .slg{color:var(--fg2);font-weight:500;font-size:15.5px;max-width:52ch;margin:16px auto 26px;line-height:1.7}
+.hero .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* skinned CTAs */
+.cbtn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:0 30px;border-radius:999px;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;border:1px solid transparent;cursor:pointer;transition:transform .35s var(--e),background .3s var(--e),color .3s var(--e),border-color .3s var(--e)}
+.cbtn.a{background:var(--cta-a-bg);color:var(--cta-a-fg)}
+.cbtn.a:hover{transform:translateY(-2px);background:var(--cta-a-bg-h)}
+.cbtn.b{border-color:var(--cta-b-bd);color:var(--cta-b-fg)}
+.cbtn.b:hover{background:var(--cta-b-bg-h);color:var(--cta-b-fg-h)}
+
+/* section scaffold */
+.sec{padding:clamp(38px,6vw,70px) 0}
+.shead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:22px;flex-wrap:wrap}
+.shead h2{font-family:var(--serif);font-weight:600;font-size:clamp(22px,3vw,30px);color:var(--fg)}
+.shead .lnk2{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--script-accent);border-bottom:1px solid var(--foil);padding-bottom:3px}
+
+/* category gallery (structure from 04) */
+.gal{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2vw,20px)}
+.gcell{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:.82/1;display:block;border:1px solid var(--panel-line)}
+.gcell img{width:100%;height:100%;object-fit:cover;background:var(--ph-grad);transition:transform .8s var(--e)}
+.gcell:hover img{transform:scale(1.05)}
+.gcell .lab{position:absolute;left:0;right:0;bottom:0;padding:24px 20px;background:linear-gradient(to top,rgba(16,10,8,.74),rgba(16,10,8,0));color:#fff}
+.gcell .lab h3{font-family:var(--serif);font-weight:600;font-size:22px}
+.gcell .lab span{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+
+/* trust row */
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center;border-top:1px solid var(--line-c);border-bottom:1px solid var(--line-c);padding:clamp(28px,4vw,44px) 0}
+.trust .k{font-family:var(--serif);font-weight:600;font-size:clamp(24px,3.4vw,40px);color:var(--fg);line-height:1}
+.trust .l{font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ey-col);margin-top:9px}
+
+/* concierge */
+.appt{text-align:center;border:1px solid var(--panel-line);border-radius:20px;padding:clamp(40px,6vw,72px);background:var(--panel-bg)}
+.appt .scr{font-family:var(--script);font-size:clamp(38px,6vw,58px);color:var(--script-accent);-webkit-text-stroke:.4px var(--script-accent);line-height:.9;paint-order:stroke fill}
+.appt p{color:var(--fg2);font-weight:500;font-size:15.5px;max-width:46ch;margin:12px auto 24px;line-height:1.7}
+.appt .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* footer skinned line */
+.foot{background:var(--page-bg-color)}
+html[data-skin="light"] .foot{background:var(--ink)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--e),transform .8s var(--e)}.reveal.in{opacity:1;transform:none}
+
+@media(max-width:860px){.gal{grid-template-columns:1fr;gap:14px}}
+@media(max-width:640px){.trust{grid-template-columns:1fr;gap:26px}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}body{transition:none}}
+</style></head><body>
+
+<div class="demobar">
+  <span class="lbl">MAISON IU · демо главной — выберите вид</span>
+  <span class="sw"><a href="?skin=light" data-skin="light">Светлый</a><a href="?skin=heritage" data-skin="heritage">Heritage</a></span>
+</div>
+
+<nav class="nav"><div class="in wrap">
+  <div class="l"><a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a></div>
+  <div class="brand">Maison IU</div>
+  <div class="r"><a href="catalog.html">Каталог</a><a href="#appt">Контакты</a><span class="u uen"><b>RU</b> · EN</span></div>
+  <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="drawer" id="drawer"><button class="x" id="dx">Закрыть ✕</button><a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a><a href="catalog.html">Каталог</a><a href="#appt">Записаться</a></div>
+
+<header class="hero wrap">
+  <span class="ey reveal">Boutique · by appointment · Moscow · Dubai · Istanbul</span>
+  <div class="brandmark reveal">Maison IU</div>
+  <div class="lock reveal"><hr><span>Fine Watches · Jewellery · Bags</span><hr></div>
+  <h1 class="reveal">Подлинность,<br>которую видно</h1>
+  <p class="slg reveal">Оригинальные часы, украшения и сумки премиум-класса — с проверенной подлинностью и полным комплектом box &amp; papers.</p>
+  <div class="cta reveal"><a class="cbtn a" href="catalog.html">Смотреть коллекцию</a><a class="cbtn b" href="#appt">Записаться на просмотр</a></div>
+</header>
+
+<section class="sec wrap" id="cat">
+  <div class="shead reveal"><h2>Категории</h2><a class="lnk2" href="catalog.html">Весь каталог →</a></div>
+  <div class="gal">
+    <a class="gcell reveal" href="catalog.html"><img src="assets/products/watch-twotone.jpg" alt="Часы"><span class="lab"><span>Timepieces</span><h3>Часы</h3></span></a>
+    <a class="gcell reveal" href="catalog.html"><img src="assets/products/necklace.jpg" alt="Украшения"><span class="lab"><span>Fine Jewellery</span><h3>Украшения</h3></span></a>
+    <a class="gcell reveal" href="catalog.html"><img src="assets/products/bag.jpg" alt="Сумки"><span class="lab"><span>Leather</span><h3>Сумки</h3></span></a>
+  </div>
+</section>
+
+<section class="sec wrap">
+  <div class="trust reveal">
+    <div><div class="k tab">12</div><div class="l">лет на рынке</div></div>
+    <div><div class="k">Box &amp; Papers</div><div class="l">полная комплектация</div></div>
+    <div><div class="k tab">3</div><div class="l">города · MSK · DXB · IST</div></div>
+  </div>
+</section>
+
+<section class="sec wrap"><div class="appt reveal" id="appt">
+  <span class="ey">Личный просмотр</span>
+  <div class="scr">Приватная встреча</div>
+  <p>Подберём изделие под ваш запрос и покажем лично — по записи, дискретно. Подлинность подтверждена, полный комплект.</p>
+  <div class="cta"><a class="cbtn a" href="#">Telegram</a><a class="cbtn b" href="#">WhatsApp</a></div>
+</div></section>
+
+<footer class="foot"><div class="in wrap">
+  <span class="lg">Maison IU</span>
+  <span>Оригинальные часы, украшения и сумки премиум-класса · box &amp; papers</span>
+  <span>Moscow · Dubai · Istanbul</span>
+</div></footer>
+
+<div class="ribbon">Главная · <b id="skinLabel">Светлый</b> · демо</div>
+
+<script>
+(function(){
+  var b=document.getElementById('burger'),d=document.getElementById('drawer'),x=document.getElementById('dx');
+  if(b)b.onclick=function(){d.classList.add('open')};
+  if(x)x.onclick=function(){d.classList.remove('open')};
+  if(d)d.querySelectorAll('a').forEach(function(a){a.onclick=function(){d.classList.remove('open')}});
+
+  function setSkin(s){
+    document.documentElement.setAttribute('data-skin',s);
+    document.querySelectorAll('.sw a').forEach(function(a){a.classList.toggle('on',a.dataset.skin===s)});
+    var lb=document.getElementById('skinLabel');if(lb)lb.textContent=(s==='heritage'?'Heritage':'Светлый');
+    try{var u=new URL(location.href);u.searchParams.set('skin',s);history.replaceState(null,'',u);}catch(e){}
+  }
+  document.querySelectorAll('.sw a').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();setSkin(a.dataset.skin)})});
+  setSkin(document.documentElement.getAttribute('data-skin')||'light');
+
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+})();
+</script>
+</body></html>
