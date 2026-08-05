@@ -9,12 +9,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ProductCard } from "@/components/site/product-card";
-import {
-  filterProducts,
-  sortProducts,
-  type SortKey,
-} from "@/lib/catalog";
+import { Reveal } from "@/components/site/reveal";
+import { filterProducts, sortProducts, type SortKey } from "@/lib/catalog";
 import {
   BRANDS,
   CATEGORIES,
@@ -22,7 +20,6 @@ import {
   type Brand,
   type Category,
 } from "@/lib/products";
-import { cn } from "@/lib/utils";
 
 const PRICE_TIERS: { value: string; label: string; max?: number }[] = [
   { value: "all", label: "Any price" },
@@ -36,6 +33,19 @@ const SORTS: { value: SortKey; label: string }[] = [
   { value: "price-asc", label: "Price · Low to High" },
   { value: "price-desc", label: "Price · High to Low" },
 ];
+
+const WORDS = [
+  "Zero", "One", "Two", "Three", "Four", "Five", "Six",
+  "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
+];
+function pieces(n: number) {
+  const word = WORDS[n] ?? String(n);
+  return `${word} ${n === 1 ? "piece" : "pieces"}`;
+}
+
+// borderless editorial dropdown (no box) — text + champagne chevron
+const EDITORIAL_TRIGGER =
+  "h-auto w-auto gap-1.5 rounded-none border-0 bg-transparent px-0 py-0 text-[12px] font-semibold uppercase tracking-[0.1em] text-fg2 hover:border-0 data-[state=open]:border-0";
 
 export function CatalogClient({
   initialCategory = "all",
@@ -55,64 +65,52 @@ export function CatalogClient({
   );
 
   const results = React.useMemo(() => {
-    const filtered = filterProducts(PRODUCTS, {
-      category,
-      brand,
-      maxPriceUsd,
-    });
+    const filtered = filterProducts(PRODUCTS, { category, brand, maxPriceUsd });
     return sortProducts(filtered, sort);
   }, [category, brand, maxPriceUsd, sort]);
 
-  const chips: { value: Category | "all"; label: string }[] = [
+  const tabs: { value: Category | "all"; label: string }[] = [
     { value: "all", label: "All" },
     ...CATEGORIES,
   ];
 
   return (
     <div>
-      {/* category chips — horizontal scroll on mobile with a right fade peek */}
-      <div className="relative">
-        <div className="-mx-5 flex gap-2.5 overflow-x-auto px-5 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0 [&::-webkit-scrollbar]:hidden">
-          {chips.map((c) => {
-            const active = category === c.value;
-            return (
-              <button
-                key={c.value}
-                type="button"
-                onClick={() => {
-                  setCategory(c.value);
-                  setBrand("all");
-                }}
-                className={cn(
-                  "shrink-0 rounded-full border px-[18px] py-2.5 text-[12px] font-semibold uppercase tracking-[0.1em] transition-colors",
-                  active
-                    ? "border-garnet bg-garnet text-cream"
-                    : "border-hairline bg-transparent text-fg2 hover:text-fg",
-                )}
-              >
-                {c.label}
-              </button>
-            );
-          })}
-        </div>
-        {/* scroll affordance — fade the last chip on mobile only */}
-        <div
-          aria-hidden
-          className="chip-fade pointer-events-none absolute -right-5 top-0 bottom-1 w-12 sm:hidden"
-        />
+      {/* editorial category filter — text + garnet underline (keyboard a11y via ToggleGroup) */}
+      <div className="border-y border-hairline py-3.5">
+        <ToggleGroup
+          type="single"
+          value={category}
+          onValueChange={(v) => {
+            if (v) {
+              setCategory(v as Category | "all");
+              setBrand("all");
+            }
+          }}
+          aria-label="Category"
+        >
+          {tabs.map((t) => (
+            <ToggleGroupItem key={t.value} value={t.value}>
+              {t.label}
+            </ToggleGroupItem>
+          ))}
+        </ToggleGroup>
       </div>
 
-      {/* tool row: brand / price / sort */}
-      <div className="mt-6 flex flex-col gap-3 border-t border-hairline pt-5 sm:flex-row sm:items-center sm:justify-between">
-        <div className="grid grid-cols-2 gap-2.5 sm:flex sm:w-auto">
+      {/* editorial sub-row: italic count + quiet brand / price / sort dropdowns */}
+      <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 pt-3.5 pb-1.5">
+        <span className="font-serif text-[14px] italic text-fg2">
+          {pieces(results.length)}
+        </span>
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
           <Select
             value={brand}
             onValueChange={(v) => setBrand(v as Brand | "all")}
           >
-            <SelectTrigger className="sm:w-[210px]" aria-label="Brand">
+            <SelectTrigger aria-label="Brand" className={EDITORIAL_TRIGGER}>
               <SelectValue placeholder="Brand" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent align="end">
               <SelectItem value="all">All brands</SelectItem>
               {BRANDS.map((b) => (
                 <SelectItem key={b} value={b}>
@@ -123,10 +121,10 @@ export function CatalogClient({
           </Select>
 
           <Select value={priceTier} onValueChange={setPriceTier}>
-            <SelectTrigger className="sm:w-[190px]" aria-label="Price">
+            <SelectTrigger aria-label="Price" className={EDITORIAL_TRIGGER}>
               <SelectValue placeholder="Price" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent align="end">
               {PRICE_TIERS.map((t) => (
                 <SelectItem key={t.value} value={t.value}>
                   {t.label}
@@ -134,20 +132,12 @@ export function CatalogClient({
               ))}
             </SelectContent>
           </Select>
-        </div>
 
-        <div className="flex items-center justify-between gap-3 sm:justify-end">
-          <span className="tabular text-[12px] tracking-[0.06em] text-fg2">
-            {results.length} pieces
-          </span>
-          <Select
-            value={sort}
-            onValueChange={(v) => setSort(v as SortKey)}
-          >
-            <SelectTrigger className="w-[190px]" aria-label="Sort">
+          <Select value={sort} onValueChange={(v) => setSort(v as SortKey)}>
+            <SelectTrigger aria-label="Sort" className={EDITORIAL_TRIGGER}>
               <SelectValue placeholder="Sort" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent align="end">
               {SORTS.map((s) => (
                 <SelectItem key={s.value} value={s.value}>
                   {s.label}
@@ -160,13 +150,15 @@ export function CatalogClient({
 
       {/* grid */}
       {results.length > 0 ? (
-        <div className="mt-10 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3 lg:gap-8">
-          {results.map((p) => (
-            <ProductCard key={p.id} product={p} />
+        <div className="mt-6 grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3 lg:gap-8">
+          {results.map((p, i) => (
+            <Reveal key={p.id} delay={Math.min(i, 6) * 70}>
+              <ProductCard product={p} />
+            </Reveal>
           ))}
         </div>
       ) : (
-        <div className="mt-16 border-y border-hairline py-20 text-center">
+        <div className="mt-12 border-y border-hairline py-20 text-center">
           <p className="font-serif text-[20px] text-fg">Nothing here yet</p>
           <p className="mt-2 text-[14px] text-fg2">
             No pieces match these filters.

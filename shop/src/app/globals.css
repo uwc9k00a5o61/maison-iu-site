@@ -299,6 +299,42 @@ html[data-skin="heritage"] :focus-visible {
 .plinth {
   background: var(--ph-grad);
 }
+/* soft unifying vignette so mixed photo backgrounds read as one system in
+   BOTH themes (heals Heritage "bright windows") */
+.photo-vignette::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: linear-gradient(
+    180deg,
+    rgba(22, 19, 14, 0.05) 0%,
+    rgba(22, 19, 14, 0) 22%,
+    rgba(22, 19, 14, 0) 70%,
+    rgba(22, 19, 14, 0.12) 100%
+  );
+}
+
+/* scroll-reveal (stagger via inline --d delay); motion-motivated + gated */
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1) var(--d, 0ms);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
 .hdr-plate {
   background: var(--hdr-bg);
   border-color: var(--hdr-line);
