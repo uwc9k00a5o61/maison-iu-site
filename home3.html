@@ -63,13 +63,19 @@ body{background:var(--page-bg);background-color:var(--page-bg-color);color:var(-
 .intro.gone{display:none}
 body.introing{overflow:hidden}
 
-/* nav (base .nav skinned via vars) */
+/* nav (base .nav skinned via vars) — centered menu, no wordmark (avoids dup with hero) */
 .nav{background:var(--nav-bg);border-bottom:1px solid var(--line-c)}
-.nav .brand{color:var(--logo-col)}
 .nav a,.nav .u{color:var(--fg2)}
 .nav a:hover{color:var(--script-accent)}
 .nav .burger span{background:var(--fg)}
 .nav .uen b{color:var(--fg)}
+.nav .c{display:flex;gap:clamp(16px,2vw,26px);justify-content:center;align-items:center}
+.nav .navlang-m{display:none}
+@media(max-width:880px){
+  .nav .c{display:none}
+  .nav .l{display:flex;align-items:center}
+  .nav .navlang-m{display:inline-flex}
+}
 
 /* drawer */
 .drawer{position:fixed;inset:0;z-index:70;background:rgba(14,11,10,.985);color:var(--ivory);display:flex;flex-direction:column;justify-content:center;gap:2px;padding:56px 32px;transform:translateY(-102%);transition:transform .5s var(--e)}
@@ -111,8 +117,8 @@ body.introing{overflow:hidden}
 
 /* trust row */
 .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center;border-top:1px solid var(--line-c);border-bottom:1px solid var(--line-c);padding:clamp(28px,4vw,44px) 0}
-.trust .k{font-family:var(--serif);font-weight:600;font-size:clamp(24px,3.4vw,40px);color:var(--fg);line-height:1}
-.trust .l{font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ey-col);margin-top:9px}
+.trust .k{font-family:var(--serif);font-weight:700;font-size:clamp(25px,3.6vw,42px);color:var(--fg);line-height:1;letter-spacing:.005em}
+.trust .l{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fg2);margin-top:10px}
 
 /* concierge */
 .appt{text-align:center;border:1px solid var(--panel-line);border-radius:20px;padding:clamp(40px,6vw,72px);background:var(--panel-bg)}
@@ -154,12 +160,12 @@ html[data-skin="light"] .foot{background:var(--ink)}
 </div></div>
 
 <nav class="nav"><div class="in wrap">
-  <div class="l"><a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a></div>
-  <div class="brand">Maison IU</div>
+  <div class="l"><span class="u uen navlang-m"><b>RU</b> · EN</span></div>
+  <div class="c"><a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a></div>
   <div class="r"><a href="catalog.html">Каталог</a><a href="#appt">Контакты</a><span class="u uen"><b>RU</b> · EN</span></div>
   <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="drawer" id="drawer"><button class="x" id="dx">Закрыть ✕</button><a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a><a href="catalog.html">Каталог</a><a href="#appt">Записаться</a></div>
+<div class="drawer" id="drawer"><button class="x" id="dx">Закрыть ✕</button><a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a><a href="catalog.html">Каталог</a><a href="#appt">Контакты</a><a href="#appt">Записаться</a></div>
 
 <header class="hero wrap">
   <span class="ey reveal">Boutique · by appointment · Moscow · Dubai · Istanbul</span>
