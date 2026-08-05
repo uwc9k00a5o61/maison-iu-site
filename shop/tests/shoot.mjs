@@ -83,6 +83,24 @@ for (const s of shots) {
   await page.close();
 }
 
+// macro close-ups (readability proof) at 390
+async function macro(name, url, selector) {
+  const page = await browser.newPage();
+  await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
+  await page.goto(url, { waitUntil: "networkidle0", timeout: 60000 });
+  await autoScroll(page);
+  const el = await page.$(selector);
+  if (el) {
+    await el.screenshot({ path: `${OUT}/${name}.png` });
+    console.log("macro", name);
+  } else {
+    console.log("macro MISS", name, selector);
+  }
+  await page.close();
+}
+await macro("shop-macro-card-390", BASE + "/catalog", 'a[href^="/product/"]');
+await macro("shop-macro-pdp-390", BASE + "/product/rolex-datejust-36", "main .grid > div:last-child");
+
 // overflow report on /catalog
 const page = await browser.newPage();
 const report = {};

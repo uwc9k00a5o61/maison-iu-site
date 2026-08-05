@@ -97,15 +97,15 @@ export default async function ProductPage({
               <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-ink2">
                 {product.brand}
               </span>
-              <h1 className="mt-3 font-serif text-[clamp(30px,4vw,44px)] font-medium leading-[1.05] text-ink">
+              <h1 className="mt-3 font-serif text-[clamp(30px,4vw,44px)] font-semibold leading-[1.05] text-ink">
                 {product.name}
               </h1>
-              <span className="tabular mt-3 text-[13px] font-medium tracking-[0.04em] text-ash">
+              <span className="tabular mt-3 text-[13px] font-semibold tracking-[0.04em] text-ash">
                 Reference {product.reference}
               </span>
 
               <div className="mt-6 flex items-center gap-4">
-                <span className="tabular font-serif text-[26px] tracking-[-0.01em] text-ink">
+                <span className="tabular font-sans text-[26px] font-bold tracking-[0.01em] text-ink">
                   {formatPriceUsd(product.priceUsd)}
                 </span>
                 <Badge

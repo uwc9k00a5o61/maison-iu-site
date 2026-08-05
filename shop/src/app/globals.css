@@ -12,7 +12,9 @@
 
   /* ---- brand palette (strict) ---- */
   --brand-ivory: #f4f0e7;
-  --brand-paper: #fbf8f2;
+  /* page background = warm ivory beige from home3 (#F4F0E7);
+     cards/panels stay white (--card) for "beige page + white cards" */
+  --brand-paper: #f4f0e7;
   --brand-cream: #f1e4d7;
   --brand-ink: #16130e;
   --brand-ink2: #2a2620;

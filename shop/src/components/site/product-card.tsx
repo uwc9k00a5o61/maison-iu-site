@@ -54,13 +54,13 @@ export function ProductCard({ product }: { product: Product }) {
         <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink2">
           {product.brand}
         </span>
-        <h3 className="mt-2 flex min-h-[2.5em] items-center justify-center font-serif text-[18px] font-medium leading-tight text-ink sm:text-[19px]">
+        <h3 className="mt-2 flex min-h-[2.6em] items-center justify-center font-sans text-[16px] font-semibold leading-snug text-ink sm:text-[17px]">
           {product.name}
         </h3>
-        <span className="tabular mt-1 text-[12px] font-medium tracking-[0.04em] text-ash">
+        <span className="tabular mt-1.5 text-[11px] font-medium uppercase tracking-[0.08em] text-ash">
           Ref. {product.reference}
         </span>
-        <span className="tabular mt-3.5 font-serif text-[17px] tracking-[-0.01em] text-ink sm:text-[18px]">
+        <span className="tabular mt-3 font-sans text-[17px] font-bold tracking-[0.01em] text-ink sm:text-[18px]">
           {formatPriceUsd(product.priceUsd)}
         </span>
       </div>
