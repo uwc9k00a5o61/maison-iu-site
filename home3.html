@@ -155,6 +155,49 @@ h1,h2,.brandmark,.appt .ttl,.hero h1{text-wrap:balance}
 .skip{position:fixed;top:8px;left:8px;z-index:200;transform:translateY(-160%);background:var(--ink);color:var(--ivory);padding:10px 18px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:transform .2s ease}
 .skip:focus-visible{transform:translateY(0)}
 @supports(padding:env(safe-area-inset-left)){body{padding-inline:env(safe-area-inset-left) env(safe-area-inset-right)}.themebar{padding-top:env(safe-area-inset-top)}}
+
+/* ================= APPROVED DESIGN-REVIEW REFINEMENTS (all 6, both themes) ================= */
+/* 1 · Hero: size-specific tracking, weight-led hierarchy, modular rhythm (apple §15 / taste §4.1) */
+.hero{padding:clamp(64px,11vw,120px) 0 clamp(44px,6vw,68px)}
+.hero .ey{font-size:10px;letter-spacing:.36em;line-height:2}
+.brandmark{font-size:clamp(58px,12.5vw,142px);margin:22px 0 6px}
+.lock{margin:12px 0 30px}
+.lock span{letter-spacing:.34em}
+.hero h1{font-weight:500;font-size:clamp(33px,5.2vw,62px);line-height:.98;letter-spacing:-.022em;margin-top:2px}
+.hero .slg{max-width:42ch;font-size:16px;line-height:1.8;margin:22px auto 32px}
+/* 2 · One dominant CTA + button-in-button arrow; secondary → refined text link (high-end §4B) */
+.hero .cta{gap:20px;align-items:center}
+.hero .cta .cbtn.a{padding-right:8px}
+.hero .cta .cbtn.a::after{content:"\2192";display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;margin-left:14px;border-radius:999px;background:rgba(255,255,255,.16);font-size:14px;line-height:1;transition:transform .35s var(--e)}
+.hero .cta .cbtn.a:hover::after{transform:translate(3px,-1px)}
+.hero .cta .cbtn.b{min-height:auto;padding:12px 2px;border:0;border-radius:0;background:transparent;border-bottom:1px solid var(--foil);color:var(--fg2)}
+.hero .cta .cbtn.b:hover{background:transparent;color:var(--fg);border-color:var(--fg)}
+/* 3 · Category tiles: double-bezel shell + taller 3:4 frame + finer label (high-end §4A) */
+.gal{gap:clamp(16px,2.2vw,26px)}
+.gcell{aspect-ratio:3/4;padding:6px;border-radius:20px;background:var(--panel-bg);border:1px solid var(--panel-line);box-shadow:inset 0 1px 0 rgba(255,255,255,.14)}
+.gcell img{border-radius:15px}
+.gcell .lab{bottom:16px;padding:11px 20px;border-radius:12px;background:rgba(16,10,8,.32);border:1px solid rgba(255,255,255,.18);backdrop-filter:blur(12px) saturate(1.1);-webkit-backdrop-filter:blur(12px) saturate(1.1)}
+.gcell .lab h3{font-size:clamp(21px,5vw,25px)}
+.gcell .lab span{font-size:9.5px;letter-spacing:.24em;opacity:.85}
+/* 4 · Trust row: editorial hairline dividers + more air */
+.trust{padding:clamp(44px,5.5vw,64px) 0;gap:0}
+.trust>div{padding:0 clamp(14px,3vw,44px)}
+.trust>div+div{border-left:1px solid var(--line-c)}
+.trust .k{font-size:clamp(28px,3.9vw,46px);font-weight:600}
+.trust .l{margin-top:12px;letter-spacing:.2em;color:var(--fg2)}
+@media(max-width:640px){.trust{grid-template-columns:1fr}.trust>div+div{border-left:0;border-top:1px solid var(--line-c);padding:26px 0 0}}
+/* 5 · Concierge: garnet accent rule + inset highlight + more air (high-end §4A/C · apple §12) */
+.appt{padding:clamp(48px,7vw,84px) clamp(28px,5vw,68px);border-radius:24px;box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 30px 70px rgba(20,18,14,.10)}
+.appt::before{content:"";display:block;width:40px;height:2px;background:var(--script-accent);margin:0 auto 22px;border-radius:2px}
+.appt .ey{color:var(--script-accent);letter-spacing:.3em}
+.appt .ttl{font-weight:600;margin-top:12px}
+.appt p{margin:16px auto 28px}
+/* 6 · Macro whitespace / section rhythm (high-end §4C) */
+.sec{padding:clamp(56px,9vw,104px) 0}
+/* Motion: heavy blur fade-up reveal (high-end §5C), reduced-motion safe */
+.reveal{transform:translateY(28px);filter:blur(6px);transition:opacity 1s var(--e),transform 1s var(--e),filter 1s var(--e)}
+.reveal.in{filter:blur(0)}
+@media(prefers-reduced-motion:reduce){.reveal{filter:none;transform:none}}
 </style></head><body>
 
 <a href="#main" class="skip">Skip to content</a>
