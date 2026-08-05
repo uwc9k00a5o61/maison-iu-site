@@ -1,0 +1,97 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAISON IU — v3 · 02 Void</title><link rel="icon" href="data:,">
+<link rel="stylesheet" href="base.css">
+<style>
+body{background:var(--void);color:var(--onlight)}
+.nav.abs .brand{color:var(--ivory)}
+/* ---- hero: product in the void ---- */
+.void{position:relative;min-height:100svh;overflow:hidden;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(120% 90% at 50% 42%,#161209 0%,#0B0A08 66%,#070604 100%)}
+.void .watch{position:relative;z-index:1;width:min(88vw,540px);height:min(74vh,620px);margin-top:-4vh}
+.void .watch img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 40px 70px rgba(0,0,0,.6));
+  -webkit-mask-image:radial-gradient(closest-side,#000 60%,rgba(0,0,0,0) 92%);mask-image:radial-gradient(closest-side,#000 60%,rgba(0,0,0,0) 92%)}
+/* decorative vertical technical captions — desktop only */
+.spec-side{position:absolute;top:50%;transform:translateY(-50%);z-index:2;font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--onmute);display:none}
+.spec-side div{margin:14px 0}
+.spec-side.l{left:clamp(24px,4vw,56px)}
+.spec-side.r{right:clamp(24px,4vw,56px);text-align:right}
+.spec-side b{display:block;color:var(--ivory);font-weight:600;letter-spacing:.14em;margin-top:2px}
+/* bottom-anchored lead block */
+.lead{position:absolute;z-index:3;left:0;right:0;bottom:clamp(40px,7vh,86px);text-align:center;padding:0 22px}
+.lead .ey{color:var(--onmute)}
+.lead h1{font-family:var(--serif);font-weight:600;color:#fff;font-size:clamp(40px,8vw,88px);line-height:.96;letter-spacing:-.01em;margin:12px 0 8px}
+.lead .sub{font-size:12.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--onmute)}
+.lead .specrow{display:flex;justify-content:center;gap:clamp(16px,4vw,40px);flex-wrap:wrap;margin:20px 0 22px}
+.lead .specrow div .k{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ivory)}
+.lead .specrow div .l2{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--onmute);margin-top:3px}
+.lead .actions{display:inline-flex;align-items:center;gap:16px}
+.void .down{position:absolute;left:50%;transform:translateX(-50%);bottom:20px;z-index:3}
+@media(max-width:880px){.void .down{display:none}}
+@media(min-width:881px){.spec-side{display:block}.lead{text-align:left;left:clamp(24px,5vw,64px);right:auto;max-width:520px}.lead .specrow{justify-content:flex-start}.lead .actions{gap:18px}.void .down{left:auto;right:clamp(24px,5vw,64px);transform:none}}
+/* ---- collection in the void ---- */
+.grid-void{padding:clamp(56px,9vw,110px) 0}
+.grid-void .gh{text-align:center;margin-bottom:36px}
+.grid-void .gh .ey{color:var(--onmute)}
+.grid-void .gh h2{font-family:var(--serif);font-weight:600;font-size:clamp(24px,3.4vw,38px);color:var(--ivory);margin-top:10px}
+.vitrine{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2.4vw,30px)}
+@media(max-width:760px){.vitrine{grid-template-columns:1fr;gap:22px}}
+.vi{text-align:center}
+.vi .ph{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;background:radial-gradient(80% 80% at 50% 45%,#161209,#0A0906);border:1px solid var(--line-d);border-radius:14px;overflow:hidden}
+.vi .ph img{width:86%;height:86%;object-fit:contain;transition:transform .7s var(--e)}
+.vi:hover .ph img{transform:scale(1.05)}
+.vi h3{font-family:var(--serif);font-weight:600;font-size:18px;color:var(--ivory);margin:16px 0 4px}
+.vi .m{font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--onmute)}
+.vi .p{font-family:var(--serif);font-weight:600;font-size:17px;color:var(--ivory);margin-top:8px}
+</style></head><body>
+<header class="nav abs"><div class="wrap"><div class="in">
+  <div class="l"><a href="#coll">Watches</a><a href="#coll">Jewellery</a><a href="#coll">Bags</a></div>
+  <div class="brand">Maison IU</div>
+  <div class="r"><a href="#coll">Каталог</a><a href="#">Контакты</a><span class="u uen"><b>RU</b> · EN</span></div>
+  <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+</div></div></header>
+<nav class="mmenu" id="mmenu"><span class="mm-b" style="color:var(--ivory);-webkit-text-stroke:.6px var(--ivory)">Maison IU</span><span class="mx">Закрыть</span>
+  <a href="#coll" style="color:var(--ivory)">Watches</a><a href="#coll" style="color:var(--ivory)">Jewellery</a><a href="#coll" style="color:var(--ivory)">Bags</a><a href="#coll" style="color:var(--ivory)">Каталог</a><a href="#" style="color:var(--ivory)">Контакты</a></nav>
+
+<main>
+  <section class="void">
+    <div class="spec-side l" data-reveal="fade">
+      <div>Механизм<b>Автоподзавод</b></div>
+      <div>Корпус<b>Ø 36 мм · сталь</b></div>
+    </div>
+    <div class="spec-side r" data-reveal="fade">
+      <div>Год<b>2022</b></div>
+      <div>Комплект<b>Box &amp; Papers</b></div>
+    </div>
+    <div class="watch" data-reveal="fade"><img class="parallax" data-speed="0.04" src="../assets/hero-options/B-floating-dark.jpg" alt="Rolex Datejust 36 — MAISON IU"></div>
+    <div class="lead">
+      <div class="ey" data-reveal="fade">Новинка · единственный экземпляр</div>
+      <h1 data-reveal="fade" data-delay="80">Datejust 36</h1>
+      <div class="sub" data-reveal="fade" data-delay="130">Ref. 126231 · Everose · провенанс подтверждён</div>
+      <div class="specrow stagger">
+        <div><div class="k tab">$18,500</div><div class="l2">фикс. цена</div></div>
+        <div><div class="k">Ø 36</div><div class="l2">мм</div></div>
+        <div><div class="k">2022</div><div class="l2">box &amp; papers</div></div>
+      </div>
+      <div class="actions" data-reveal data-delay="120"><a class="pill solid" href="#coll">Запросить предмет</a></div>
+    </div>
+    <div class="down"><a class="rbtn" href="#coll" aria-label="Вниз"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a></div>
+  </section>
+
+  <section class="grid-void" id="coll"><div class="wrap">
+    <div class="gh"><div class="ey" data-reveal>Коллекция</div><h2 data-reveal data-delay="70">Предметы в пустоте</h2></div>
+    <div class="vitrine stagger">
+      <a class="vi" href="#"><div class="ph"><img src="../assets/products/watch-twotone.jpg" alt=""></div><h3>Rolex Datejust 36</h3><div class="m">Steel &amp; Everose · Ref. 126231</div><div class="p tab">$18,500</div></a>
+      <a class="vi" href="#"><div class="ph"><img src="../assets/hero-options/B-floating-dark.jpg" alt=""></div><h3>Cartier Santos</h3><div class="m">Large · Steel / Gold</div><div class="p tab">$12,900</div></a>
+      <a class="vi" href="#"><div class="ph"><img src="../assets/products/ring.jpg" alt=""></div><h3>Solitaire 2.0 ct</h3><div class="m">Platinum · GIA</div><div class="p tab">$31,800</div></a>
+    </div>
+  </div></section>
+</main>
+
+<footer class="foot" style="background:var(--coal)"><div class="wrap in">
+  <span class="lg">Maison IU</span>
+  <span>Оригинальные часы · украшения · сумки · с 2013</span>
+  <span>Moscow · Dubai · Istanbul</span>
+</div></footer>
+<div class="ribbon">v3 · 02 <b>Void</b> · réf. Richard Mille<a href="#">↑</a></div>
+<script src="app.js"></script>
+</body></html>

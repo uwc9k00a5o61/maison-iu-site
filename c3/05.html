@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MAISON IU — 05 · Editorial</title><link rel="icon" href="data:,">
+<link rel="stylesheet" href="base.css">
+<style>
+body{background:#EFE7DB}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s var(--e),transform .9s var(--e)}.reveal.in{opacity:1;transform:none}
+.drawer{position:fixed;inset:0;z-index:60;background:rgba(14,13,12,.985);color:var(--ivory);display:flex;flex-direction:column;justify-content:center;gap:2px;padding:56px 32px;transform:translateY(-102%);transition:transform .5s var(--e)}
+.drawer.open{transform:none}.drawer a{font-family:var(--serif);font-size:30px;color:var(--ivory);padding:14px 0;border-bottom:1px solid rgba(255,255,255,.12)}.drawer .x{position:absolute;top:18px;right:20px;font-size:24px;color:var(--ivory);background:none;border:0;cursor:pointer}
+.nav{background:rgba(239,231,219,.85)}
+.hero{position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(24px,4vw,60px);min-height:88svh;padding:60px 0;background:radial-gradient(120% 110% at 74% 26%,#F6ECE3,#EBE1D4 72%)}
+.hero .scr{font-family:var(--script);font-size:clamp(40px,5.5vw,74px);line-height:.82;color:var(--ink);-webkit-text-stroke:.5px var(--ink);margin-bottom:8px}
+.hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(30px,4.6vw,60px);line-height:1.08;letter-spacing:-.01em;color:var(--ink)}
+.hero .slg{font-size:16px;font-weight:500;color:var(--ink2);max-width:40ch;margin:18px 0 24px;line-height:1.75}
+.hero .lk{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:5px}
+.float{position:relative;display:flex;align-items:center;justify-content:center}
+.float .jewel{width:min(74%,420px);border-radius:50%;box-shadow:0 40px 90px rgba(20,18,14,.22);will-change:transform}
+.float .bead{position:absolute;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#a83a4c,#7A2231);box-shadow:0 10px 24px rgba(122,34,49,.4);left:24%;bottom:16%;will-change:transform}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes bob2{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}
+.float .jewel{animation:bob 6s ease-in-out infinite}.float .bead{animation:bob2 5s ease-in-out infinite}
+.poem{text-align:center;padding:90px 0 40px}
+.poem h2{font-family:var(--serif);font-weight:400;font-size:clamp(26px,3.4vw,40px);max-width:20ch;margin:0 auto;line-height:1.2}
+.trio{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;padding:20px 0 96px}
+.jc{text-align:center}
+.jc .ph{aspect-ratio:1/1.1;border-radius:16px;overflow:hidden;background:#fff}
+.jc img{width:100%;height:100%;object-fit:cover}
+.jc h3{font-family:var(--serif);font-weight:500;font-size:18px;margin-top:14px}
+.jc .m{color:var(--ash);font-size:12.5px;margin:3px 0 6px}
+.jc .p{font-family:var(--serif);font-size:17px}
+@media(max-width:860px){.hero{grid-template-columns:1fr;min-height:auto;gap:20px;text-align:center}.hero .float{order:-1}.float .bead{left:32%}.trio{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.float .jewel,.float .bead{animation:none}}
+</style></head><body>
+<nav class="nav"><div class="in wrap">
+  <div class="l"><a href="#">Watches</a><a href="#">Jewellery</a><a href="#">Bags</a></div>
+  <div class="brand">Maison IU</div>
+  <div class="r"><a href="#">Search</a><a href="#">Contact</a><a href="#">RU · EN</a></div>
+  <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+</div></nav>
+<div class="drawer" id="drawer"><button class="x" id="dx">✕</button><a href="#">Watches</a><a href="#">Jewellery</a><a href="#">Bags</a><a href="#">Appointment</a></div>
+
+<header class="hero"><div class="wrap" style="display:contents">
+  <div>
+    <div class="scr reveal">Maison IU</div>
+    <h1 class="reveal">Искусство<br>подлинных вещей</h1>
+    <p class="slg reveal">Оригинальные часы, украшения и сумки премиум-класса. Проверенная подлинность, box &amp; papers.</p>
+    <a class="lk reveal" href="#trio">Смотреть коллекцию</a>
+  </div>
+  <div class="float reveal">
+    <img class="jewel" src="../assets/products/ring.jpg" alt="MAISON IU — fine jewellery">
+    <span class="bead"></span>
+  </div>
+</div></header>
+
+<section class="wrap">
+  <div class="poem reveal"><h2>Каждое изделие — редкость с подтверждённым провенансом.</h2></div>
+  <div class="trio" id="trio">
+    <div class="jc reveal"><div class="ph"><img src="../assets/products/necklace.jpg"></div><h3>VCA Alhambra</h3><div class="m tab">5 motifs · YG</div><div class="p tab">$9,400</div></div>
+    <div class="jc reveal"><div class="ph"><img src="../assets/products/bracelet.jpg"></div><h3>Tennis Bracelet</h3><div class="m tab">Diamonds · RG</div><div class="p tab">$24,000</div></div>
+    <div class="jc reveal"><div class="ph"><img src="../assets/products/ring.jpg"></div><h3>Solitaire Ring</h3><div class="m tab">2.0ct · YG</div><div class="p tab">$36,000</div></div>
+  </div>
+</section>
+
+<footer class="foot"><div class="in wrap"><span class="lg">Maison IU</span><span>Оригинальные часы, украшения и сумки премиум-класса · box &amp; papers</span><span>© MAISON IU</span></div></footer>
+<div class="ribbon">05 · Editorial<a href="#">ref: Van Cleef &amp; Arpels</a></div>
+<script>
+(function(){var b=document.getElementById('burger'),d=document.getElementById('drawer'),x=document.getElementById('dx');
+if(b)b.onclick=()=>d.classList.add('open');if(x)x.onclick=()=>d.classList.remove('open');d&&d.querySelectorAll('a').forEach(a=>a.onclick=()=>d.classList.remove('open'));
+var io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));})();
+</script>
+</body></html>

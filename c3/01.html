@@ -1,0 +1,72 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAISON IU — v3 · 01 Cinematic</title><link rel="icon" href="data:,">
+<link rel="stylesheet" href="base.css">
+<style>
+body{background:var(--void);color:var(--onlight)}
+/* ---- hero ---- */
+.cine{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.cine .bg{position:absolute;inset:-6% 0;z-index:0}
+.cine .bg img{width:100%;height:100%;object-fit:cover}
+.cine .scrim{position:absolute;inset:0;z-index:1;background:
+  radial-gradient(80% 60% at 50% 82%,rgba(11,10,8,.66),rgba(11,10,8,0) 72%),
+  linear-gradient(180deg,rgba(11,10,8,.46) 0%,rgba(11,10,8,0) 30%,rgba(11,10,8,.30) 62%,rgba(11,10,8,.86) 100%)}
+.cine .in{position:relative;z-index:2;text-align:center;padding:0 22px clamp(64px,10vh,120px);max-width:900px;margin:0 auto}
+.cine .ey{color:rgba(244,240,231,.86);text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.cine h1{font-family:var(--serif);font-weight:700;color:#fff;line-height:.98;letter-spacing:-.01em;
+  font-size:clamp(46px,8.4vw,104px);margin:16px 0 16px;text-shadow:0 8px 40px rgba(0,0,0,.5)}
+.cine p{color:rgba(244,240,231,.9);font-weight:500;font-size:15.5px;max-width:46ch;margin:0 auto 30px;text-shadow:0 2px 16px rgba(0,0,0,.5)}
+.cine .cta{display:flex;justify-content:center}
+.cine .cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:2}
+/* ---- featured band ---- */
+.band{position:relative;min-height:78svh;display:flex;align-items:center;overflow:hidden}
+.band .bg{position:absolute;inset:-6% 0;z-index:0}
+.band .bg img{width:100%;height:100%;object-fit:cover}
+.band .scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(11,10,8,.86) 0%,rgba(11,10,8,.5) 42%,rgba(11,10,8,.12) 100%)}
+.band .in{position:relative;z-index:2;padding:clamp(40px,7vw,90px) 0}
+.band .ey{color:var(--onmute)}
+.band h2{font-family:var(--serif);font-weight:600;color:#fff;font-size:clamp(30px,5vw,58px);line-height:1.02;margin:12px 0 10px}
+.band .price{font-family:var(--serif);font-weight:600;font-size:clamp(20px,3vw,28px);color:var(--ivory);margin-bottom:22px}
+.band .cta{display:flex;gap:14px;flex-wrap:wrap}
+</style></head><body>
+<header class="nav abs"><div class="wrap"><div class="in">
+  <div class="l"><a href="#band">Watches</a><a href="#band">Jewellery</a><a href="#band">Bags</a></div>
+  <div class="brand">Maison IU</div>
+  <div class="r"><a href="#band">Каталог</a><a href="#">Контакты</a><span class="u uen"><b>RU</b> · EN</span></div>
+  <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+</div></div></header>
+<nav class="mmenu" id="mmenu"><span class="mm-b on-dark" style="color:var(--ivory);-webkit-text-stroke:.6px var(--ivory)">Maison IU</span><span class="mx">Закрыть</span>
+  <a href="#band" style="color:var(--ivory)">Watches</a><a href="#band" style="color:var(--ivory)">Jewellery</a><a href="#band" style="color:var(--ivory)">Bags</a><a href="#band" style="color:var(--ivory)">Каталог</a><a href="#" style="color:var(--ivory)">Контакты</a></nav>
+
+<main>
+  <section class="cine">
+    <div class="bg"><img class="parallax" data-speed="0.05" src="../assets/hero-options/A-dark-reflective.jpg" alt="MAISON IU — часовая витрина"></div>
+    <div class="scrim"></div>
+    <div class="in">
+      <div class="ey" data-reveal="fade">Maison IU · С 2013 · Moscow · Dubai · Istanbul</div>
+      <h1 data-reveal="fade" data-delay="90">Время,<br>которому доверяют</h1>
+      <p data-reveal data-delay="180">Оригинальные часы, украшения и сумки премиум-класса. Проверенная подлинность, box&nbsp;&amp;&nbsp;papers.</p>
+      <div class="cta" data-reveal data-delay="240"><a class="pill solid" href="#band">Смотреть коллекцию</a></div>
+    </div>
+    <div class="cue"><span class="scrollcue">Листайте<i></i></span></div>
+  </section>
+
+  <section class="band" id="band">
+    <div class="bg"><img class="parallax" data-speed="0.05" src="../assets/products/watch-twotone.jpg" alt="Rolex Datejust 36"></div>
+    <div class="scrim"></div>
+    <div class="wrap in">
+      <div class="ey" data-reveal="left">Экземпляр недели · единственный</div>
+      <h2 data-reveal="left" data-delay="80">Rolex Datejust 36</h2>
+      <div class="price tab" data-reveal="left" data-delay="140">$18,500 · Everose · box &amp; papers</div>
+      <div class="cta" data-reveal="left" data-delay="200"><a class="pill solid" href="#">Запросить предмет</a><a class="pill ghost" href="#band">Все часы</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" style="background:var(--coal)"><div class="wrap in">
+  <span class="lg">Maison IU</span>
+  <span>Оригинальные часы · украшения · сумки · с 2013</span>
+  <span>Moscow · Dubai · Istanbul</span>
+</div></footer>
+<div class="ribbon">v3 · 01 <b>Cinematic</b> · réf. Rolex<a href="#">↑</a></div>
+<script src="app.js"></script>
+</body></html>

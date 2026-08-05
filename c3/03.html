@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAISON IU — v3 · 03 Heritage</title><link rel="icon" href="data:,">
+<link rel="stylesheet" href="base.css">
+<style>
+body{color:var(--onlight);
+  background:
+   radial-gradient(60% 46% at 50% 26%,rgba(244,240,231,.06),rgba(244,240,231,0) 70%),
+   repeating-radial-gradient(circle at 50% 24%,rgba(244,240,231,.045) 0 1px,rgba(244,240,231,0) 1px 13px),
+   linear-gradient(180deg,var(--heritage) 0%,var(--heritage2) 78%,#20090F 100%);
+  background-color:var(--heritage2);background-attachment:scroll}
+.nav.abs .brand{color:var(--ivory)}
+/* hero */
+.herit{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:110px 22px 60px;overflow:hidden}
+.herit .ey{color:rgba(244,240,231,.72)}
+.herit .logo-script{color:var(--ivory);-webkit-text-stroke:.85px var(--ivory);font-size:clamp(56px,10vw,120px);line-height:.9;margin:16px 0 10px}
+.herit .lock{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:30px}
+.herit .lock hr{width:clamp(26px,6vw,64px);height:1px;border:0;background:var(--champ);opacity:.7}
+.herit .lock span{font-family:var(--serif);font-weight:600;letter-spacing:.32em;text-transform:uppercase;font-size:clamp(10px,1.5vw,13px);color:rgba(244,240,231,.82);white-space:nowrap}
+.herit h1{font-family:var(--serif);font-weight:600;color:#fff;font-size:clamp(40px,7.4vw,92px);line-height:.98;letter-spacing:-.01em}
+.herit .it{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--champ);font-size:clamp(16px,2.4vw,24px);margin:16px auto 4px;max-width:34ch;line-height:1.3}
+.herit p{color:rgba(244,240,231,.82);font-weight:500;font-size:15px;max-width:44ch;margin:14px auto 30px}
+.herit .cta{display:flex;justify-content:center}
+.herit .cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%)}
+/* heritage pillars */
+.pillars{position:relative;z-index:1;border-top:1px solid var(--heritage-line);padding:clamp(48px,7vw,84px) 0;background:linear-gradient(180deg,#2C0E15 0%,#43141E 100%)}
+.pillars .row{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center}
+@media(max-width:680px){.pillars .row{grid-template-columns:1fr;gap:34px}}
+.pillars .row .k{font-family:var(--serif);font-weight:600;font-size:clamp(30px,4.4vw,52px);color:var(--ivory);line-height:1}
+.pillars .row .l{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(244,240,231,.82);margin-top:10px}
+.pillars .row .sep{display:none}
+</style></head><body>
+<header class="nav abs"><div class="wrap"><div class="in">
+  <div class="l"><a href="#pillars">Watches</a><a href="#pillars">Jewellery</a><a href="#pillars">Bags</a></div>
+  <div class="brand">Maison IU</div>
+  <div class="r"><a href="#pillars">Каталог</a><a href="#">Контакты</a><span class="u uen"><b>RU</b> · EN</span></div>
+  <button class="burger" aria-label="Меню" aria-expanded="false"><span></span><span></span><span></span></button>
+</div></div></header>
+<nav class="mmenu" id="mmenu" style="background:var(--heritage2)"><span class="mm-b" style="color:var(--ivory);-webkit-text-stroke:.6px var(--ivory)">Maison IU</span><span class="mx">Закрыть</span>
+  <a href="#pillars" style="color:var(--ivory)">Watches</a><a href="#pillars" style="color:var(--ivory)">Jewellery</a><a href="#pillars" style="color:var(--ivory)">Bags</a><a href="#pillars" style="color:var(--ivory)">Каталог</a><a href="#" style="color:var(--ivory)">Контакты</a></nav>
+
+<main>
+  <section class="herit">
+    <div class="ey" data-reveal="fade">Дом коллекционных часов · с 2013</div>
+    <div class="logo-script" data-reveal="fade" data-delay="70">Maison IU</div>
+    <div class="lock" data-reveal="fade" data-delay="130"><hr><span>Fine Watches · Jewellery · Bags</span><hr></div>
+    <h1 data-reveal="fade" data-delay="180">Наследие<br>и подлинность</h1>
+    <div class="it" data-reveal data-delay="240">оригинальные часы, украшения и сумки — с box&nbsp;&amp;&nbsp;papers</div>
+    <p data-reveal data-delay="300">Каждый предмет отобран вручную и подтверждён провенансом. Moscow · Dubai · Istanbul.</p>
+    <div class="cta" data-reveal data-delay="340"><a class="pill solid" href="#pillars">Смотреть коллекцию</a></div>
+    <div class="cue"><span class="scrollcue" style="color:rgba(244,240,231,.6)">Листайте<i></i></span></div>
+  </section>
+
+  <section class="pillars" id="pillars"><div class="wrap">
+    <div class="row stagger">
+      <div><div class="k tab">12</div><div class="l">лет на рынке</div></div>
+      <div><div class="k">Box &amp; Papers</div><div class="l">полная комплектация</div></div>
+      <div><div class="k tab">3</div><div class="l">города · MSK · DXB · IST</div></div>
+    </div>
+  </div></section>
+</main>
+
+<footer class="foot" style="background:#20090F"><div class="wrap in">
+  <span class="lg">Maison IU</span>
+  <span>Оригинальные часы · украшения · сумки · с 2013</span>
+  <span>Moscow · Dubai · Istanbul</span>
+</div></footer>
+<div class="ribbon">v3 · 03 <b>Heritage</b> · réf. Patek<a href="#">↑</a></div>
+<script src="app.js"></script>
+</body></html>
