@@ -24,6 +24,10 @@ export function ThemeBar() {
   function apply(next: Skin) {
     setSkin(next);
     document.documentElement.setAttribute("data-skin", next);
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) {
+      meta.setAttribute("content", next === "heritage" ? "#2C0E15" : "#F4F0E7");
+    }
     try {
       localStorage.setItem("miu_skin", next);
     } catch {}

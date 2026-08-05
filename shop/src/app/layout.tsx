@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bodoni_Moda, Inter, Pinyon_Script } from "next/font/google";
 import "./globals.css";
 
@@ -37,13 +37,23 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#F4F0E7",
+};
+
 // Applied before first paint (no theme flash). Same localStorage key
-// ('miu_skin') and ?skin= handoff as the static home3 site.
+// ('miu_skin') and ?skin= handoff as the static home3 site. Also syncs the
+// theme-color meta so the mobile browser chrome matches the skin.
 const SKIN_INIT = `(function(){try{
   var q=new URLSearchParams(location.search).get('skin');
   var ls=localStorage.getItem('miu_skin');
   var s=(q==='light'||q==='heritage')?q:((ls==='light'||ls==='heritage')?ls:'light');
   document.documentElement.setAttribute('data-skin',s);
+  var m=document.querySelector('meta[name="theme-color"]');
+  if(m)m.setAttribute('content',s==='heritage'?'#2C0E15':'#F4F0E7');
   if(q==='light'||q==='heritage'){try{localStorage.setItem('miu_skin',s);}catch(e){}}
 }catch(e){}})();`;
 
@@ -56,6 +66,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-dvh flex-col">
         <script dangerouslySetInnerHTML={{ __html: SKIN_INIT }} />
+        <a href="#main" className="skip-link">
+          Skip to content
+        </a>
         {children}
       </body>
     </html>

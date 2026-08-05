@@ -34,7 +34,7 @@ export default async function CatalogPage({
       <ThemeBar />
       <SiteNav />
 
-      <main className="flex-1">
+      <main id="main" className="flex-1">
         <div className="mx-auto max-w-[1480px] px-5 sm:px-8">
           {/* catalogue hero — Rolex-store calm, generous whitespace */}
           <section className="pb-6 pt-12 text-center sm:pt-16">

@@ -31,6 +31,7 @@ export function SiteNav() {
           <Link
             href="/catalog"
             aria-label="Maison IU"
+            translate="no"
             className="logo-hdr hidden text-[30px] md:block"
           >
             Maison IU
@@ -54,6 +55,7 @@ export function SiteNav() {
           <Link
             href="/catalog"
             aria-label="Maison IU"
+            translate="no"
             className="logo-hdr text-[27px] md:hidden"
           >
             Maison IU
@@ -83,7 +85,7 @@ export function SiteNav() {
       {/* mobile drawer — dark in both skins (matches home3) */}
       <div
         className={cn(
-          "fixed inset-0 z-50 flex flex-col justify-center gap-1 bg-[#14110c] px-8 transition-all duration-300 md:hidden",
+          "fixed inset-0 z-50 flex flex-col justify-center gap-1 overflow-y-auto overscroll-contain bg-[#14110c] px-8 transition-all duration-300 md:hidden",
           open
             ? "visible opacity-100"
             : "pointer-events-none invisible opacity-0",
@@ -97,7 +99,10 @@ export function SiteNav() {
         >
           Close <X className="size-4" />
         </button>
-        <span className="logo-script on-dark absolute left-8 top-5 text-[36px]">
+        <span
+          translate="no"
+          className="logo-script on-dark absolute left-8 top-5 text-[36px]"
+        >
           Maison IU
         </span>
         {LINKS.map((l) => (

@@ -61,6 +61,8 @@ html[data-skin="light"] {
   --accent-foreground: var(--brand-ink);
   --border: var(--brand-line);
   --ring: rgba(122, 34, 49, 0.45);
+  --focus-ring: #7a2231;
+  color-scheme: light;
 }
 
 html[data-skin="heritage"] {
@@ -107,6 +109,8 @@ html[data-skin="heritage"] {
   --accent-foreground: var(--brand-ivory);
   --border: var(--heritage-line);
   --ring: rgba(244, 240, 231, 0.45);
+  --focus-ring: #f4f0e7;
+  color-scheme: dark;
 }
 
 @theme inline {
@@ -195,6 +199,70 @@ html[data-skin="heritage"] {
   ::selection {
     background: var(--brand-garnet);
     color: var(--brand-cream);
+  }
+
+  /* ---- web-design-guidelines: interaction hardening ---- */
+  body,
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  summary {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* typographic niceties */
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+}
+
+/* visible focus ring in brand colour — unlayered + literal per skin so it
+   wins over utilities and always resolves (never a bare outline:none) */
+html[data-skin="light"] :focus-visible {
+  outline: 2px solid #7a2231 !important;
+  outline-offset: 2px !important;
+}
+html[data-skin="heritage"] :focus-visible {
+  outline: 2px solid #f4f0e7 !important;
+  outline-offset: 2px !important;
+}
+
+/* skip-link — visually hidden until focused */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  transform: translateY(-160%);
+  background: var(--brand-ink);
+  color: var(--brand-ivory);
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: transform 0.2s ease;
+}
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+/* safe-area (viewport-fit=cover): horizontal insets on body (0 on normal
+   screens → no regression), top inset on the first bar */
+@supports (padding: env(safe-area-inset-left)) {
+  body {
+    padding-inline: env(safe-area-inset-left) env(safe-area-inset-right);
+  }
+  .themebar {
+    padding-top: env(safe-area-inset-top);
   }
 }
 

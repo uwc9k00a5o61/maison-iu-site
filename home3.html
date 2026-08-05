@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="ru" data-skin="light"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>MAISON IU — Главная</title><link rel="icon" href="data:,">
+<meta name="theme-color" content="#F4F0E7">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <script>(function(){try{
   var q=new URLSearchParams(location.search).get('skin');
   var ls=localStorage.getItem('miu_skin');
   var s=(q==='light'||q==='heritage')?q:((ls==='light'||ls==='heritage')?ls:'light');
   document.documentElement.setAttribute('data-skin',s);
+  var m=document.querySelector('meta[name="theme-color"]');
+  if(m)m.setAttribute('content',s==='heritage'?'#2C0E15':'#F4F0E7');
   if(q==='light'||q==='heritage'){try{localStorage.setItem('miu_skin',s);}catch(e){}}
 }catch(e){}})();</script>
 <link rel="stylesheet" href="c3/base.css">
@@ -138,8 +143,21 @@ html[data-skin="light"] .foot{background:var(--ink)}
 @media(max-width:860px){.gal{grid-template-columns:1fr;gap:14px}}
 @media(max-width:640px){.trust{grid-template-columns:1fr;gap:26px}.tb-in{justify-content:center}}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}body{transition:none}}
+
+/* ===== web-design-guidelines: technical hardening (no visual change at rest) ===== */
+html[data-skin="light"]{color-scheme:light;--focus-ring:#7A2231}
+html[data-skin="heritage"]{color-scheme:dark;--focus-ring:#F4F0E7}
+body,a,button,[role="button"],select,summary,.seg-b{touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+:focus-visible{outline:2px solid var(--focus-ring,#7A2231);outline-offset:2px}
+h1,h2,.brandmark,.appt .ttl,.hero h1{text-wrap:balance}
+.slg,.hero .slg,.appt p,p{text-wrap:pretty}
+.drawer,.mmenu{overscroll-behavior:contain}
+.skip{position:fixed;top:8px;left:8px;z-index:200;transform:translateY(-160%);background:var(--ink);color:var(--ivory);padding:10px 18px;border-radius:999px;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;transition:transform .2s ease}
+.skip:focus-visible{transform:translateY(0)}
+@supports(padding:env(safe-area-inset-left)){body{padding-inline:env(safe-area-inset-left) env(safe-area-inset-right)}.themebar{padding-top:env(safe-area-inset-top)}}
 </style></head><body>
 
+<a href="#main" class="skip">Skip to content</a>
 <div class="intro" id="intro">
   <div class="curtain top"></div>
   <div class="curtain bot"></div>
@@ -169,9 +187,9 @@ html[data-skin="light"] .foot{background:var(--ink)}
 </div></nav>
 <div class="drawer" id="drawer"><button class="x" id="dx">Закрыть ✕</button><a href="https://maison-iu-shop.onrender.com/catalog?category=watches">Watches</a><a href="https://maison-iu-shop.onrender.com/catalog?category=jewellery">Jewellery</a><a href="https://maison-iu-shop.onrender.com/catalog?category=bags">Bags</a><a href="https://maison-iu-shop.onrender.com/catalog">Каталог</a><a href="#appt">Контакты</a><a href="#appt">Записаться</a></div>
 
-<header class="hero wrap">
+<header class="hero wrap" id="main">
   <span class="ey reveal">Boutique · by appointment<br>Moscow · Dubai · Istanbul</span>
-  <div class="brandmark reveal">Maison IU</div>
+  <div class="brandmark reveal" translate="no">Maison IU</div>
   <div class="lock reveal"><hr><span>Fine Watches · Jewellery · Bags</span><hr></div>
   <h1 class="reveal">Подлинность,<br>которую видно</h1>
   <p class="slg reveal">Оригинальные часы, украшения и сумки премиум-класса — с проверенной подлинностью и полным комплектом box &amp; papers.</p>
@@ -181,9 +199,9 @@ html[data-skin="light"] .foot{background:var(--ink)}
 <section class="sec wrap" id="cat">
   <div class="shead reveal"><a class="lnk2" href="https://maison-iu-shop.onrender.com/catalog">Весь каталог →</a></div>
   <div class="gal">
-    <a class="gcell reveal" href="https://maison-iu-shop.onrender.com/catalog?category=watches"><img src="assets/products/watch-01.jpg" alt="Часы"><span class="lab"><span>Timepieces</span><h3>Часы</h3></span></a>
-    <a class="gcell reveal" href="https://maison-iu-shop.onrender.com/catalog?category=jewellery"><img src="assets/products/necklace.jpg" alt="Украшения"><span class="lab"><span>Fine Jewellery</span><h3>Украшения</h3></span></a>
-    <a class="gcell reveal" href="https://maison-iu-shop.onrender.com/catalog?category=bags"><img src="assets/products/bag.jpg" alt="Сумки"><span class="lab"><span>Leather</span><h3>Сумки</h3></span></a>
+    <a class="gcell reveal" href="https://maison-iu-shop.onrender.com/catalog?category=watches"><img src="assets/products/watch-01.jpg" alt="Часы" width="640" height="780" loading="lazy" decoding="async"><span class="lab"><span>Timepieces</span><h3>Часы</h3></span></a>
+    <a class="gcell reveal" href="https://maison-iu-shop.onrender.com/catalog?category=jewellery"><img src="assets/products/necklace.jpg" alt="Украшения" width="640" height="780" loading="lazy" decoding="async"><span class="lab"><span>Fine Jewellery</span><h3>Украшения</h3></span></a>
+    <a class="gcell reveal" href="https://maison-iu-shop.onrender.com/catalog?category=bags"><img src="assets/products/bag.jpg" alt="Сумки" width="640" height="780" loading="lazy" decoding="async"><span class="lab"><span>Leather</span><h3>Сумки</h3></span></a>
   </div>
 </section>
 
@@ -203,7 +221,7 @@ html[data-skin="light"] .foot{background:var(--ink)}
 </div></section>
 
 <footer class="foot"><div class="in wrap">
-  <span class="lg">Maison IU</span>
+  <span class="lg" translate="no">Maison IU</span>
   <span>Оригинальные часы, украшения и сумки премиум-класса · box &amp; papers</span>
   <span>Moscow · Dubai · Istanbul</span>
 </div></footer>
@@ -218,6 +236,8 @@ html[data-skin="light"] .foot{background:var(--ink)}
   function setSkin(s){
     if(s!=='light'&&s!=='heritage')s='light';
     document.documentElement.setAttribute('data-skin',s);
+    var m=document.querySelector('meta[name="theme-color"]');
+    if(m)m.setAttribute('content',s==='heritage'?'#2C0E15':'#F4F0E7');
     document.querySelectorAll('.seg-b').forEach(function(bn){var on=bn.dataset.skin===s;bn.classList.toggle('on',on);bn.setAttribute('aria-pressed',on);});
     try{localStorage.setItem('miu_skin',s);}catch(e){}
     try{var u=new URL(location.href);u.searchParams.set('skin',s);history.replaceState(null,'',u);}catch(e){}

@@ -50,7 +50,7 @@ export default async function ProductPage({
       <ThemeBar />
       <SiteNav />
 
-      <main className="flex-1">
+      <main id="main" className="flex-1">
         <div className="mx-auto max-w-[1280px] px-5 py-10 sm:px-8 sm:py-14">
           <Link
             href="/catalog"
