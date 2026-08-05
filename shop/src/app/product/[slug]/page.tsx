@@ -92,8 +92,8 @@ export default async function ProductPage({
               </div>
             </div>
 
-            {/* detail */}
-            <div className="flex flex-col">
+            {/* detail — centred on mobile, left-aligned from md up */}
+            <div className="flex flex-col items-center text-center md:items-start md:text-left">
               <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-fg2">
                 {product.brand}
               </span>
@@ -104,7 +104,7 @@ export default async function ProductPage({
                 Reference {product.reference}
               </span>
 
-              <div className="mt-6 flex items-center gap-4">
+              <div className="mt-6 flex items-center justify-center gap-4 md:justify-start">
                 <span className="tabular font-sans text-[26px] font-bold tracking-[0.01em] text-fg">
                   {formatPriceUsd(product.priceUsd)}
                 </span>
@@ -118,19 +118,21 @@ export default async function ProductPage({
                 </Badge>
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Button>Reserve this piece</Button>
-                <Button variant="outline">Enquire on Telegram</Button>
+              <div className="mt-8 flex w-full flex-col gap-3 md:w-auto md:flex-row md:flex-wrap">
+                <Button className="w-full md:w-auto">Reserve this piece</Button>
+                <Button variant="outline" className="w-full md:w-auto">
+                  Enquire on Telegram
+                </Button>
               </div>
 
               {/* specifications */}
               {product.specs && product.specs.length > 0 && (
-                <div className="mt-10">
+                <div className="mt-10 w-full">
                   <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ey">
                     Specifications
                   </h2>
-                  <div className="mt-2 h-0.5 w-10 bg-script-accent" />
-                  <dl className="mt-4 divide-y divide-hairline">
+                  <div className="mx-auto mt-2 h-0.5 w-10 bg-script-accent md:mx-0" />
+                  <dl className="mt-4 divide-y divide-hairline text-left">
                     {product.specs.map((s) => (
                       <div
                         key={s.label}
@@ -149,8 +151,8 @@ export default async function ProductPage({
               )}
 
               {/* provenance / authenticity */}
-              <div className="panel mt-10 rounded-[18px] border p-6">
-                <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ey">
+              <div className="panel mt-10 w-full rounded-[18px] border p-6 text-left">
+                <h2 className="text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-ey md:text-left">
                   Provenance &amp; authenticity
                 </h2>
                 <div className="mt-4 flex flex-col gap-4">

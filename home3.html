@@ -85,6 +85,7 @@ body.introing{overflow:hidden}
 
 /* hero */
 .hero{text-align:center;padding:clamp(46px,8vw,104px) 0 clamp(30px,5vw,58px)}
+.hero .ey{display:block;line-height:1.7}
 .brandmark{font-family:var(--script);line-height:.86;color:var(--logo-col);-webkit-text-stroke:.85px var(--logo-col);paint-order:stroke fill;font-size:clamp(62px,13vw,148px);margin:12px 0 2px}
 .lock{display:flex;align-items:center;justify-content:center;gap:14px;margin:6px 0 18px}
 .lock hr{width:clamp(22px,6vw,60px);height:1px;border:0;background:var(--foil);opacity:.85}
@@ -102,7 +103,7 @@ body.introing{overflow:hidden}
 
 /* section scaffold */
 .sec{padding:clamp(38px,6vw,70px) 0}
-.shead{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:22px;flex-wrap:wrap}
+.shead{display:flex;justify-content:flex-end;align-items:baseline;gap:12px;margin-bottom:18px;flex-wrap:wrap}
 .shead h2{font-family:var(--serif);font-weight:600;font-size:clamp(22px,3vw,30px);color:var(--fg)}
 .shead .lnk2{font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--script-accent);border-bottom:1px solid var(--foil);padding-bottom:3px}
 
@@ -111,9 +112,9 @@ body.introing{overflow:hidden}
 .gcell{position:relative;border-radius:16px;overflow:hidden;aspect-ratio:.82/1;display:block;border:1px solid var(--panel-line)}
 .gcell img{width:100%;height:100%;object-fit:cover;background:var(--ph-grad);transition:transform .8s var(--e)}
 .gcell:hover img{transform:scale(1.05)}
-.gcell .lab{position:absolute;left:0;right:0;bottom:0;padding:24px 20px;background:linear-gradient(to top,rgba(16,10,8,.74),rgba(16,10,8,0));color:#fff}
-.gcell .lab h3{font-family:var(--serif);font-weight:600;font-size:22px}
-.gcell .lab span{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;opacity:.85}
+.gcell .lab{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);display:inline-flex;flex-direction:column;align-items:center;gap:3px;text-align:center;color:#fff;padding:12px 22px;border-radius:14px;max-width:calc(100% - 28px);background:rgba(16,10,8,.40);backdrop-filter:blur(8px) saturate(1.1);-webkit-backdrop-filter:blur(8px) saturate(1.1);border:1px solid rgba(255,255,255,.16)}
+.gcell .lab h3{font-family:var(--serif);font-weight:600;font-size:clamp(23px,5.5vw,28px);line-height:1.05}
+.gcell .lab span{font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;opacity:.9}
 
 /* trust row */
 .trust{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;text-align:center;border-top:1px solid var(--line-c);border-bottom:1px solid var(--line-c);padding:clamp(28px,4vw,44px) 0}
@@ -135,7 +136,7 @@ html[data-skin="light"] .foot{background:var(--ink)}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .8s var(--e),transform .8s var(--e)}.reveal.in{opacity:1;transform:none}
 
 @media(max-width:860px){.gal{grid-template-columns:1fr;gap:14px}}
-@media(max-width:640px){.trust{grid-template-columns:1fr;gap:26px}}
+@media(max-width:640px){.trust{grid-template-columns:1fr;gap:26px}.tb-in{justify-content:center}}
 @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}body{transition:none}}
 </style></head><body>
 
@@ -169,16 +170,16 @@ html[data-skin="light"] .foot{background:var(--ink)}
 <div class="drawer" id="drawer"><button class="x" id="dx">Закрыть ✕</button><a href="https://maison-iu-shop.onrender.com/catalog?category=watches">Watches</a><a href="https://maison-iu-shop.onrender.com/catalog?category=jewellery">Jewellery</a><a href="https://maison-iu-shop.onrender.com/catalog?category=bags">Bags</a><a href="https://maison-iu-shop.onrender.com/catalog">Каталог</a><a href="#appt">Контакты</a><a href="#appt">Записаться</a></div>
 
 <header class="hero wrap">
-  <span class="ey reveal">Boutique · by appointment · Moscow · Dubai · Istanbul</span>
+  <span class="ey reveal">Boutique · by appointment<br>Moscow · Dubai · Istanbul</span>
   <div class="brandmark reveal">Maison IU</div>
   <div class="lock reveal"><hr><span>Fine Watches · Jewellery · Bags</span><hr></div>
   <h1 class="reveal">Подлинность,<br>которую видно</h1>
   <p class="slg reveal">Оригинальные часы, украшения и сумки премиум-класса — с проверенной подлинностью и полным комплектом box &amp; papers.</p>
-  <div class="cta reveal"><a class="cbtn a" href="https://maison-iu-shop.onrender.com/catalog">Смотреть коллекцию</a><a class="cbtn b" href="#appt">Записаться на просмотр</a></div>
+  <div class="cta reveal"><a class="cbtn a" href="https://maison-iu-shop.onrender.com/catalog">Смотреть каталог</a><a class="cbtn b" href="#appt">Записаться на просмотр</a></div>
 </header>
 
 <section class="sec wrap" id="cat">
-  <div class="shead reveal"><h2>Категории</h2><a class="lnk2" href="https://maison-iu-shop.onrender.com/catalog">Весь каталог →</a></div>
+  <div class="shead reveal"><a class="lnk2" href="https://maison-iu-shop.onrender.com/catalog">Весь каталог →</a></div>
   <div class="gal">
     <a class="gcell reveal" href="https://maison-iu-shop.onrender.com/catalog?category=watches"><img src="assets/products/watch-01.jpg" alt="Часы"><span class="lab"><span>Timepieces</span><h3>Часы</h3></span></a>
     <a class="gcell reveal" href="https://maison-iu-shop.onrender.com/catalog?category=jewellery"><img src="assets/products/necklace.jpg" alt="Украшения"><span class="lab"><span>Fine Jewellery</span><h3>Украшения</h3></span></a>
