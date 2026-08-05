@@ -14,44 +14,36 @@
 html[data-skin="light"]{
   --page-bg:#F4F0E7; --page-bg-color:#F4F0E7;
   --fg:var(--ink); --fg2:var(--ink2); --ey-col:var(--ash);
-  --logo-col:var(--ink); --nav-bg:rgba(251,248,242,.9);
+  --logo-col:var(--ink); --nav-bg:rgba(244,240,231,.9);
   --line-c:var(--line); --foil:var(--line2);
   --panel-bg:#ffffff; --panel-line:var(--line);
   --script-accent:var(--garnet);
   --ph-grad:linear-gradient(165deg,#F2ECDF,#E7DECB);
   --cta-a-bg:var(--garnet); --cta-a-fg:var(--cream); --cta-a-bg-h:var(--garnet2);
   --cta-b-bd:var(--ink); --cta-b-fg:var(--ink); --cta-b-bg-h:var(--ink); --cta-b-fg-h:var(--ivory);
-  /* header plate INVERTED vs page: Ivory theme -> oxblood heritage bar + guilloche, ivory text */
-  --hdr-bg:repeating-linear-gradient(90deg,rgba(244,240,231,.05) 0 1px,rgba(244,240,231,0) 1px 24px),linear-gradient(180deg,#43141E,#2C0E15);
-  --hdr-fg:var(--ivory); --hdr-fg2:rgba(244,240,231,.82); --hdr-line:var(--heritage-line);
-  --hdr-seg-on-bg:var(--ivory); --hdr-seg-on-fg:var(--ink);
 }
 html[data-skin="heritage"]{
   --page-bg:radial-gradient(60% 46% at 50% 20%,rgba(244,240,231,.05),rgba(244,240,231,0) 70%),repeating-radial-gradient(circle at 50% 18%,rgba(244,240,231,.04) 0 1px,rgba(244,240,231,0) 1px 13px),linear-gradient(180deg,#43141E 0%,#2C0E15 60%,#20090F 100%);
   --page-bg-color:#2C0E15;
   --fg:#ffffff; --fg2:rgba(244,240,231,.84); --ey-col:rgba(244,240,231,.72);
-  --logo-col:var(--ivory); --nav-bg:rgba(20,9,15,.55);
+  --logo-col:var(--ivory); --nav-bg:rgba(44,14,21,.72);
   --line-c:var(--heritage-line); --foil:var(--champ);
   --panel-bg:linear-gradient(180deg,#38111B,#2A0C13); --panel-line:var(--heritage-line);
   --script-accent:var(--ivory);
   --ph-grad:linear-gradient(165deg,#2A0C13,#1C0A0F);
   --cta-a-bg:var(--ivory); --cta-a-fg:var(--ink); --cta-a-bg-h:#ffffff;
   --cta-b-bd:rgba(255,255,255,.5); --cta-b-fg:#ffffff; --cta-b-bg-h:#ffffff; --cta-b-fg-h:var(--ink);
-  /* header plate INVERTED vs page: Heritage theme -> ivory bar, near-ink text */
-  --hdr-bg:linear-gradient(180deg,#FBF8F2,#F1E9DC);
-  --hdr-fg:var(--ink); --hdr-fg2:var(--ink2); --hdr-line:var(--line);
-  --hdr-seg-on-bg:var(--garnet); --hdr-seg-on-fg:var(--cream);
 }
 body{background:var(--page-bg);background-color:var(--page-bg-color);color:var(--fg);transition:background-color .5s var(--e),color .35s var(--e)}
 .ey{color:var(--ey-col)}
 
-/* top utility strip (theme toggle) — ALWAYS a light ivory strip in both themes, separate from the inverted menu-nav below */
-.themebar{background:#FBF8F2;border-bottom:1px solid var(--line)}
+/* theme toggle strip — matches the theme, blends with header/page */
+.themebar{background:var(--nav-bg);border-bottom:1px solid var(--line-c);backdrop-filter:blur(10px) saturate(1.2);-webkit-backdrop-filter:blur(10px) saturate(1.2)}
 .tb-in{display:flex;align-items:center;justify-content:flex-end;gap:12px;height:44px}
-.tb-hint{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ash)}
-.seg{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px;background:transparent}
-.seg-b{appearance:none;-webkit-appearance:none;background:none;border:0;cursor:pointer;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);padding:7px 15px;border-radius:999px;transition:background .25s var(--e),color .25s var(--e)}
-.seg-b:hover{color:var(--ink)}
+.tb-hint{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ey-col)}
+.seg{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line-c);border-radius:999px;padding:3px;background:transparent}
+.seg-b{appearance:none;-webkit-appearance:none;background:none;border:0;cursor:pointer;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fg2);padding:7px 15px;border-radius:999px;transition:background .25s var(--e),color .25s var(--e)}
+.seg-b:hover{color:var(--fg)}
 .seg-b.on{background:var(--garnet);color:var(--cream)}
 
 /* intro — script logo pen-writes, then dark curtains part to reveal the site (ported from index.html) */
@@ -71,12 +63,12 @@ body{background:var(--page-bg);background-color:var(--page-bg-color);color:var(-
 .intro.gone{display:none}
 body.introing{overflow:hidden}
 
-/* nav — inverted header plate (always contrasts the page), centered menu, no wordmark */
-.nav{background:var(--hdr-bg);border-bottom:1px solid var(--hdr-line)}
-.nav a,.nav .u{color:var(--hdr-fg2)}
-.nav a:hover{color:var(--hdr-fg)}
-.nav .burger span{background:var(--hdr-fg)}
-.nav .uen b{color:var(--hdr-fg)}
+/* nav — matches the theme (blends with page), centered menu, no wordmark */
+.nav{background:var(--nav-bg);border-bottom:1px solid var(--line-c)}
+.nav a,.nav .u{color:var(--fg2)}
+.nav a:hover{color:var(--script-accent)}
+.nav .burger span{background:var(--fg)}
+.nav .uen b{color:var(--fg)}
 .nav .c{display:flex;gap:clamp(16px,2vw,26px);justify-content:center;align-items:center}
 .nav .navlang-m{display:none}
 @media(max-width:880px){
