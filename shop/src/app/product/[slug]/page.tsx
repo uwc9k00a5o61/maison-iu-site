@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { ShieldCheck, BadgeCheck, CalendarClock } from "lucide-react";
 
 import { ProductImage } from "@/components/site/product-image";
-import { AnnounceBar } from "@/components/site/announce-bar";
+import { ThemeBar } from "@/components/site/theme-bar";
 import { SiteNav } from "@/components/site/site-nav";
 import { SiteFooter } from "@/components/site/site-footer";
 import { Button } from "@/components/ui/button";
@@ -47,14 +47,14 @@ export default async function ProductPage({
 
   return (
     <>
-      <AnnounceBar />
+      <ThemeBar />
       <SiteNav />
 
       <main className="flex-1">
         <div className="mx-auto max-w-[1280px] px-5 py-10 sm:px-8 sm:py-14">
           <Link
             href="/catalog"
-            className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ash transition-colors hover:text-garnet"
+            className="text-[11px] font-semibold uppercase tracking-[0.16em] text-fg2 transition-colors hover:text-script-accent"
           >
             ← Back to catalogue
           </Link>
@@ -62,7 +62,7 @@ export default async function ProductPage({
           <div className="mt-6 grid gap-8 md:grid-cols-2 md:gap-14">
             {/* gallery */}
             <div>
-              <div className="relative aspect-square overflow-hidden rounded-[20px] border border-line/70 bg-gradient-to-b from-[#f6f1e8] to-[#efe7d8]">
+              <div className="plinth relative aspect-square overflow-hidden rounded-[20px] border border-panel-line">
                 <ProductImage
                   src={product.image}
                   alt={`${product.brand} ${product.name}`}
@@ -76,8 +76,8 @@ export default async function ProductPage({
                 {gallery.map((src, i) => (
                   <div
                     key={i}
-                    className={`relative aspect-square overflow-hidden rounded-xl border bg-gradient-to-b from-[#f6f1e8] to-[#efe7d8] ${
-                      i === 0 ? "border-garnet/50" : "border-line/70"
+                    className={`plinth relative aspect-square overflow-hidden rounded-xl border ${
+                      i === 0 ? "border-script-accent/50" : "border-panel-line"
                     }`}
                   >
                     <ProductImage
@@ -94,24 +94,25 @@ export default async function ProductPage({
 
             {/* detail */}
             <div className="flex flex-col">
-              <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-ink2">
+              <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-fg2">
                 {product.brand}
               </span>
-              <h1 className="mt-3 font-serif text-[clamp(30px,4vw,44px)] font-semibold leading-[1.05] text-ink">
+              <h1 className="mt-3 font-serif text-[clamp(30px,4vw,44px)] font-semibold leading-[1.05] text-fg">
                 {product.name}
               </h1>
-              <span className="tabular mt-3 text-[13px] font-semibold tracking-[0.04em] text-ash">
+              <span className="tabular mt-3 text-[13px] font-semibold tracking-[0.04em] text-fg2">
                 Reference {product.reference}
               </span>
 
               <div className="mt-6 flex items-center gap-4">
-                <span className="tabular font-sans text-[26px] font-bold tracking-[0.01em] text-ink">
+                <span className="tabular font-sans text-[26px] font-bold tracking-[0.01em] text-fg">
                   {formatPriceUsd(product.priceUsd)}
                 </span>
                 <Badge
                   variant={
                     product.availability === "in-stock" ? "outline" : "quiet"
                   }
+                  className="bg-paper/85 backdrop-blur-sm"
                 >
                   {AVAILABILITY_LABELS[product.availability]}
                 </Badge>
@@ -125,20 +126,20 @@ export default async function ProductPage({
               {/* specifications */}
               {product.specs && product.specs.length > 0 && (
                 <div className="mt-10">
-                  <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ash">
+                  <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ey">
                     Specifications
                   </h2>
-                  <div className="mt-2 h-0.5 w-10 bg-garnet" />
-                  <dl className="mt-4 divide-y divide-line">
+                  <div className="mt-2 h-0.5 w-10 bg-script-accent" />
+                  <dl className="mt-4 divide-y divide-hairline">
                     {product.specs.map((s) => (
                       <div
                         key={s.label}
                         className="flex items-baseline justify-between gap-6 py-2.5"
                       >
-                        <dt className="text-[12px] font-semibold uppercase tracking-[0.12em] text-ash">
+                        <dt className="text-[12px] font-semibold uppercase tracking-[0.12em] text-fg2">
                           {s.label}
                         </dt>
-                        <dd className="text-right text-[14px] text-ink2">
+                        <dd className="text-right text-[14px] text-fg">
                           {s.value}
                         </dd>
                       </div>
@@ -148,22 +149,22 @@ export default async function ProductPage({
               )}
 
               {/* provenance / authenticity */}
-              <div className="mt-10 rounded-[18px] border border-line bg-white p-6">
-                <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ash">
+              <div className="panel mt-10 rounded-[18px] border p-6">
+                <h2 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ey">
                   Provenance &amp; authenticity
                 </h2>
                 <div className="mt-4 flex flex-col gap-4">
                   {ASSURANCES.map((a) => (
                     <div key={a.title} className="flex items-start gap-3">
                       <a.icon
-                        className="mt-0.5 size-[18px] shrink-0 text-garnet"
+                        className="mt-0.5 size-[18px] shrink-0 text-script-accent"
                         strokeWidth={1.5}
                       />
                       <div>
-                        <p className="text-[13px] font-semibold text-ink">
+                        <p className="text-[13px] font-semibold text-fg">
                           {a.title}
                         </p>
-                        <p className="text-[13px] leading-relaxed text-ash">
+                        <p className="text-[13px] leading-relaxed text-fg2">
                           {a.copy}
                         </p>
                       </div>

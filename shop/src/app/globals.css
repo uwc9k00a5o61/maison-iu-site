@@ -3,8 +3,8 @@
 
 /* ============================================================
    MAISON IU — commerce theme (shadcn logic, brand skin)
+   Two registers (skins) mirroring home3: Ivory (light) + Heritage.
    Strict palette from site/c3/base.css. No gold in branding.
-   Champagne = thin foil accents only. $ prices. RU/EN ready.
    ============================================================ */
 
 :root {
@@ -12,9 +12,7 @@
 
   /* ---- brand palette (strict) ---- */
   --brand-ivory: #f4f0e7;
-  /* page background = warm ivory beige from home3 (#F4F0E7);
-     cards/panels stay white (--card) for "beige page + white cards" */
-  --brand-paper: #f4f0e7;
+  --brand-paper: #fbf8f2;
   --brand-cream: #f1e4d7;
   --brand-ink: #16130e;
   --brand-ink2: #2a2620;
@@ -25,9 +23,32 @@
   --brand-garnet: #7a2231;
   --brand-garnet2: #6e2233;
   --brand-champ: #9a7e4e;
+  --heritage-line: rgba(244, 240, 231, 0.18);
+}
 
-  /* ---- shadcn semantic tokens → brand ---- */
-  --background: var(--brand-paper);
+/* ============ SKIN TOKENS — one markup, two registers ============ */
+html[data-skin="light"] {
+  --page-bg: #f4f0e7;
+  --page-bg-color: #f4f0e7;
+  --fg: var(--brand-ink);
+  --fg2: var(--brand-ink2);
+  --ey: var(--brand-ash);
+  --logo-col: var(--brand-ink);
+  --script-accent: var(--brand-garnet);
+  --panel-bg: #ffffff;
+  --panel-line: var(--brand-line);
+  --ph-grad: linear-gradient(165deg, #f2ecdf, #e7decb);
+  --line-c: var(--brand-line);
+  --foil: var(--brand-line2);
+  /* whole header (toggle strip + navbar) = theme surface, no inversion */
+  --nav-bg: rgba(244, 240, 231, 0.9);
+  --hdr-bg: var(--nav-bg);
+  --hdr-fg: var(--brand-ink);
+  --hdr-fg2: var(--brand-ink2);
+  --hdr-line: var(--brand-line);
+
+  /* shadcn semantic tokens */
+  --background: #f4f0e7;
   --foreground: var(--brand-ink);
   --card: #ffffff;
   --card-foreground: var(--brand-ink);
@@ -35,17 +56,57 @@
   --popover-foreground: var(--brand-ink);
   --primary: var(--brand-garnet);
   --primary-foreground: var(--brand-cream);
-  --secondary: var(--brand-ivory);
-  --secondary-foreground: var(--brand-ink);
-  --muted: var(--brand-ivory);
   --muted-foreground: var(--brand-ash);
-  --accent: var(--brand-cream);
+  --accent: var(--brand-ivory);
   --accent-foreground: var(--brand-ink);
-  --destructive: var(--brand-garnet);
-  --destructive-foreground: var(--brand-cream);
   --border: var(--brand-line);
-  --input: var(--brand-line);
   --ring: rgba(122, 34, 49, 0.45);
+}
+
+html[data-skin="heritage"] {
+  --page-bg: radial-gradient(
+      60% 46% at 50% 20%,
+      rgba(244, 240, 231, 0.05),
+      rgba(244, 240, 231, 0) 70%
+    ),
+    repeating-radial-gradient(
+      circle at 50% 18%,
+      rgba(244, 240, 231, 0.04) 0 1px,
+      rgba(244, 240, 231, 0) 1px 13px
+    ),
+    linear-gradient(180deg, #43141e 0%, #2c0e15 60%, #20090f 100%);
+  --page-bg-color: #2c0e15;
+  --fg: #ffffff;
+  --fg2: rgba(244, 240, 231, 0.84);
+  --ey: rgba(244, 240, 231, 0.72);
+  --logo-col: var(--brand-ivory);
+  --script-accent: var(--brand-ivory);
+  --panel-bg: linear-gradient(180deg, #38111b, #2a0c13);
+  --panel-line: var(--heritage-line);
+  --ph-grad: linear-gradient(165deg, #2a0c13, #1c0a0f);
+  --line-c: var(--heritage-line);
+  --foil: var(--brand-champ);
+  /* whole header (toggle strip + navbar) = theme surface, no inversion */
+  --nav-bg: rgba(44, 14, 21, 0.72);
+  --hdr-bg: var(--nav-bg);
+  --hdr-fg: var(--brand-ivory);
+  --hdr-fg2: rgba(244, 240, 231, 0.82);
+  --hdr-line: var(--heritage-line);
+
+  /* shadcn semantic tokens */
+  --background: #2c0e15;
+  --foreground: #ffffff;
+  --card: #38111b;
+  --card-foreground: #ffffff;
+  --popover: #2a0c13;
+  --popover-foreground: var(--brand-ivory);
+  --primary: var(--brand-garnet);
+  --primary-foreground: var(--brand-cream);
+  --muted-foreground: rgba(244, 240, 231, 0.72);
+  --accent: rgba(255, 255, 255, 0.08);
+  --accent-foreground: var(--brand-ivory);
+  --border: var(--heritage-line);
+  --ring: rgba(244, 240, 231, 0.45);
 }
 
 @theme inline {
@@ -54,7 +115,7 @@
   --font-serif: var(--font-bodoni), "Bodoni Moda", Didot, "Times New Roman", serif;
   --font-script: var(--font-pinyon), "Pinyon Script", cursive;
 
-  /* brand color utilities: bg-ivory / text-ink / border-line / text-garnet ... */
+  /* fixed brand color utilities */
   --color-ivory: var(--brand-ivory);
   --color-paper: var(--brand-paper);
   --color-cream: var(--brand-cream);
@@ -62,11 +123,21 @@
   --color-ink2: var(--brand-ink2);
   --color-ash: var(--brand-ash);
   --color-mute: var(--brand-mute);
-  --color-line: var(--brand-line);
-  --color-line2: var(--brand-line2);
   --color-garnet: var(--brand-garnet);
   --color-garnet2: var(--brand-garnet2);
   --color-champ: var(--brand-champ);
+
+  /* skin-aware utilities: text-fg / text-fg2 / text-ey / border-hairline ... */
+  --color-fg: var(--fg);
+  --color-fg2: var(--fg2);
+  --color-ey: var(--ey);
+  --color-hairline: var(--line-c);
+  --color-foil: var(--foil);
+  --color-script-accent: var(--script-accent);
+  --color-hdr-fg: var(--hdr-fg);
+  --color-hdr-fg2: var(--hdr-fg2);
+  --color-hdr-line: var(--hdr-line);
+  --color-panel-line: var(--panel-line);
 
   /* shadcn semantic utilities */
   --color-background: var(--background);
@@ -77,16 +148,10 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
-  --color-input: var(--input);
   --color-ring: var(--ring);
 
   --radius-sm: calc(var(--radius) - 4px);
@@ -109,14 +174,18 @@
     max-width: 100%;
   }
   body {
-    background: var(--background);
-    color: var(--foreground);
+    background: var(--page-bg);
+    background-color: var(--page-bg-color);
+    color: var(--fg);
     font-family: var(--font-sans);
     font-weight: 400;
     line-height: 1.55;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    transition:
+      background-color 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+      color 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
   img {
     display: block;
@@ -141,7 +210,49 @@
   color: var(--brand-ivory);
   -webkit-text-stroke: 0.7px var(--brand-ivory);
 }
+/* logo sitting on the inverted header plate (flips with skin) */
+.logo-hdr {
+  font-family: var(--font-script);
+  line-height: 0.9;
+  color: var(--hdr-fg);
+  -webkit-text-stroke: 0.7px var(--hdr-fg);
+  paint-order: stroke fill;
+}
 .tabular {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum" 1;
+}
+
+/* ---- skinned surface helpers ---- */
+.panel {
+  background: var(--panel-bg);
+  border-color: var(--panel-line);
+}
+.plinth {
+  background: var(--ph-grad);
+}
+.hdr-plate {
+  background: var(--hdr-bg);
+  border-color: var(--hdr-line);
+}
+.chip-fade {
+  background: linear-gradient(to left, var(--page-bg-color), transparent);
+}
+/* top utility strip — follows the theme (same surface as the navbar) */
+.themebar {
+  background: var(--nav-bg);
+  border-color: var(--hdr-line);
+}
+/* footer: heritage inherits page tone, light forces ink */
+.foot-skin {
+  background: var(--page-bg-color);
+}
+html[data-skin="light"] .foot-skin {
+  background: var(--brand-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    transition: none;
+  }
 }

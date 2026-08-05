@@ -87,7 +87,7 @@ export function CatalogClient({
                   "shrink-0 rounded-full border px-[18px] py-2.5 text-[12px] font-semibold uppercase tracking-[0.1em] transition-colors",
                   active
                     ? "border-garnet bg-garnet text-cream"
-                    : "border-line bg-transparent text-ink2 hover:border-line2",
+                    : "border-hairline bg-transparent text-fg2 hover:text-fg",
                 )}
               >
                 {c.label}
@@ -98,12 +98,12 @@ export function CatalogClient({
         {/* scroll affordance — fade the last chip on mobile only */}
         <div
           aria-hidden
-          className="pointer-events-none absolute -right-5 top-0 bottom-1 w-12 bg-gradient-to-l from-paper to-transparent sm:hidden"
+          className="chip-fade pointer-events-none absolute -right-5 top-0 bottom-1 w-12 sm:hidden"
         />
       </div>
 
       {/* tool row: brand / price / sort */}
-      <div className="mt-6 flex flex-col gap-3 border-t border-line pt-5 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-6 flex flex-col gap-3 border-t border-hairline pt-5 sm:flex-row sm:items-center sm:justify-between">
         <div className="grid grid-cols-2 gap-2.5 sm:flex sm:w-auto">
           <Select
             value={brand}
@@ -137,7 +137,7 @@ export function CatalogClient({
         </div>
 
         <div className="flex items-center justify-between gap-3 sm:justify-end">
-          <span className="tabular text-[12px] tracking-[0.06em] text-ash">
+          <span className="tabular text-[12px] tracking-[0.06em] text-fg2">
             {results.length} pieces
           </span>
           <Select
@@ -166,9 +166,9 @@ export function CatalogClient({
           ))}
         </div>
       ) : (
-        <div className="mt-16 border-y border-line py-20 text-center">
-          <p className="font-serif text-[20px] text-ink">Nothing here yet</p>
-          <p className="mt-2 text-[14px] text-ash">
+        <div className="mt-16 border-y border-hairline py-20 text-center">
+          <p className="font-serif text-[20px] text-fg">Nothing here yet</p>
+          <p className="mt-2 text-[14px] text-fg2">
             No pieces match these filters.
           </p>
         </div>

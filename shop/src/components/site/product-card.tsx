@@ -16,9 +16,9 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <Link
       href={`/product/${product.slug}`}
-      className="group flex flex-col overflow-hidden rounded-[20px] border border-line/70 bg-white shadow-[0_12px_44px_rgba(22,19,14,0.05)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_26px_66px_rgba(22,19,14,0.12)]"
+      className="panel group flex flex-col overflow-hidden rounded-[20px] border shadow-[0_12px_44px_rgba(22,19,14,0.05)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_26px_66px_rgba(22,19,14,0.12)]"
     >
-      <div className="relative aspect-[1/1.1] overflow-hidden bg-gradient-to-b from-[#f6f1e8] to-[#efe7d8]">
+      <div className="plinth relative aspect-[1/1.1] overflow-hidden">
         <ProductImage
           src={product.image}
           alt={`${product.brand} ${product.name}`}
@@ -51,16 +51,16 @@ export function ProductCard({ product }: { product: Product }) {
       </div>
 
       <div className="flex flex-col items-center px-4 pb-8 pt-6 text-center">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink2">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-fg2">
           {product.brand}
         </span>
-        <h3 className="mt-2 flex min-h-[2.6em] items-center justify-center font-sans text-[16px] font-semibold leading-snug text-ink sm:text-[17px]">
+        <h3 className="mt-2 flex min-h-[2.6em] items-center justify-center font-sans text-[16px] font-semibold leading-snug text-fg sm:text-[17px]">
           {product.name}
         </h3>
-        <span className="tabular mt-1.5 text-[11px] font-medium uppercase tracking-[0.08em] text-ash">
+        <span className="tabular mt-1.5 text-[11px] font-medium uppercase tracking-[0.08em] text-fg2">
           Ref. {product.reference}
         </span>
-        <span className="tabular mt-3 font-sans text-[17px] font-bold tracking-[0.01em] text-ink sm:text-[18px]">
+        <span className="tabular mt-3 font-sans text-[17px] font-bold tracking-[0.01em] text-fg sm:text-[18px]">
           {formatPriceUsd(product.priceUsd)}
         </span>
       </div>

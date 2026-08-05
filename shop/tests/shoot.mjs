@@ -1,19 +1,18 @@
 import puppeteer from "puppeteer-core";
 
-const CHROME =
-  "C:/Program Files/Google/Chrome/Application/chrome.exe";
+const CHROME = "C:/Program Files/Google/Chrome/Application/chrome.exe";
 const BASE = process.env.BASE || "http://localhost:3210";
 const OUT = "C:/Users/MSI/AppData/Local/Temp/aionui/70be47ad/site/mobile-qa3";
 
-const shots = [
-  { name: "shop-catalog-desk", path: "/catalog", w: 1440, h: 900, mobile: false, dsf: 1 },
-  { name: "shop-catalog-390", path: "/catalog", w: 390, h: 844, mobile: true, dsf: 2 },
-  { name: "shop-product-desk", path: "/product/rolex-datejust-36", w: 1440, h: 900, mobile: false, dsf: 1 },
-  { name: "shop-product-390", path: "/product/rolex-datejust-36", w: 390, h: 844, mobile: true, dsf: 2 },
+const PAGES = [
+  { key: "catalog", path: "/catalog" },
+  { key: "product", path: "/product/rolex-datejust-36" },
 ];
-
-// widths to measure horizontal overflow at
-const overflowWidths = [360, 390, 440];
+const SKINS = ["light", "heritage"];
+const VIEWS = [
+  { tag: "desk", w: 1440, h: 900, mobile: false, dsf: 1 },
+  { tag: "390", w: 390, h: 844, mobile: true, dsf: 2 },
+];
 
 const browser = await puppeteer.launch({
   executablePath: CHROME,
@@ -21,25 +20,7 @@ const browser = await puppeteer.launch({
   args: ["--hide-scrollbars", "--no-sandbox"],
 });
 
-async function measure(page, url, width) {
-  await page.setViewport({ width, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
-  await page.goto(url, { waitUntil: "networkidle0", timeout: 60000 });
-  await new Promise((r) => setTimeout(r, 350));
-  return page.evaluate(() => {
-    const de = document.documentElement;
-    const scrollW = Math.max(de.scrollWidth, document.body.scrollWidth);
-    const inner = window.innerWidth;
-    let widest = null, maxR = 0;
-    for (const el of document.querySelectorAll("*")) {
-      const r = el.getBoundingClientRect().right;
-      if (r > maxR) { maxR = r; widest = el.tagName + "." + (el.className && el.className.toString ? el.className.toString().split(" ").slice(0,2).join(".") : ""); }
-    }
-    return { scrollW, inner, overflow: Math.max(0, scrollW - inner), widestRight: Math.round(maxR), widest };
-  });
-}
-
 async function autoScroll(page) {
-  // trigger lazy-load: step to the bottom, then back to top
   await page.evaluate(async () => {
     await new Promise((resolve) => {
       let y = 0;
@@ -51,63 +32,65 @@ async function autoScroll(page) {
           window.scrollTo(0, 0);
           resolve();
         }
-      }, 60);
+      }, 50);
     });
   });
-  await new Promise((r) => setTimeout(r, 600));
+  await new Promise((r) => setTimeout(r, 500));
 }
 
+function measureOverflow(page) {
+  return page.evaluate(() => {
+    const de = document.documentElement;
+    const scrollW = Math.max(de.scrollWidth, document.body.scrollWidth);
+    return { scrollW, inner: window.innerWidth, overflow: Math.max(0, scrollW - window.innerWidth) };
+  });
+}
 function countImages(page) {
   return page.evaluate(() => {
     const imgs = [...document.querySelectorAll('a[href^="/product/"] img')];
     const loaded = imgs.filter((i) => i.complete && i.naturalWidth > 1);
-    const empty = imgs
-      .filter((i) => !(i.complete && i.naturalWidth > 1))
-      .map((i) => i.getAttribute("alt"));
-    return { cards: imgs.length, loaded: loaded.length, empty };
+    return { cards: imgs.length, loaded: loaded.length };
   });
 }
 
-// screenshots + image audit
-for (const s of shots) {
-  const page = await browser.newPage();
-  await page.setViewport({ width: s.w, height: s.h, deviceScaleFactor: s.dsf, isMobile: s.mobile, hasTouch: s.mobile });
-  await page.goto(BASE + s.path, { waitUntil: "networkidle0", timeout: 60000 });
-  await autoScroll(page);
-  if (s.path === "/catalog") {
-    const audit = await countImages(page);
-    console.log("IMAGES " + s.name + " " + JSON.stringify(audit));
+for (const pg of PAGES) {
+  for (const skin of SKINS) {
+    for (const v of VIEWS) {
+      const page = await browser.newPage();
+      await page.setViewport({ width: v.w, height: v.h, deviceScaleFactor: v.dsf, isMobile: v.mobile, hasTouch: v.mobile });
+      await page.goto(`${BASE}${pg.path}?skin=${skin}`, { waitUntil: "networkidle0", timeout: 60000 });
+      await autoScroll(page);
+      const skinAttr = await page.evaluate(() => document.documentElement.getAttribute("data-skin"));
+      const name = `shop-${pg.key}-${v.tag}-${skin}`;
+      await page.screenshot({ path: `${OUT}/${name}.png`, fullPage: true });
+      let extra = "";
+      if (pg.key === "catalog") extra = " img=" + JSON.stringify(await countImages(page));
+      const of = await measureOverflow(page);
+      console.log(`shot ${name} skin=${skinAttr} overflow=${of.overflow}${extra}`);
+      await page.close();
+    }
   }
-  await page.screenshot({ path: `${OUT}/${s.name}.png`, fullPage: true });
-  console.log("shot", s.name);
-  await page.close();
 }
 
-// macro close-ups (readability proof) at 390
-async function macro(name, url, selector) {
+// toggle interaction + persistence test (light -> click Heritage)
+{
   const page = await browser.newPage();
-  await page.setViewport({ width: 390, height: 844, deviceScaleFactor: 3, isMobile: true, hasTouch: true });
-  await page.goto(url, { waitUntil: "networkidle0", timeout: 60000 });
-  await autoScroll(page);
-  const el = await page.$(selector);
-  if (el) {
-    await el.screenshot({ path: `${OUT}/${name}.png` });
-    console.log("macro", name);
-  } else {
-    console.log("macro MISS", name, selector);
-  }
+  await page.setViewport({ width: 1440, height: 900, deviceScaleFactor: 1 });
+  await page.goto(`${BASE}/catalog`, { waitUntil: "networkidle0", timeout: 60000 });
+  const before = await page.evaluate(() => document.documentElement.getAttribute("data-skin"));
+  await page.evaluate(() => {
+    const btns = [...document.querySelectorAll('[role="group"][aria-label="Theme"] button')];
+    const her = btns.find((b) => b.textContent.trim().toLowerCase() === "heritage");
+    her && her.click();
+  });
+  await new Promise((r) => setTimeout(r, 300));
+  const after = await page.evaluate(() => ({
+    attr: document.documentElement.getAttribute("data-skin"),
+    ls: localStorage.getItem("miu_skin"),
+    url: location.search,
+  }));
+  console.log(`TOGGLE before=${before} afterAttr=${after.attr} localStorage=${after.ls} url=${after.url}`);
   await page.close();
 }
-await macro("shop-macro-card-390", BASE + "/catalog", 'a[href^="/product/"]');
-await macro("shop-macro-pdp-390", BASE + "/product/rolex-datejust-36", "main .grid > div:last-child");
-
-// overflow report on /catalog
-const page = await browser.newPage();
-const report = {};
-for (const w of overflowWidths) {
-  report[w] = await measure(page, BASE + "/catalog", w);
-}
-await page.close();
-console.log("OVERFLOW " + JSON.stringify(report, null, 2));
 
 await browser.close();

@@ -12,9 +12,9 @@ const buttonVariants = cva(
         // garnet — primary brand CTA
         primary:
           "bg-primary text-primary-foreground hover:bg-garnet2 hover:-translate-y-0.5",
-        // ink outline → fills ink on hover
+        // foreground outline → inverts on hover (skin-aware)
         outline:
-          "border border-ink text-ink hover:bg-ink hover:text-ivory",
+          "border border-fg text-fg hover:bg-fg hover:text-background",
         // ink solid
         ink: "bg-ink text-ivory hover:-translate-y-0.5",
         ghost: "text-ink2 hover:text-garnet",
