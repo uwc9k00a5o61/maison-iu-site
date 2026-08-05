@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MAISON IU — Дизайн-ревью главной (home3) · ДО | ПОСЛЕ</title><link rel="icon" href="data:,">
+<link rel="stylesheet" href="../c3/base.css">
+<style>
+body{background:#F4F0E7;color:var(--ink);font-family:var(--sans)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(18px,4vw,44px)}
+.head{padding:clamp(44px,7vw,88px) 0 clamp(24px,4vw,40px);text-align:center;border-bottom:1px solid var(--line)}
+.head .ey{font-size:11px;font-weight:600;letter-spacing:.28em;text-transform:uppercase;color:var(--ash)}
+.head h1{font-family:var(--serif);font-weight:600;font-size:clamp(30px,5vw,54px);line-height:1.04;letter-spacing:-.01em;margin:14px 0 10px}
+.head p{max-width:70ch;margin:0 auto;color:var(--ink2);font-weight:500;font-size:15px;line-height:1.7}
+.head .skills{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:20px}
+.head .skills span{font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--garnet);border:1px solid rgba(122,34,49,.4);border-radius:999px;padding:6px 13px}
+.note{max-width:70ch;margin:18px auto 0;font-size:12.5px;color:var(--ash);line-height:1.6}
+.note b{color:var(--garnet)}
+
+.card{padding:clamp(36px,6vw,72px) 0;border-bottom:1px solid var(--line)}
+.card .no{font-family:var(--serif);font-weight:600;color:var(--garnet);font-size:14px;letter-spacing:.04em}
+.card h2{font-family:var(--serif);font-weight:600;font-size:clamp(22px,3.2vw,34px);line-height:1.1;margin:6px 0 16px}
+.meta{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:26px}
+@media(max-width:760px){.meta{grid-template-columns:1fr;gap:12px}}
+.meta div{font-size:13.5px;line-height:1.6;color:var(--ink2)}
+.meta .k{display:block;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ash);margin-bottom:5px}
+.meta .prin{color:var(--garnet);font-weight:600}
+
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,2vw,22px);margin-top:16px}
+.pair+.pair{margin-top:22px}
+@media(max-width:760px){.pair{grid-template-columns:1fr}}
+.side{display:flex;flex-direction:column;gap:8px}
+.side .tag{align-self:flex-start;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:5px 11px;border-radius:999px}
+.tag.before{color:var(--ash);border:1px solid var(--line2);background:#fff}
+.tag.after{color:var(--cream);background:var(--garnet)}
+.side figure{margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 18px 44px rgba(20,18,14,.08)}
+.side img{width:100%;display:block}
+.vp{font-size:10.5px;color:var(--ash);letter-spacing:.04em}
+
+.foot{padding:40px 0 80px;text-align:center;color:var(--ash);font-size:12.5px}
+.foot .lg{font-family:var(--script);font-size:30px;color:var(--ink);-webkit-text-stroke:.5px var(--ink);display:block;margin-bottom:10px}
+</style></head><body>
+
+<header class="head"><div class="wrap">
+  <div class="ey">Дизайн-ревью · предложения</div>
+  <h1>Главная MAISON IU — как поднять люкс-восприятие</h1>
+  <p>Ниже — топ-6 улучшений главной (home3), каждое парой «ДО | ПОСЛЕ». Слева — как сейчас, справа — предложенный мокап. Прогнано как ревьюер через три дизайн-линзы. Показано в светлой (Ivory) теме; правки применяются в ОБЕИХ темах через токены.</p>
+  <div class="skills"><span>design-taste-frontend</span><span>apple-design</span><span>high-end-visual-design</span></div>
+  <p class="note"><b>Важно:</b> это только предложения. Боевой home3 не тронут и в прод не выкладывался — применим лишь то, что одобрит Islam.</p>
+</div></header>
+
+<main class="wrap">
+
+  <section class="card">
+    <span class="no">01</span>
+    <h2>Герой — типографика и вертикальный ритм</h2>
+    <div class="meta">
+      <div><span class="k">Что меняю</span>H1-тэглайн: вес 600→500, отрицательный трекинг −0.022em, плотнее интерлиньяж, крупнее оптический размер. Единый модульный ритм eyebrow → лого → lock → H1 → слоган, больше верхнего воздуха.</div>
+      <div><span class="k">Почему</span>На крупных кеглях серив читается дороже при более лёгком весе и отрицательном трекинге. Иерархию строим весом+размером+интерлиньяжем, а не только кеглем.</div>
+      <div><span class="k prin">Принцип</span>apple-design §15 (size-specific tracking, weight-led hierarchy) · design-taste §4.1</div>
+    </div>
+    <div class="pair">
+      <div class="side"><span class="tag before">ДО</span><figure><img src="img/before-hero-m.jpg" alt="Герой до, мобилка"></figure><span class="vp">Мобилка · 390</span></div>
+      <div class="side"><span class="tag after">ПОСЛЕ</span><figure><img src="img/after-hero-m.jpg" alt="Герой после, мобилка"></figure><span class="vp">Мобилка · 390</span></div>
+    </div>
+    <div class="pair">
+      <div class="side"><span class="tag before">ДО</span><figure><img src="img/before-hero-d.jpg" alt="Герой до, десктоп"></figure><span class="vp">Десктоп</span></div>
+      <div class="side"><span class="tag after">ПОСЛЕ</span><figure><img src="img/after-hero-d.jpg" alt="Герой после, десктоп"></figure><span class="vp">Десктоп</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <span class="no">02</span>
+    <h2>Один доминантный CTA + «кнопка-в-кнопке»</h2>
+    <div class="meta">
+      <div><span class="k">Что меняю</span>У первичной «Смотреть каталог» — вложенная круглая стрелка (button-in-button). Вторичное «Записаться» становится деликатной подчёркнутой ссылкой, а не второй тяжёлой кнопкой.</div>
+      <div><span class="k">Почему</span>Одна явная главная кнопка ведёт взгляд; две равновесные — конкурируют. Вложенная иконка в круге добавляет тактильную «дороговизну».</div>
+      <div><span class="k prin">Принцип</span>high-end §4B (Button-in-Button) · apple-design §16.6 (simplicity / clarity)</div>
+    </div>
+    <div class="pair">
+      <div class="side"><span class="tag before">ДО</span><figure><img src="img/before-cta-d.jpg" alt="CTA до"></figure><span class="vp">Десктоп</span></div>
+      <div class="side"><span class="tag after">ПОСЛЕ</span><figure><img src="img/after-cta-d.jpg" alt="CTA после"></figure><span class="vp">Десктоп</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <span class="no">03</span>
+    <h2>Плитки категорий — двойной кант и выше кадр</h2>
+    <div class="meta">
+      <div><span class="k">Что меняю</span>Кадр 3:4 (выше), тонкий внешний «поддон» с концентрическим радиусом (double-bezel) и инсет-хайлайтом; подпись-плашка тоньше и деликатнее.</div>
+      <div><span class="k">Почему</span>Вложенная «оправа» читается как физическое изделие (стекло в металлической рамке), а более высокий кадр даёт предмету воздух.</div>
+      <div><span class="k prin">Принцип</span>high-end §4A (Double-Bezel / nested architecture)</div>
+    </div>
+    <div class="pair">
+      <div class="side"><span class="tag before">ДО</span><figure><img src="img/before-tiles-m.jpg" alt="Плитки до"></figure><span class="vp">Мобилка · 390</span></div>
+      <div class="side"><span class="tag after">ПОСЛЕ</span><figure><img src="img/after-tiles-m.jpg" alt="Плитки после"></figure><span class="vp">Мобилка · 390</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <span class="no">04</span>
+    <h2>Trust-строка — редакционные разделители и воздух</h2>
+    <div class="meta">
+      <div><span class="k">Что меняю</span>Тонкие вертикальные хэйрлайны между «12 / Box &amp; Papers / 3», больше вертикального воздуха, чуть легче вес значений, шире трекинг подписей.</div>
+      <div><span class="k">Почему</span>Разделители-волоски структурируют без «коробок»; больше воздуха = дороже. На мобиле — горизонтальные хэйрлайны вместо вертикальных.</div>
+      <div><span class="k prin">Принцип</span>design-taste §4.4 (группировка линиями и негатив-спейсом)</div>
+    </div>
+    <div class="pair">
+      <div class="side"><span class="tag before">ДО</span><figure><img src="img/before-trust-d.jpg" alt="Trust до"></figure><span class="vp">Десктоп</span></div>
+      <div class="side"><span class="tag after">ПОСЛЕ</span><figure><img src="img/after-trust-d.jpg" alt="Trust после"></figure><span class="vp">Десктоп</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <span class="no">05</span>
+    <h2>Консьерж — гранатовый акцент и воздух</h2>
+    <div class="meta">
+      <div><span class="k">Что меняю</span>Тонкая гранатовая черта-акцент над надстрочником, надстрочник в гранат, инсет-хайлайт панели и мягкая тень, больше паддинга.</div>
+      <div><span class="k">Почему</span>Единый ownable-акцент (гранат) и больше воздуха поднимают статус блока «Персональный подбор» до консьерж-уровня.</div>
+      <div><span class="k prin">Принцип</span>high-end §4A/§4C · apple-design §12 (materials / depth)</div>
+    </div>
+    <div class="pair">
+      <div class="side"><span class="tag before">ДО</span><figure><img src="img/before-appt-m.jpg" alt="Консьерж до"></figure><span class="vp">Мобилка · 390</span></div>
+      <div class="side"><span class="tag after">ПОСЛЕ</span><figure><img src="img/after-appt-m.jpg" alt="Консьерж после"></figure><span class="vp">Мобилка · 390</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <span class="no">06</span>
+    <h2>Ритм секций и макро-воздух</h2>
+    <div class="meta">
+      <div><span class="k">Что меняю</span>Увеличенные вертикальные отступы секций (clamp до ~104px), единая шкала ритма по всей странице.</div>
+      <div><span class="k">Почему</span>Щедрый негатив-спейс — главный визуальный сигнал люкса; тесные секции удешевляют бренд. Плюс въезд секций «blur fade-up» вместо плоского fade.</div>
+      <div><span class="k prin">Принцип</span>high-end §4C (macro-whitespace) · §5C (scroll interpolation)</div>
+    </div>
+    <div class="pair">
+      <div class="side"><span class="tag before">ДО</span><figure><img src="img/before-full-d.jpg" alt="Вся страница до"></figure><span class="vp">Десктоп · вся страница</span></div>
+      <div class="side"><span class="tag after">ПОСЛЕ</span><figure><img src="img/after-full-d.jpg" alt="Вся страница после"></figure><span class="vp">Десктоп · вся страница</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot"><div class="wrap">
+  <span class="lg">Maison IU</span>
+  Дизайн-ревью главной · предложения ДО|ПОСЛЕ · решение за Islam · мокап: home3-after.html (не в проде)
+</div></footer>
+</body></html>
