@@ -12,7 +12,7 @@
 <style>
 /* ============ SKIN TOKENS — one markup, two registers ============ */
 html[data-skin="light"]{
-  --page-bg:#FBF8F2; --page-bg-color:#FBF8F2;
+  --page-bg:#F4F0E7; --page-bg-color:#F4F0E7;
   --fg:var(--ink); --fg2:var(--ink2); --ey-col:var(--ash);
   --logo-col:var(--ink); --nav-bg:rgba(251,248,242,.9);
   --line-c:var(--line); --foil:var(--line2);
@@ -21,6 +21,10 @@ html[data-skin="light"]{
   --ph-grad:linear-gradient(165deg,#F2ECDF,#E7DECB);
   --cta-a-bg:var(--garnet); --cta-a-fg:var(--cream); --cta-a-bg-h:var(--garnet2);
   --cta-b-bd:var(--ink); --cta-b-fg:var(--ink); --cta-b-bg-h:var(--ink); --cta-b-fg-h:var(--ivory);
+  /* header plate INVERTED vs page: Ivory theme -> oxblood heritage bar + guilloche, ivory text */
+  --hdr-bg:repeating-linear-gradient(90deg,rgba(244,240,231,.05) 0 1px,rgba(244,240,231,0) 1px 24px),linear-gradient(180deg,#43141E,#2C0E15);
+  --hdr-fg:var(--ivory); --hdr-fg2:rgba(244,240,231,.82); --hdr-line:var(--heritage-line);
+  --hdr-seg-on-bg:var(--ivory); --hdr-seg-on-fg:var(--ink);
 }
 html[data-skin="heritage"]{
   --page-bg:radial-gradient(60% 46% at 50% 20%,rgba(244,240,231,.05),rgba(244,240,231,0) 70%),repeating-radial-gradient(circle at 50% 18%,rgba(244,240,231,.04) 0 1px,rgba(244,240,231,0) 1px 13px),linear-gradient(180deg,#43141E 0%,#2C0E15 60%,#20090F 100%);
@@ -33,18 +37,22 @@ html[data-skin="heritage"]{
   --ph-grad:linear-gradient(165deg,#2A0C13,#1C0A0F);
   --cta-a-bg:var(--ivory); --cta-a-fg:var(--ink); --cta-a-bg-h:#ffffff;
   --cta-b-bd:rgba(255,255,255,.5); --cta-b-fg:#ffffff; --cta-b-bg-h:#ffffff; --cta-b-fg-h:var(--ink);
+  /* header plate INVERTED vs page: Heritage theme -> ivory bar, near-ink text */
+  --hdr-bg:linear-gradient(180deg,#FBF8F2,#F1E9DC);
+  --hdr-fg:var(--ink); --hdr-fg2:var(--ink2); --hdr-line:var(--line);
+  --hdr-seg-on-bg:var(--garnet); --hdr-seg-on-fg:var(--cream);
 }
 body{background:var(--page-bg);background-color:var(--page-bg-color);color:var(--fg);transition:background-color .5s var(--e),color .35s var(--e)}
 .ey{color:var(--ey-col)}
 
-/* production theme toggle (Ivory / Heritage) — premium segmented control */
-.themebar{background:var(--nav-bg);border-bottom:1px solid var(--line-c);backdrop-filter:blur(10px) saturate(1.2);-webkit-backdrop-filter:blur(10px) saturate(1.2)}
+/* production theme toggle (Ivory / Heritage) — sits on the inverted header plate */
+.themebar{background:var(--hdr-bg);border-bottom:0}
 .tb-in{display:flex;align-items:center;justify-content:flex-end;gap:12px;height:44px}
-.tb-hint{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ey-col)}
-.seg{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line-c);border-radius:999px;padding:3px;background:transparent}
-.seg-b{appearance:none;-webkit-appearance:none;background:none;border:0;cursor:pointer;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--fg2);padding:7px 15px;border-radius:999px;transition:background .25s var(--e),color .25s var(--e)}
-.seg-b:hover{color:var(--fg)}
-.seg-b.on{background:var(--garnet);color:var(--cream)}
+.tb-hint{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--hdr-fg2)}
+.seg{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--hdr-line);border-radius:999px;padding:3px;background:transparent}
+.seg-b{appearance:none;-webkit-appearance:none;background:none;border:0;cursor:pointer;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--hdr-fg2);padding:7px 15px;border-radius:999px;transition:background .25s var(--e),color .25s var(--e)}
+.seg-b:hover{color:var(--hdr-fg)}
+.seg-b.on{background:var(--hdr-seg-on-bg);color:var(--hdr-seg-on-fg)}
 
 /* intro — script logo pen-writes, then dark curtains part to reveal the site (ported from index.html) */
 .intro{position:fixed;inset:0;z-index:100}
@@ -63,12 +71,12 @@ body{background:var(--page-bg);background-color:var(--page-bg-color);color:var(-
 .intro.gone{display:none}
 body.introing{overflow:hidden}
 
-/* nav (base .nav skinned via vars) — centered menu, no wordmark (avoids dup with hero) */
-.nav{background:var(--nav-bg);border-bottom:1px solid var(--line-c)}
-.nav a,.nav .u{color:var(--fg2)}
-.nav a:hover{color:var(--script-accent)}
-.nav .burger span{background:var(--fg)}
-.nav .uen b{color:var(--fg)}
+/* nav — inverted header plate (always contrasts the page), centered menu, no wordmark */
+.nav{background:var(--hdr-bg);border-bottom:1px solid var(--hdr-line)}
+.nav a,.nav .u{color:var(--hdr-fg2)}
+.nav a:hover{color:var(--hdr-fg)}
+.nav .burger span{background:var(--hdr-fg)}
+.nav .uen b{color:var(--hdr-fg)}
 .nav .c{display:flex;gap:clamp(16px,2vw,26px);justify-content:center;align-items:center}
 .nav .navlang-m{display:none}
 @media(max-width:880px){
@@ -123,6 +131,7 @@ body.introing{overflow:hidden}
 /* concierge */
 .appt{text-align:center;border:1px solid var(--panel-line);border-radius:20px;padding:clamp(40px,6vw,72px);background:var(--panel-bg)}
 .appt .scr{font-family:var(--script);font-size:clamp(38px,6vw,58px);color:var(--script-accent);-webkit-text-stroke:.4px var(--script-accent);line-height:.9;paint-order:stroke fill}
+.appt .ttl{font-family:var(--serif);font-weight:700;font-size:clamp(30px,4.6vw,50px);color:var(--fg);line-height:1.04;letter-spacing:-.01em;margin-top:8px}
 .appt p{color:var(--fg2);font-weight:500;font-size:15.5px;max-width:46ch;margin:12px auto 24px;line-height:1.7}
 .appt .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
 
@@ -194,9 +203,9 @@ html[data-skin="light"] .foot{background:var(--ink)}
 </section>
 
 <section class="sec wrap"><div class="appt reveal" id="appt">
-  <span class="ey">Личный просмотр</span>
-  <div class="scr">Приватная встреча</div>
-  <p>Подберём изделие под ваш запрос и покажем лично — по записи, дискретно. Подлинность подтверждена, полный комплект.</p>
+  <span class="ey">Консьерж-сервис</span>
+  <h2 class="ttl">Персональный подбор</h2>
+  <p>Подберём часы, украшение или сумку под ваш запрос и покажем лично — конфиденциально, по записи. Проверенная подлинность, полный комплект box &amp; papers.</p>
   <div class="cta"><a class="cbtn a" href="#">Telegram</a><a class="cbtn b" href="#">WhatsApp</a></div>
 </div></section>
 
