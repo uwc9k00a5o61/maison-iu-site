@@ -1,34 +1,72 @@
 <!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MAISON IU — мобильный превью</title><link rel="icon" href="data:,">
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600&family=Inter:wght@400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<title>MAISON IU — магазин · мобильный обзор</title><link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600&family=Inter:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
 *{margin:0;box-sizing:border-box}
 body{background:#EDE7DC;color:#15120D;font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
-.wrap{max-width:1400px;margin:0 auto;padding:0 24px}
-header{text-align:center;padding:42px 0 6px}
-header .s{font-family:'Pinyon Script',cursive;font-size:56px;line-height:.9;-webkit-text-stroke:.6px #15120D}
-header h1{font-family:'Bodoni Moda',serif;font-weight:600;font-size:26px;margin:10px 0 8px}
-header p{color:#544E43;max-width:70ch;margin:0 auto;font-size:14.5px;line-height:1.6}
-.note{max-width:760px;margin:16px auto 0;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:12px 18px;font-size:13px;color:#2A2620;line-height:1.6}
+.wrap{max-width:1180px;margin:0 auto;padding:0 22px}
+header{text-align:center;padding:46px 0 6px}
+header .s{font-family:'Pinyon Script',cursive;font-size:60px;line-height:.9;color:#7A2231;-webkit-text-stroke:.5px #7A2231}
+header h1{font-family:'Bodoni Moda',serif;font-weight:600;font-size:27px;margin:12px 0 8px}
+header p{color:#544E43;max-width:64ch;margin:0 auto;font-size:14.5px;line-height:1.6}
+.note{max-width:820px;margin:18px auto 0;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:12px;padding:13px 20px;font-size:13px;color:#2A2620;line-height:1.7;text-align:left}
 .note b{color:#7A2231}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;padding:34px 0 70px;align-items:start}
-.card{text-align:center}
-.phone{background:#111;border-radius:30px;padding:10px;box-shadow:0 24px 60px rgba(21,18,13,.18);overflow:hidden}
-.phone img{display:block;width:100%;border-radius:22px;background:#f4f0e7}
-.cap{font-family:'Bodoni Moda',serif;font-weight:600;font-size:16px;margin-top:14px}
+.note .ok{color:#2f6b3d;font-weight:700}
+h2.sec{font-family:'Bodoni Moda',serif;font-weight:600;font-size:23px;text-align:center;margin:52px 0 4px}
+.sub{text-align:center;font-size:12.5px;letter-spacing:.02em;color:#8A8478;margin-bottom:26px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;justify-items:center}
+.card{text-align:center;width:100%;max-width:340px}
+.phone{background:#141414;border-radius:34px;padding:9px;box-shadow:0 26px 64px rgba(21,18,13,.20)}
+.phone .scr{border-radius:26px;overflow:hidden;background:#f4f0e7}
+.phone img{display:block;width:100%}
+.phone.cap .scr{height:560px}
+.phone.cap img{height:auto;object-fit:cover;object-position:top}
+.cap{font-family:'Bodoni Moda',serif;font-weight:600;font-size:16px;margin-top:15px}
 .cap i{display:block;font-family:Inter;font-weight:600;font-style:normal;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A8478;margin-top:3px}
+/* watch decision panel */
+.panel{max-width:900px;margin:0 auto;background:#fff;border:1px solid rgba(0,0,0,.09);border-radius:18px;overflow:hidden;box-shadow:0 24px 56px rgba(22,19,14,.10)}
+.panel img{display:block;width:100%}
+.decide{max-width:760px;margin:20px auto 0;font-size:13.5px;line-height:1.7;color:#2A2620}
+.decide b{color:#7A2231}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#7A2231;background:#f3e7e5;border-radius:999px;padding:5px 12px;margin-bottom:10px}
+footer{text-align:center;color:#8A8478;font-size:12px;padding:60px 0 46px}
 </style></head><body>
 <header class="wrap">
   <div class="s">Maison IU</div>
-  <h1>Мобильный превью</h1>
-  <p>Текущее живое состояние на телефоне (истинные 390px, эмуляция устройства). Главная + каталог в обеих темах + карточка товара.</p>
-  <div class="note">QA: <b>overflow 0</b> на 360 / 390 / 440 во всех экранах. Шапка в цвет темы, тумблер Ivory/Heritage, читаемый Inter в ценах/названиях, один скрипт-лого. Это снимки — живьём тыкай ссылки из чата.</div>
+  <h1>Магазин — мобильный обзор</h1>
+  <p>Живое состояние магазина на телефоне (истинные 390px, эмуляция устройства). Каталог и карточка товара в обеих темах.</p>
+  <div class="note">
+    <span class="ok">✓ Проверено:</span> цены — <b>Inter, жирные, знак $ читаемый</b> (не тонкий Bodoni); фильтры <b>бренд · цена · сортировка</b> восстановлены (тихие дропдауны + категории на shadcn); шапка <b>в цвет темы</b>, тумблер Ivory/Heritage по центру; карточка товара на мобилке <b>отцентрована</b>, кнопки в столбик; спеки — читаемые строки. <b>Overflow 0</b> на 360 / 390 / 440, обе темы, 0 ошибок в консоли.<br>
+    <b>На ваше решение — фото часов</b> (нижний блок): сейчас на трёх разных часах стоит один и тот же кроп. Предлагаю вариант до ваших реальных фото. Это снимки — живьём тыкайте ссылку из чата.
+  </div>
 </header>
-<main class="wrap"><div class="grid">
-  <div class="card"><div class="phone"><img src="home-light.png" alt="Главная Ivory"></div><div class="cap">Главная<i>Тема Ivory</i></div></div>
-  <div class="card"><div class="phone"><img src="home-heritage.png" alt="Главная Heritage"></div><div class="cap">Главная<i>Тема Heritage</i></div></div>
-  <div class="card"><div class="phone"><img src="catalog-light.png" alt="Каталог Ivory"></div><div class="cap">Каталог<i>Тема Ivory</i></div></div>
-  <div class="card"><div class="phone"><img src="catalog-heritage.png" alt="Каталог Heritage"></div><div class="cap">Каталог<i>Тема Heritage</i></div></div>
-  <div class="card"><div class="phone"><img src="product.png" alt="Карточка товара"></div><div class="cap">Карточка товара<i>Reserve · Enquire on Telegram</i></div></div>
-</div></main>
+<main class="wrap">
+
+  <h2 class="sec">Каталог</h2>
+  <p class="sub">Цены Inter · фильтры восстановлены · шапка в цвет темы</p>
+  <div class="grid">
+    <div class="card"><div class="phone cap"><div class="scr"><img src="shop-catalog-light.png" alt="Каталог Ivory"></div></div><div class="cap">Каталог<i>Тема Ivory</i></div></div>
+    <div class="card"><div class="phone cap"><div class="scr"><img src="shop-catalog-heritage.png" alt="Каталог Heritage"></div></div><div class="cap">Каталог<i>Тема Heritage</i></div></div>
+  </div>
+
+  <h2 class="sec">Карточка товара</h2>
+  <p class="sub">Отцентрована · кнопки в столбик · спеки и провенанс</p>
+  <div class="grid">
+    <div class="card"><div class="phone"><div class="scr"><img src="shop-product-light.png" alt="Карточка Ivory"></div></div><div class="cap">Карточка товара<i>Тема Ivory</i></div></div>
+    <div class="card"><div class="phone"><div class="scr"><img src="shop-product-heritage.png" alt="Карточка Heritage"></div></div><div class="cap">Карточка товара<i>Тема Heritage</i></div></div>
+  </div>
+
+  <h2 class="sec">Фото часов — на ваше решение</h2>
+  <p class="sub">Сейчас | Предлагаю · обе темы</p>
+  <div class="panel"><img src="watch-compare.png" alt="Сравнение карточек часов: сейчас и предложение"></div>
+  <div class="decide">
+    <span class="tag">Что не так сейчас</span><br>
+    На карточках Rolex Datejust, Patek Nautilus и Audemars Piguet Royal Oak стоит <b>один и тот же кроп</b> одних часов (двухцветный браслет), а у Nautilus кроп почти пустой. Для магазина часов это сразу видно — модели-то разные и очень узнаваемые.<br><br>
+    <span class="tag">Предлагаю до ваших фото</span><br>
+    Фирменная «витрина» вместо чужого фото: скрипт <b>Maison IU</b>, у каждой карточки свой бренд и референс, подпись «Photography in preparation». Честно, на бренде, и три карточки становятся разными. Меняется мгновенно, как только пришлёте <b>реальные фото вашего товара</b> — это и есть главный рычаг качества.<br><br>
+    <b>Ничего из этого пока не применено к живому каталогу.</b> Скажете «да» — поставлю за пару минут; пришлёте фото — заменю на настоящие.
+  </div>
+
+</main>
+<footer>MAISON IU · внутренний обзор · не для публикации</footer>
 </body></html>

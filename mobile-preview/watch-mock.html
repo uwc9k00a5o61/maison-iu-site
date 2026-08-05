@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Watch cards — сейчас | предлагаю</title><link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,600&family=Inter:wght@400;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+*{margin:0;box-sizing:border-box}
+body{font-family:Inter,sans-serif;-webkit-font-smoothing:antialiased}
+.skin{padding:26px 22px 34px}
+.skin.light{--pg:#f4f0e7;--paper:#fff;--ink:#16130e;--ink2:#2a2620;--mute:#8a8377;--line:rgba(22,19,14,.14);--line2:rgba(22,19,14,.28);--garnet:#7a2231;--champ:#9a7e4e;--ph:linear-gradient(165deg,#f2ecdf,#e7decb);--script:#7a2231;--ring:rgba(22,19,14,.05)}
+.skin.heritage{--pg:#2c0e15;--paper:linear-gradient(180deg,#38111b,#2a0c13);--ink:#fff;--ink2:rgba(244,240,231,.84);--mute:rgba(244,240,231,.62);--line:rgba(244,240,231,.18);--line2:rgba(244,240,231,.3);--garnet:#7a2231;--champ:#c9a86a;--ph:linear-gradient(165deg,#2a0c13,#1c0a0f);--script:#f4f0e7;--ring:rgba(0,0,0,.25)}
+.skin.light{background:#f4f0e7;color:#16130e}
+.skin.heritage{background:radial-gradient(60% 46% at 50% 12%,rgba(244,240,231,.05),rgba(244,240,231,0) 70%),repeating-radial-gradient(circle at 50% 10%,rgba(244,240,231,.04) 0 1px,rgba(244,240,231,0) 1px 13px),linear-gradient(180deg,#43141e 0%,#2c0e15 60%,#20090f 100%);color:#fff}
+.lab{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin:2px 0 13px}
+.lab b{color:var(--garnet);font-weight:700}
+.skin.heritage .lab b{color:var(--champ)}
+.row{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:26px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 12px 44px var(--ring)}
+.ph{position:relative;aspect-ratio:1/1.1;overflow:hidden;background:var(--ph)}
+.ph img{width:100%;height:100%;object-fit:cover}
+.badge{position:absolute;left:9px;top:9px;z-index:2;font-size:8.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 8px;border-radius:999px;background:var(--garnet);color:#f1e4d7}
+.badge.q{background:rgba(0,0,0,.5);color:#fff;backdrop-filter:blur(4px)}
+.heart{position:absolute;right:9px;top:9px;z-index:2;width:24px;height:24px;border-radius:999px;border:1px solid var(--line2);display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.55);backdrop-filter:blur(4px);font-size:11px;color:var(--ink2)}
+.skin.heritage .heart{background:rgba(255,255,255,.12)}
+/* branded placeholder tile */
+.plate{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:0}
+.plate::before{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 50% 42%,var(--line) 0 1px,transparent 1px 15px);opacity:.5}
+.plate .m{font-family:'Pinyon Script',cursive;font-size:30px;line-height:.9;color:var(--script);-webkit-text-stroke:.4px var(--script);position:relative}
+.plate .rule{width:26px;height:1px;background:var(--line2);margin:9px 0 8px;position:relative}
+.plate .rf{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink2);position:relative}
+.plate .pp{font-size:7.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-top:7px;position:relative}
+.bd{padding:12px 12px 15px;text-align:center;display:grid;gap:5px}
+.br{font-size:9px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--ink2)}
+.nm{font-family:'Bodoni Moda',serif;font-weight:600;font-size:15px;line-height:1.05;color:var(--ink)}
+.rf2{font-size:9px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.pr{font-family:Inter;font-weight:700;font-size:16px;color:var(--ink);font-variant-numeric:tabular-nums}
+.poa{font-size:10px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--champ)}
+h2.sec{font-family:'Bodoni Moda',serif;font-weight:600;font-size:20px;text-align:center;margin:0 0 4px}
+.sub{text-align:center;font-size:12px;color:var(--mute);margin-bottom:20px}
+</style></head><body>
+<div id="stage">
+  <section class="skin light">
+    <h2 class="sec">Тема Ivory · карточки часов</h2>
+    <p class="sub">Три разные модели — три честные карточки</p>
+    <div class="lab"><b>СЕЙЧАС</b> — один и тот же кроп на всех часах</div>
+    <div class="row" id="now-l"></div>
+    <div class="lab"><b>ПРЕДЛАГАЮ</b> — фирменная витрина до ваших фото (у каждой свой референс)</div>
+    <div class="row" id="prop-l"></div>
+  </section>
+  <section class="skin heritage">
+    <h2 class="sec">Тема Heritage · карточки часов</h2>
+    <p class="sub">Три разные модели — три честные карточки</p>
+    <div class="lab"><b>СЕЙЧАС</b> — один и тот же кроп на всех часах</div>
+    <div class="row" id="now-h"></div>
+    <div class="lab"><b>ПРЕДЛАГАЮ</b> — фирменная витрина до ваших фото (у каждой свой референс)</div>
+    <div class="row" id="prop-h"></div>
+  </section>
+</div>
+<script>
+var S="https://maison-iu-shop.onrender.com/products/";
+var W=[
+ {br:"Rolex",nm:"Datejust 36",rf:"126231",badge:"New",bq:false,pr:"$18,500",img:"watch-01.jpg"},
+ {br:"Patek Philippe",nm:"Nautilus 5711",rf:"5711/1A",badge:"Waitlist",bq:true,pr:null,img:"watch-02.jpg"},
+ {br:"Audemars Piguet",nm:"Royal Oak",rf:"15500ST",badge:"Reserved",bq:true,pr:"$78,000",img:"watch-03.jpg"}
+];
+function priceHTML(w){return w.pr?('<span class="pr">'+w.pr+'</span>'):'<span class="poa">Price on request</span>';}
+function nowCard(w){return '<div class="card"><div class="ph">'+
+  '<span class="badge'+(w.bq?' q':'')+'">'+w.badge+'</span><span class="heart">♡</span>'+
+  '<img src="'+S+w.img+'" alt=""></div>'+
+  '<div class="bd"><span class="br">'+w.br+'</span><span class="nm">'+w.nm+'</span><span class="rf2">Ref. '+w.rf+'</span>'+priceHTML(w)+'</div></div>';}
+function propCard(w){return '<div class="card"><div class="ph">'+
+  '<span class="badge'+(w.bq?' q':'')+'">'+w.badge+'</span><span class="heart">♡</span>'+
+  '<div class="plate"><div class="m">Maison IU</div><div class="rule"></div><div class="rf">'+w.br+' · Ref. '+w.rf+'</div><div class="pp">Photography in preparation</div></div>'+
+  '</div>'+
+  '<div class="bd"><span class="br">'+w.br+'</span><span class="nm">'+w.nm+'</span><span class="rf2">Ref. '+w.rf+'</span>'+priceHTML(w)+'</div></div>';}
+document.getElementById('now-l').innerHTML=W.map(nowCard).join('');
+document.getElementById('now-h').innerHTML=W.map(nowCard).join('');
+document.getElementById('prop-l').innerHTML=W.map(propCard).join('');
+document.getElementById('prop-h').innerHTML=W.map(propCard).join('');
+</script>
+</body></html>
