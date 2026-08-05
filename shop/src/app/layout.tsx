@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "MAISON IU — Fine Watches, Jewellery & Bags",
     description:
-      "Rolex, Patek Philippe, Audemars Piguet, Cartier & Richard Mille. Verified provenance, full box & papers.",
+      "Rolex, Patek Philippe, Audemars Piguet, Cartier, Van Cleef & Arpels & Hermès. Verified provenance, full box & papers.",
     type: "website",
   },
 };

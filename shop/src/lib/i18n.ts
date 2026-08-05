@@ -25,8 +25,8 @@ export const dict = {
       en: "FINE WATCHES · JEWELLERY · BAGS",
     },
     subtitle: {
-      ru: "Rolex · Patek Philippe · Audemars Piguet · Cartier · Richard Mille",
-      en: "Rolex · Patek Philippe · Audemars Piguet · Cartier · Richard Mille",
+      ru: "Rolex · Patek Philippe · Audemars Piguet · Cartier · Van Cleef & Arpels · Hermès",
+      en: "Rolex · Patek Philippe · Audemars Piguet · Cartier · Van Cleef & Arpels · Hermès",
     },
     all: { ru: "Все", en: "All" },
     brand: { ru: "Бренд", en: "Brand" },

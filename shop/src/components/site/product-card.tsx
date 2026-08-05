@@ -32,7 +32,10 @@ export function ProductCard({ product }: { product: Product }) {
             {product.isNew ? (
               <Badge variant="solid">New</Badge>
             ) : (
-              <Badge variant={product.availability === "reserved" ? "quiet" : "outline"}>
+              <Badge
+                variant={product.availability === "reserved" ? "quiet" : "outline"}
+                className="bg-paper/85 backdrop-blur-sm"
+              >
                 {AVAILABILITY_LABELS[product.availability]}
               </Badge>
             )}
@@ -41,23 +44,23 @@ export function ProductCard({ product }: { product: Product }) {
 
         <span
           aria-hidden
-          className="absolute right-4 top-4 z-[2] flex size-[34px] items-center justify-center rounded-full bg-paper/90 shadow-[0_4px_14px_rgba(0,0,0,0.06)]"
+          className="absolute right-4 top-4 z-[2] flex size-8 items-center justify-center rounded-full bg-paper/90 shadow-[0_4px_14px_rgba(0,0,0,0.06)]"
         >
-          <Heart className="size-4 text-ink" strokeWidth={1.4} />
+          <Heart className="size-[15px] text-ink2" strokeWidth={1.1} />
         </span>
       </div>
 
       <div className="flex flex-col items-center px-4 pb-8 pt-6 text-center">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ash">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink2">
           {product.brand}
         </span>
-        <h3 className="mt-2 font-serif text-[18px] font-medium leading-tight text-ink sm:text-[19px]">
+        <h3 className="mt-2 flex min-h-[2.5em] items-center justify-center font-serif text-[18px] font-medium leading-tight text-ink sm:text-[19px]">
           {product.name}
         </h3>
-        <span className="tabular mt-1.5 text-[12px] tracking-[0.05em] text-ash">
+        <span className="tabular mt-1 text-[12px] font-medium tracking-[0.04em] text-ash">
           Ref. {product.reference}
         </span>
-        <span className="tabular mt-3.5 font-serif text-[17px] text-ink sm:text-[18px]">
+        <span className="tabular mt-3.5 font-serif text-[17px] tracking-[-0.01em] text-ink sm:text-[18px]">
           {formatPriceUsd(product.priceUsd)}
         </span>
       </div>

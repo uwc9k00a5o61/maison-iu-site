@@ -17,42 +17,51 @@ export function SiteNav() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-paper/85 backdrop-blur-md">
-      <nav className="mx-auto grid h-[68px] max-w-[1480px] grid-cols-[1fr_auto_1fr] items-center gap-3 px-5 sm:px-8">
-        {/* left: links (desktop) / burger (mobile) */}
-        <div className="flex items-center">
+      <nav className="mx-auto grid h-[72px] max-w-[1480px] grid-cols-[1fr_auto_1fr] items-center gap-3 px-5 sm:px-8">
+        {/* LEFT — burger (mobile) + wordmark (desktop) */}
+        <div className="flex items-center gap-4 justify-self-start">
           <button
             type="button"
             aria-label="Menu"
             className="flex size-8 items-center justify-center md:hidden"
             onClick={() => setOpen(true)}
           >
-            <Menu className="size-5 text-ink" strokeWidth={1.6} />
+            <Menu className="size-5 text-ink" strokeWidth={1.5} />
           </button>
-          <ul className="hidden items-center gap-6 md:flex">
+          <Link
+            href="/catalog"
+            aria-label="Maison IU"
+            className="logo-script hidden text-[30px] md:block"
+          >
+            Maison IU
+          </Link>
+        </div>
+
+        {/* CENTER — menu (desktop) / wordmark (mobile) */}
+        <div className="justify-self-center">
+          <ul className="hidden items-center gap-7 md:flex">
             {LINKS.map((l) => (
               <li key={l.href}>
                 <Link
                   href={l.href}
-                  className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink2 transition-colors hover:text-garnet"
+                  className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ink2 transition-colors hover:text-garnet"
                 >
                   {l.label}
                 </Link>
               </li>
             ))}
           </ul>
+          <Link
+            href="/catalog"
+            aria-label="Maison IU"
+            className="logo-script text-[27px] md:hidden"
+          >
+            Maison IU
+          </Link>
         </div>
 
-        {/* center: script wordmark — large & crisp */}
-        <Link
-          href="/catalog"
-          aria-label="Maison IU"
-          className="logo-script justify-self-center text-[30px] sm:text-[34px]"
-        >
-          Maison IU
-        </Link>
-
-        {/* right: tools */}
-        <div className="flex items-center justify-end gap-4 sm:gap-5">
+        {/* RIGHT — store utilities */}
+        <div className="flex items-center justify-end gap-4 justify-self-end sm:gap-5">
           <button aria-label="Search" className="text-ink transition-colors hover:text-garnet">
             <Search className="size-[18px]" strokeWidth={1.5} />
           </button>

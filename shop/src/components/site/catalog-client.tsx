@@ -70,29 +70,36 @@ export function CatalogClient({
 
   return (
     <div>
-      {/* category chips — horizontal scroll on mobile, no overflow */}
-      <div className="-mx-5 flex gap-2.5 overflow-x-auto px-5 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0 [&::-webkit-scrollbar]:hidden">
-        {chips.map((c) => {
-          const active = category === c.value;
-          return (
-            <button
-              key={c.value}
-              type="button"
-              onClick={() => {
-                setCategory(c.value);
-                setBrand("all");
-              }}
-              className={cn(
-                "shrink-0 rounded-full border px-[18px] py-2.5 text-[12px] font-semibold uppercase tracking-[0.1em] transition-colors",
-                active
-                  ? "border-ink bg-ink text-ivory"
-                  : "border-line bg-transparent text-ink2 hover:border-line2",
-              )}
-            >
-              {c.label}
-            </button>
-          );
-        })}
+      {/* category chips — horizontal scroll on mobile with a right fade peek */}
+      <div className="relative">
+        <div className="-mx-5 flex gap-2.5 overflow-x-auto px-5 pb-1 [scrollbar-width:none] sm:mx-0 sm:flex-wrap sm:justify-center sm:px-0 [&::-webkit-scrollbar]:hidden">
+          {chips.map((c) => {
+            const active = category === c.value;
+            return (
+              <button
+                key={c.value}
+                type="button"
+                onClick={() => {
+                  setCategory(c.value);
+                  setBrand("all");
+                }}
+                className={cn(
+                  "shrink-0 rounded-full border px-[18px] py-2.5 text-[12px] font-semibold uppercase tracking-[0.1em] transition-colors",
+                  active
+                    ? "border-garnet bg-garnet text-cream"
+                    : "border-line bg-transparent text-ink2 hover:border-line2",
+                )}
+              >
+                {c.label}
+              </button>
+            );
+          })}
+        </div>
+        {/* scroll affordance — fade the last chip on mobile only */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-5 top-0 bottom-1 w-12 bg-gradient-to-l from-paper to-transparent sm:hidden"
+        />
       </div>
 
       {/* tool row: brand / price / sort */}

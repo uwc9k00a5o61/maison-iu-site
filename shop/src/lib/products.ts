@@ -4,12 +4,16 @@ export type Brand =
   | "Rolex"
   | "Patek Philippe"
   | "Audemars Piguet"
-  | "Richard Mille"
   | "Cartier"
   | "Van Cleef & Arpels"
   | "Hermès";
 
 export type Availability = "in-stock" | "waitlist" | "reserved";
+
+export interface ProductSpec {
+  label: string;
+  value: string;
+}
 
 export interface Product {
   id: string;
@@ -24,6 +28,8 @@ export interface Product {
   availability: Availability;
   /** Marketing flag used only for surfacing, never for pricing. */
   isNew?: boolean;
+  /** Structured specs for the PDP. Placeholder values pending client data. */
+  specs?: ProductSpec[];
 }
 
 export const CATEGORIES: { value: Category; label: string }[] = [
@@ -32,11 +38,11 @@ export const CATEGORIES: { value: Category; label: string }[] = [
   { value: "bags", label: "Bags" },
 ];
 
+/** Brands actively carried — drives the catalogue brand filter. */
 export const BRANDS: Brand[] = [
   "Rolex",
   "Patek Philippe",
   "Audemars Piguet",
-  "Richard Mille",
   "Cartier",
   "Van Cleef & Arpels",
   "Hermès",
@@ -44,8 +50,10 @@ export const BRANDS: Brand[] = [
 
 /**
  * Placeholder catalogue seeded from the static site content
- * (site/catalog.html) + brand roster. Images are the shared
- * placeholder shots in /public/products.
+ * (site/catalog.html) + brand roster. Watch shots are distinct crops
+ * of the two-tone placeholder (dial marks cropped out) so no fake
+ * logo is ever readable and each SKU frames differently — interim
+ * until real client photography lands.
  */
 export const PRODUCTS: Product[] = [
   {
@@ -56,20 +64,16 @@ export const PRODUCTS: Product[] = [
     category: "watches",
     reference: "126231",
     priceUsd: 18500,
-    image: "/products/watch-twotone.jpg",
+    image: "/products/watch-01.jpg",
     availability: "in-stock",
     isNew: true,
-  },
-  {
-    id: "rlx-daytona",
-    slug: "rolex-cosmograph-daytona",
-    name: "Cosmograph Daytona",
-    brand: "Rolex",
-    category: "watches",
-    reference: "126503",
-    priceUsd: 52000,
-    image: "/products/watch-twotone.jpg",
-    availability: "in-stock",
+    specs: [
+      { label: "Case", value: "36 mm, Oystersteel & Everose" },
+      { label: "Movement", value: "Automatic, calibre 3235" },
+      { label: "Bracelet", value: "Two-tone Jubilee" },
+      { label: "Year", value: "2022" },
+      { label: "Condition", value: "Unworn · full set" },
+    ],
   },
   {
     id: "pp-nautilus-5711",
@@ -79,8 +83,15 @@ export const PRODUCTS: Product[] = [
     category: "watches",
     reference: "5711/1A",
     priceUsd: null,
-    image: "/products/watch-twotone.jpg",
+    image: "/products/watch-02.jpg",
     availability: "waitlist",
+    specs: [
+      { label: "Case", value: "40 mm, stainless steel" },
+      { label: "Movement", value: "Automatic, calibre 26-330 S C" },
+      { label: "Bracelet", value: "Integrated steel" },
+      { label: "Year", value: "2021" },
+      { label: "Condition", value: "Unworn · full set" },
+    ],
   },
   {
     id: "ap-royal-oak",
@@ -90,31 +101,15 @@ export const PRODUCTS: Product[] = [
     category: "watches",
     reference: "15500ST",
     priceUsd: 78000,
-    image: "/products/watch-twotone.jpg",
+    image: "/products/watch-03.jpg",
     availability: "reserved",
-  },
-  {
-    id: "rm-011",
-    slug: "richard-mille-rm-011",
-    name: "RM 011 Flyback",
-    brand: "Richard Mille",
-    category: "watches",
-    reference: "RM 011",
-    priceUsd: 265000,
-    image: "/products/watch-twotone.jpg",
-    availability: "waitlist",
-    isNew: true,
-  },
-  {
-    id: "cartier-santos",
-    slug: "cartier-santos-large",
-    name: "Santos de Cartier",
-    brand: "Cartier",
-    category: "watches",
-    reference: "Large Model",
-    priceUsd: 12900,
-    image: "/products/watch-twotone.jpg",
-    availability: "in-stock",
+    specs: [
+      { label: "Case", value: "41 mm, stainless steel" },
+      { label: "Movement", value: "Automatic, calibre 4302" },
+      { label: "Bracelet", value: "Integrated steel" },
+      { label: "Year", value: "2023" },
+      { label: "Condition", value: "Unworn · full set" },
+    ],
   },
   {
     id: "vca-alhambra-necklace",
@@ -127,6 +122,13 @@ export const PRODUCTS: Product[] = [
     image: "/products/necklace.jpg",
     availability: "in-stock",
     isNew: true,
+    specs: [
+      { label: "Metal", value: "18K yellow gold" },
+      { label: "Motifs", value: "10 · mother-of-pearl" },
+      { label: "Length", value: "45 cm" },
+      { label: "Year", value: "2023" },
+      { label: "Condition", value: "Unworn · full set" },
+    ],
   },
   {
     id: "cartier-love-bracelet",
@@ -134,10 +136,17 @@ export const PRODUCTS: Product[] = [
     name: "Love Bracelet",
     brand: "Cartier",
     category: "jewellery",
-    reference: "18K, 4 Diamonds",
+    reference: "18K · 4 Diamonds",
     priceUsd: 11500,
     image: "/products/bracelet.jpg",
     availability: "in-stock",
+    specs: [
+      { label: "Metal", value: "18K white gold" },
+      { label: "Stones", value: "4 brilliant-cut diamonds" },
+      { label: "Size", value: "17" },
+      { label: "Year", value: "2022" },
+      { label: "Condition", value: "Excellent · full set" },
+    ],
   },
   {
     id: "cartier-trinity-ring",
@@ -149,6 +158,13 @@ export const PRODUCTS: Product[] = [
     priceUsd: 1690,
     image: "/products/ring.jpg",
     availability: "in-stock",
+    specs: [
+      { label: "Metal", value: "18K white / yellow / rose gold" },
+      { label: "Width", value: "Three-band" },
+      { label: "Size", value: "52" },
+      { label: "Year", value: "2024" },
+      { label: "Condition", value: "Unworn · full set" },
+    ],
   },
   {
     id: "vca-perlee-bracelet",
@@ -160,6 +176,13 @@ export const PRODUCTS: Product[] = [
     priceUsd: 8950,
     image: "/products/bracelet.jpg",
     availability: "waitlist",
+    specs: [
+      { label: "Metal", value: "18K yellow gold" },
+      { label: "Design", value: "Golden beads" },
+      { label: "Size", value: "Medium" },
+      { label: "Year", value: "2023" },
+      { label: "Condition", value: "Excellent · full set" },
+    ],
   },
   {
     id: "hermes-kelly-25",
@@ -167,11 +190,18 @@ export const PRODUCTS: Product[] = [
     name: "Kelly 25 Sellier",
     brand: "Hermès",
     category: "bags",
-    reference: "Togo, Gold Hardware",
+    reference: "Togo · Gold Hardware",
     priceUsd: 42000,
     image: "/products/bag.jpg",
     availability: "reserved",
     isNew: true,
+    specs: [
+      { label: "Leather", value: "Togo" },
+      { label: "Hardware", value: "Gold-plated" },
+      { label: "Size", value: "25 cm · Sellier" },
+      { label: "Year", value: "2023 · stamp B" },
+      { label: "Condition", value: "Unworn · full set" },
+    ],
   },
   {
     id: "hermes-birkin-30",
@@ -183,5 +213,12 @@ export const PRODUCTS: Product[] = [
     priceUsd: null,
     image: "/products/bag.jpg",
     availability: "waitlist",
+    specs: [
+      { label: "Leather", value: "Clemence" },
+      { label: "Hardware", value: "Palladium" },
+      { label: "Size", value: "30 cm" },
+      { label: "Year", value: "2022 · stamp U" },
+      { label: "Condition", value: "Excellent · full set" },
+    ],
   },
 ];

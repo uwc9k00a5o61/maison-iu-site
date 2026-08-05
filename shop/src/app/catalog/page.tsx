@@ -9,7 +9,7 @@ import type { Category } from "@/lib/products";
 export const metadata: Metadata = {
   title: "Catalogue",
   description:
-    "Fine watches, jewellery and bags — Rolex, Patek Philippe, Audemars Piguet, Cartier, Richard Mille. Verified provenance, $ pricing.",
+    "Fine watches, jewellery and bags — Rolex, Patek Philippe, Audemars Piguet, Cartier, Hermès. Verified provenance, $ pricing.",
 };
 
 const VALID: (Category | "all")[] = ["all", "watches", "jewellery", "bags"];
@@ -46,7 +46,8 @@ export default async function CatalogPage({
             </h1>
             <div className="mx-auto mt-4 h-0.5 w-14 bg-garnet" />
             <p className="mt-5 text-[14px] leading-relaxed text-ash">
-              Rolex · Patek Philippe · Audemars Piguet · Cartier · Richard Mille
+              Rolex · Patek Philippe · Audemars Piguet · Cartier · Van Cleef &amp;
+              Arpels · Hermès
             </p>
           </section>
 

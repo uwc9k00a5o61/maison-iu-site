@@ -8,6 +8,7 @@ const OUT = "C:/Users/MSI/AppData/Local/Temp/aionui/70be47ad/site/mobile-qa3";
 const shots = [
   { name: "shop-catalog-desk", path: "/catalog", w: 1440, h: 900, mobile: false, dsf: 1 },
   { name: "shop-catalog-390", path: "/catalog", w: 390, h: 844, mobile: true, dsf: 2 },
+  { name: "shop-product-desk", path: "/product/rolex-datejust-36", w: 1440, h: 900, mobile: false, dsf: 1 },
   { name: "shop-product-390", path: "/product/rolex-datejust-36", w: 390, h: 844, mobile: true, dsf: 2 },
 ];
 
