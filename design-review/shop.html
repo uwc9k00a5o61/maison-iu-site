@@ -37,6 +37,16 @@ body{background:#EDE7DB;color:var(--ink);font-family:var(--sans);line-height:1.6
 .imp .row{font-size:13.5px;color:var(--ink2);margin:3px 0}
 .imp .row b{color:var(--ink);font-weight:600}
 .imp .row.p{color:var(--garnet);font-weight:600;font-size:12px;letter-spacing:.04em;text-transform:uppercase;margin-top:8px}
+/* per-point mobile 390 before|after windows (crop of full clean screenshots) */
+.mpair{margin-top:16px;border-top:1px dashed var(--line2);padding-top:14px}
+.mcap{font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--champ);margin-bottom:10px}
+.mcols{display:flex;gap:12px;flex-wrap:wrap}
+.mob{width:300px;max-width:100%;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff;box-shadow:0 10px 26px rgba(22,19,14,.07)}
+.mob .ml{display:flex;align-items:center;gap:7px;font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;padding:7px 11px;border-bottom:1px solid var(--line)}
+.mob .ml.b{color:var(--ash)}.mob .ml.a{color:var(--garnet)}
+.mob .ml .d{width:7px;height:7px;border-radius:999px;background:currentColor;display:inline-block}
+.mob .win{position:relative;overflow:hidden;background:#EDE7DB}
+.mob .win img{position:absolute;left:0;width:300px;display:block}
 .note{background:#FBF8F2;border:1px solid var(--line);border-left:3px solid var(--champ);border-radius:10px;padding:14px 18px;margin-top:22px;font-size:13.5px;color:var(--ink2)}
 .foot{background:#20090F;color:rgba(244,240,231,.78);text-align:center;padding:32px 0;font-size:12.5px}
 .foot .script{font-family:var(--script);font-size:26px;color:#F4F0E7;-webkit-text-stroke:.5px #F4F0E7;display:block;margin-bottom:8px}
@@ -68,6 +78,10 @@ body{background:#EDE7DB;color:var(--ink);font-family:var(--sans);line-height:1.6
       <div class="row"><b>Что:</b> «Price on request» переносится на 2 строки, а числовые цены — в 1 → базовые линии цен в ряду не совпадают, сетка «дышит» неровно.</div>
       <div class="row"><b>После:</b> цена всегда в одну строку (числа — tabular Bodoni; «Price on request» — компактный капс-лейбл шампань). Тело карточки на фикс-грид-рядах → цены всех карточек на одной базовой линии.</div>
       <div class="row p">Принцип: baseline-ритм · визуальная тишина</div>
+      <div class="mpair"><div class="mcap">Мобилка · 390 · смотреть базовую линию цен</div><div class="mcols">
+        <figure class="mob"><span class="ml b"><span class="d"></span>До</span><div class="win" style="height:162px"><img src="./before/catalog-mob.png" style="top:-611px"></div></figure>
+        <figure class="mob"><span class="ml a"><span class="d"></span>После</span><div class="win" style="height:162px"><img src="./after/after-catalog-mob.png" style="top:-431px"></div></figure>
+      </div></div>
     </div></div>
 
     <div class="imp"><div class="no">2</div><div>
@@ -75,6 +89,10 @@ body{background:#EDE7DB;color:var(--ink);font-family:var(--sans);line-height:1.6
       <div class="row"><b>Что:</b> тяжёлый белый диск-«сердце», плотные бейджи и боксовые селекты («ALL BRANDS / ANY PRICE») читаются утилитарно.</div>
       <div class="row"><b>После:</b> wishlist — тонкое hairline-кольцо (ghost); бейджи мельче и спокойнее; фильтр — текст + подчёркивание активного вместо коробок; счётчик — editorial-курсив «Nine pieces».</div>
       <div class="row p">Принцип: deference (Apple) — предмет ведёт, UI отступает</div>
+      <div class="mpair"><div class="mcap">Мобилка · 390 · фильтр, бейдж, wishlist</div><div class="mcols">
+        <figure class="mob"><span class="ml b"><span class="d"></span>До</span><div class="win" style="height:192px"><img src="./before/catalog-mob.png" style="top:-331px"></div></figure>
+        <figure class="mob"><span class="ml a"><span class="d"></span>После</span><div class="win" style="height:192px"><img src="./after/after-catalog-mob.png" style="top:-192px"></div></figure>
+      </div></div>
     </div></div>
 
     <div class="imp"><div class="no">3</div><div>
@@ -82,6 +100,11 @@ body{background:#EDE7DB;color:var(--ink);font-family:var(--sans);line-height:1.6
       <div class="row"><b>Что:</b> Rolex Datejust показан как ЗОЛОТЫЕ часы на ЗОЛОТОМ шёлке (правило Islam «золото дешевит»); фоны фото разнородны → сетка пятнит, а на Heritage light-фоны бьют «светлыми окнами» по тёмным карточкам.</div>
       <div class="row"><b>После:</b> Datejust → two-tone (steel & Everose); мягкий унифицирующий vignette по низу фото → карточки читаются как одна система в ОБЕИХ темах.</div>
       <div class="row p">Принцип: консистентность · бренд-правило (no gold)</div>
+      <div class="mpair"><div class="mcap">Мобилка · 390 · обе темы (золото→steel + vignette)</div><div class="mcols">
+        <figure class="mob"><span class="ml b"><span class="d"></span>До · Ivory</span><div class="win" style="height:192px"><img src="./before/catalog-mob.png" style="top:-442px"></div></figure>
+        <figure class="mob"><span class="ml b"><span class="d"></span>До · Heritage</span><div class="win" style="height:192px"><img src="./before/catalog-heritage-mob.png" style="top:-442px"></div></figure>
+        <figure class="mob"><span class="ml a"><span class="d"></span>После</span><div class="win" style="height:192px"><img src="./after/after-catalog-mob.png" style="top:-277px"></div></figure>
+      </div></div>
     </div></div>
   </div>
 </div></section>
@@ -103,6 +126,10 @@ body{background:#EDE7DB;color:var(--ink);font-family:var(--sans);line-height:1.6
       <div class="row"><b>Что:</b> под hero — 2 пустых тайла «MAISON IU» (placeholder.svg) → читается как недоделка. Требовательный клиент это заметит первым.</div>
       <div class="row"><b>После:</b> один уверенный крупный hero + zoom-аффорданс + капшн «Steel & Everose · Ref. 126231». Ряд тумб включаем, когда появятся реальные доп-ракурсы (не раньше).</div>
       <div class="row p">Принцип: ноль плейсхолдер-слопа · завершённость</div>
+      <div class="mpair"><div class="mcap">Мобилка · 390 · галерея (пустые тумбы → единый hero)</div><div class="mcols">
+        <figure class="mob"><span class="ml b"><span class="d"></span>До</span><div class="win" style="height:215px"><img src="./before/product-mob.png" style="top:-231px"></div></figure>
+        <figure class="mob"><span class="ml a"><span class="d"></span>После</span><div class="win" style="height:215px"><img src="./after/after-product-mob.png" style="top:-77px"></div></figure>
+      </div></div>
     </div></div>
 
     <div class="imp"><div class="no">5</div><div>
@@ -110,6 +137,10 @@ body{background:#EDE7DB;color:var(--ink);font-family:var(--sans);line-height:1.6
       <div class="row"><b>Что:</b> <code>divide-y</code> — хайрлайн под КАЖДОЙ строкой (самый частый AI-tell спек-таблиц); значения мелкие 14px.</div>
       <div class="row"><b>После:</b> 2-колоночный key/value-грид БЕЗ линеек под строками; значения крупнее в Bodoni. Ощущение «выгравировано», а не «выгружено из БД».</div>
       <div class="row p">Принцип: bespoke · sparse dividers · editorial value</div>
+      <div class="mpair"><div class="mcap">Мобилка · 390 · спеки (divide-y → 2-кол блок)</div><div class="mcols">
+        <figure class="mob"><span class="ml b"><span class="d"></span>До</span><div class="win" style="height:185px"><img src="./before/product-mob.png" style="top:-834px"></div></figure>
+        <figure class="mob"><span class="ml a"><span class="d"></span>После</span><div class="win" style="height:185px"><img src="./after/after-product-mob.png" style="top:-625px"></div></figure>
+      </div></div>
     </div></div>
 
     <div class="imp"><div class="no">6</div><div>
@@ -117,6 +148,10 @@ body{background:#EDE7DB;color:var(--ink);font-family:var(--sans);line-height:1.6
       <div class="row"><b>Что:</b> кнопки плоские; цена — тяжёлый Inter bold, ближе к app, чем к maison.</div>
       <div class="row"><b>После:</b> первичный CTA с «кнопкой-в-кнопке» (вложенная круглая стрелка) + тактильный press; цена — Bodoni, «In stock» — тихий outline-пилл. Единый радиус/ритм с главной (v2/v3).</div>
       <div class="row p">Принцип: haptic micro-detail · консистентность с домом</div>
+      <div class="mpair"><div class="mcap">Мобилка · 390 · цена + CTA (кнопка-в-кнопке)</div><div class="mcols">
+        <figure class="mob"><span class="ml b"><span class="d"></span>До</span><div class="win" style="height:162px"><img src="./before/product-mob.png" style="top:-627px"></div></figure>
+        <figure class="mob"><span class="ml a"><span class="d"></span>После</span><div class="win" style="height:162px"><img src="./after/after-product-mob.png" style="top:-450px"></div></figure>
+      </div></div>
     </div></div>
   </div>
 </div></section>
@@ -138,6 +173,10 @@ body{background:#EDE7DB;color:var(--ink);font-family:var(--sans);line-height:1.6
       <div class="row"><b>Что:</b> статичные карточки; на Heritage light-фоны фото выбиваются из тёмного регистра.</div>
       <div class="row"><b>После:</b> scroll-reveal-stagger карточек, image-zoom на hover, cross-fade галереи — всё мотивированно и под <code>@media(prefers-reduced-motion:reduce)</code>. Унифицирующий vignette лечит и Heritage-«окна».</div>
       <div class="row p">Принцип: motion motivated · reduced-motion · theme-lock</div>
+      <div class="mpair"><div class="mcap">Мобилка · 390 · Heritage-«окна» фото → единый тон</div><div class="mcols">
+        <figure class="mob"><span class="ml b"><span class="d"></span>До · Heritage</span><div class="win" style="height:192px"><img src="./before/catalog-heritage-mob.png" style="top:-442px"></div></figure>
+        <figure class="mob"><span class="ml a"><span class="d"></span>После</span><div class="win" style="height:192px"><img src="./after/after-catalog-mob.png" style="top:-277px"></div></figure>
+      </div></div>
     </div></div>
   </div>
 
