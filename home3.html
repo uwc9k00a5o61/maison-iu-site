@@ -45,14 +45,14 @@ html[data-skin="heritage"]{
 body{background:var(--page-bg);background-color:var(--page-bg-color);color:var(--fg);transition:background-color .5s var(--e),color .35s var(--e)}
 .ey{color:var(--ey-col)}
 
-/* production theme toggle (Ivory / Heritage) — sits on the inverted header plate */
-.themebar{background:var(--hdr-bg);border-bottom:0}
+/* top utility strip (theme toggle) — ALWAYS a light ivory strip in both themes, separate from the inverted menu-nav below */
+.themebar{background:#FBF8F2;border-bottom:1px solid var(--line)}
 .tb-in{display:flex;align-items:center;justify-content:flex-end;gap:12px;height:44px}
-.tb-hint{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--hdr-fg2)}
-.seg{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--hdr-line);border-radius:999px;padding:3px;background:transparent}
-.seg-b{appearance:none;-webkit-appearance:none;background:none;border:0;cursor:pointer;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--hdr-fg2);padding:7px 15px;border-radius:999px;transition:background .25s var(--e),color .25s var(--e)}
-.seg-b:hover{color:var(--hdr-fg)}
-.seg-b.on{background:var(--hdr-seg-on-bg);color:var(--hdr-seg-on-fg)}
+.tb-hint{font-size:10px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--ash)}
+.seg{display:inline-flex;align-items:center;gap:2px;border:1px solid var(--line);border-radius:999px;padding:3px;background:transparent}
+.seg-b{appearance:none;-webkit-appearance:none;background:none;border:0;cursor:pointer;font-family:var(--sans);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink2);padding:7px 15px;border-radius:999px;transition:background .25s var(--e),color .25s var(--e)}
+.seg-b:hover{color:var(--ink)}
+.seg-b.on{background:var(--garnet);color:var(--cream)}
 
 /* intro — script logo pen-writes, then dark curtains part to reveal the site (ported from index.html) */
 .intro{position:fixed;inset:0;z-index:100}
@@ -170,11 +170,11 @@ html[data-skin="light"] .foot{background:var(--ink)}
 
 <nav class="nav"><div class="in wrap">
   <div class="l"><span class="u uen navlang-m"><b>RU</b> · EN</span></div>
-  <div class="c"><a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a></div>
-  <div class="r"><a href="catalog.html">Каталог</a><a href="#appt">Контакты</a><span class="u uen"><b>RU</b> · EN</span></div>
+  <div class="c"><a href="https://maison-iu-shop.onrender.com/catalog?category=watches">Watches</a><a href="https://maison-iu-shop.onrender.com/catalog?category=jewellery">Jewellery</a><a href="https://maison-iu-shop.onrender.com/catalog?category=bags">Bags</a></div>
+  <div class="r"><a href="https://maison-iu-shop.onrender.com/catalog">Каталог</a><a href="#appt">Контакты</a><span class="u uen"><b>RU</b> · EN</span></div>
   <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
 </div></nav>
-<div class="drawer" id="drawer"><button class="x" id="dx">Закрыть ✕</button><a href="catalog.html">Watches</a><a href="catalog.html">Jewellery</a><a href="catalog.html">Bags</a><a href="catalog.html">Каталог</a><a href="#appt">Контакты</a><a href="#appt">Записаться</a></div>
+<div class="drawer" id="drawer"><button class="x" id="dx">Закрыть ✕</button><a href="https://maison-iu-shop.onrender.com/catalog?category=watches">Watches</a><a href="https://maison-iu-shop.onrender.com/catalog?category=jewellery">Jewellery</a><a href="https://maison-iu-shop.onrender.com/catalog?category=bags">Bags</a><a href="https://maison-iu-shop.onrender.com/catalog">Каталог</a><a href="#appt">Контакты</a><a href="#appt">Записаться</a></div>
 
 <header class="hero wrap">
   <span class="ey reveal">Boutique · by appointment · Moscow · Dubai · Istanbul</span>
@@ -182,15 +182,15 @@ html[data-skin="light"] .foot{background:var(--ink)}
   <div class="lock reveal"><hr><span>Fine Watches · Jewellery · Bags</span><hr></div>
   <h1 class="reveal">Подлинность,<br>которую видно</h1>
   <p class="slg reveal">Оригинальные часы, украшения и сумки премиум-класса — с проверенной подлинностью и полным комплектом box &amp; papers.</p>
-  <div class="cta reveal"><a class="cbtn a" href="catalog.html">Смотреть коллекцию</a><a class="cbtn b" href="#appt">Записаться на просмотр</a></div>
+  <div class="cta reveal"><a class="cbtn a" href="https://maison-iu-shop.onrender.com/catalog">Смотреть коллекцию</a><a class="cbtn b" href="#appt">Записаться на просмотр</a></div>
 </header>
 
 <section class="sec wrap" id="cat">
-  <div class="shead reveal"><h2>Категории</h2><a class="lnk2" href="catalog.html">Весь каталог →</a></div>
+  <div class="shead reveal"><h2>Категории</h2><a class="lnk2" href="https://maison-iu-shop.onrender.com/catalog">Весь каталог →</a></div>
   <div class="gal">
-    <a class="gcell reveal" href="catalog.html"><img src="assets/products/watch-01.jpg" alt="Часы"><span class="lab"><span>Timepieces</span><h3>Часы</h3></span></a>
-    <a class="gcell reveal" href="catalog.html"><img src="assets/products/necklace.jpg" alt="Украшения"><span class="lab"><span>Fine Jewellery</span><h3>Украшения</h3></span></a>
-    <a class="gcell reveal" href="catalog.html"><img src="assets/products/bag.jpg" alt="Сумки"><span class="lab"><span>Leather</span><h3>Сумки</h3></span></a>
+    <a class="gcell reveal" href="https://maison-iu-shop.onrender.com/catalog?category=watches"><img src="assets/products/watch-01.jpg" alt="Часы"><span class="lab"><span>Timepieces</span><h3>Часы</h3></span></a>
+    <a class="gcell reveal" href="https://maison-iu-shop.onrender.com/catalog?category=jewellery"><img src="assets/products/necklace.jpg" alt="Украшения"><span class="lab"><span>Fine Jewellery</span><h3>Украшения</h3></span></a>
+    <a class="gcell reveal" href="https://maison-iu-shop.onrender.com/catalog?category=bags"><img src="assets/products/bag.jpg" alt="Сумки"><span class="lab"><span>Leather</span><h3>Сумки</h3></span></a>
   </div>
 </section>
 
