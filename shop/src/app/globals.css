@@ -1,0 +1,145 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* ============================================================
+   MAISON IU — commerce theme (shadcn logic, brand skin)
+   Strict palette from site/c3/base.css. No gold in branding.
+   Champagne = thin foil accents only. $ prices. RU/EN ready.
+   ============================================================ */
+
+:root {
+  --radius: 0.75rem;
+
+  /* ---- brand palette (strict) ---- */
+  --brand-ivory: #f4f0e7;
+  --brand-paper: #fbf8f2;
+  --brand-cream: #f1e4d7;
+  --brand-ink: #16130e;
+  --brand-ink2: #2a2620;
+  --brand-ash: #5e584d;
+  --brand-mute: #8a8377;
+  --brand-line: rgba(22, 19, 14, 0.14);
+  --brand-line2: rgba(22, 19, 14, 0.28);
+  --brand-garnet: #7a2231;
+  --brand-garnet2: #6e2233;
+  --brand-champ: #9a7e4e;
+
+  /* ---- shadcn semantic tokens → brand ---- */
+  --background: var(--brand-paper);
+  --foreground: var(--brand-ink);
+  --card: #ffffff;
+  --card-foreground: var(--brand-ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--brand-ink);
+  --primary: var(--brand-garnet);
+  --primary-foreground: var(--brand-cream);
+  --secondary: var(--brand-ivory);
+  --secondary-foreground: var(--brand-ink);
+  --muted: var(--brand-ivory);
+  --muted-foreground: var(--brand-ash);
+  --accent: var(--brand-cream);
+  --accent-foreground: var(--brand-ink);
+  --destructive: var(--brand-garnet);
+  --destructive-foreground: var(--brand-cream);
+  --border: var(--brand-line);
+  --input: var(--brand-line);
+  --ring: rgba(122, 34, 49, 0.45);
+}
+
+@theme inline {
+  /* fonts (values injected by next/font on <html>) */
+  --font-sans: var(--font-inter), Inter, system-ui, Arial, sans-serif;
+  --font-serif: var(--font-bodoni), "Bodoni Moda", Didot, "Times New Roman", serif;
+  --font-script: var(--font-pinyon), "Pinyon Script", cursive;
+
+  /* brand color utilities: bg-ivory / text-ink / border-line / text-garnet ... */
+  --color-ivory: var(--brand-ivory);
+  --color-paper: var(--brand-paper);
+  --color-cream: var(--brand-cream);
+  --color-ink: var(--brand-ink);
+  --color-ink2: var(--brand-ink2);
+  --color-ash: var(--brand-ash);
+  --color-mute: var(--brand-mute);
+  --color-line: var(--brand-line);
+  --color-line2: var(--brand-line2);
+  --color-garnet: var(--brand-garnet);
+  --color-garnet2: var(--brand-garnet2);
+  --color-champ: var(--brand-champ);
+
+  /* shadcn semantic utilities */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+    min-width: 0;
+  }
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100%;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    font-weight: 400;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  ::selection {
+    background: var(--brand-garnet);
+    color: var(--brand-cream);
+  }
+}
+
+/* ---- brand marks: script logo must never look thin ---- */
+.logo-script {
+  font-family: var(--font-script);
+  line-height: 0.9;
+  color: var(--brand-ink);
+  -webkit-text-stroke: 0.7px var(--brand-ink);
+  paint-order: stroke fill;
+}
+.logo-script.on-dark {
+  color: var(--brand-ivory);
+  -webkit-text-stroke: 0.7px var(--brand-ivory);
+}
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
