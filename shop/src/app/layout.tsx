@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Bodoni_Moda, Inter, Pinyon_Script } from "next/font/google";
 import "./globals.css";
+import { CartProvider } from "@/components/cart/cart-store";
+import { CartSheet } from "@/components/cart/cart-sheet";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -69,7 +71,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        {children}
+        <CartProvider>
+          {children}
+          <CartSheet />
+        </CartProvider>
       </body>
     </html>
   );

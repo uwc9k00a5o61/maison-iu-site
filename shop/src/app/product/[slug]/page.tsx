@@ -1,16 +1,11 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import {
-  ArrowRight,
-  BadgeCheck,
-  CalendarClock,
-  Search,
-  ShieldCheck,
-} from "lucide-react";
+import { BadgeCheck, CalendarClock, Search, ShieldCheck } from "lucide-react";
 
 import { ProductImage } from "@/components/site/product-image";
 import { PhotoTile } from "@/components/site/photo-tile";
+import { AddToBagButton } from "@/components/cart/add-to-bag";
 import { ThemeBar } from "@/components/site/theme-bar";
 import { SiteNav } from "@/components/site/site-nav";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -127,15 +122,7 @@ export default async function ProductPage({
 
               {/* CTAs — stacked full-width on mobile; row + nested-arrow on desktop (#6) */}
               <div className="mt-8 flex w-full flex-col gap-3 md:w-auto md:flex-row md:flex-wrap">
-                <Button className="relative w-full active:translate-y-px md:w-auto md:pr-16">
-                  Reserve this piece
-                  <span
-                    aria-hidden
-                    className="absolute right-2 top-1/2 hidden size-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 md:flex"
-                  >
-                    <ArrowRight className="size-4" strokeWidth={1.6} />
-                  </span>
-                </Button>
+                <AddToBagButton id={product.id} />
                 <Button variant="outline" className="w-full md:w-auto">
                   Enquire on Telegram
                 </Button>

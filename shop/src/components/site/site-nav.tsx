@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { useCart } from "@/components/cart/cart-store";
 
 const LINKS = [
   { href: "/catalog?category=watches", label: "Watches" },
@@ -14,6 +15,7 @@ const LINKS = [
 
 export function SiteNav() {
   const [open, setOpen] = React.useState(false);
+  const { count, setOpen: setCartOpen } = useCart();
 
   return (
     <header className="hdr-plate sticky top-0 z-40 border-b backdrop-blur-md">
@@ -73,8 +75,18 @@ export function SiteNav() {
           >
             <User className="size-[18px]" strokeWidth={1.5} />
           </button>
-          <button aria-label="Cart" className="transition-colors hover:text-hdr-fg">
+          <button
+            type="button"
+            aria-label={`Cart${count > 0 ? ` (${count})` : ""}`}
+            onClick={() => setCartOpen(true)}
+            className="relative transition-colors hover:text-hdr-fg"
+          >
             <ShoppingBag className="size-[18px]" strokeWidth={1.5} />
+            {count > 0 && (
+              <span className="tabular absolute -right-2 -top-2 flex min-w-[16px] items-center justify-center rounded-full bg-garnet px-1 text-[9px] font-bold leading-[16px] text-cream">
+                {count}
+              </span>
+            )}
           </button>
           <span className="hidden text-[11px] font-semibold uppercase tracking-[0.14em] text-hdr-fg2 lg:inline">
             <b className="text-hdr-fg">RU</b> · EN

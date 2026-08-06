@@ -13,9 +13,26 @@ export function PhotoTile({
 }: {
   brand: string;
   reference: string;
-  variant?: "card" | "hero";
+  variant?: "card" | "hero" | "mini";
   className?: string;
 }) {
+  // compact thumbnail (e.g. cart line) — script mark only, keeps the
+  // branded ground consistent with the catalogue placeholder
+  if (variant === "mini") {
+    return (
+      <div
+        className={cn(
+          "plinth tile-rings absolute inset-0 flex items-center justify-center",
+          className,
+        )}
+      >
+        <span translate="no" className="tile-script relative text-[15px]">
+          Maison IU
+        </span>
+      </div>
+    );
+  }
+
   const hero = variant === "hero";
   return (
     <div

@@ -3,6 +3,7 @@ import { Heart } from "lucide-react";
 
 import { ProductImage } from "@/components/site/product-image";
 import { PhotoTile } from "@/components/site/photo-tile";
+import { CardAddButton } from "@/components/cart/add-to-bag";
 import { Badge } from "@/components/ui/badge";
 import { AVAILABILITY_LABELS } from "@/lib/catalog";
 import { formatPriceUsd } from "@/lib/format";
@@ -82,6 +83,7 @@ export function ProductCard({ product }: { product: Product }) {
             {formatPriceUsd(product.priceUsd)}
           </span>
         )}
+        <CardAddButton id={product.id} />
       </div>
     </Link>
   );
