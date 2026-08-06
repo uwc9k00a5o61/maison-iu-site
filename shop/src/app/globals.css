@@ -291,6 +291,29 @@ html[data-skin="heritage"] :focus-visible {
   font-feature-settings: "tnum" 1;
 }
 
+/* branded "photography in preparation" placeholder tile — theme-aware, no
+   fake logos/dials; script = --script-accent (garnet / ivory), faint
+   concentric rings from --line-c over the --ph-grad ground */
+.tile-script {
+  font-family: var(--font-script);
+  line-height: 0.9;
+  color: var(--script-accent);
+  -webkit-text-stroke: 0.4px var(--script-accent);
+  paint-order: stroke fill;
+}
+.tile-rings::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-radial-gradient(
+    circle at 50% 42%,
+    var(--line-c) 0 1px,
+    transparent 1px 15px
+  );
+  opacity: 0.5;
+}
+
 /* ---- skinned surface helpers ---- */
 .panel {
   background: var(--panel-bg);

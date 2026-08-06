@@ -25,6 +25,12 @@ export interface Product {
   /** Price in whole USD. `null` = price on application (POA). */
   priceUsd: number | null;
   image: string;
+  /**
+   * True while real photography is pending → the storefront shows the
+   * branded placeholder tile instead of `image`. To ship a real photo:
+   * set `image: "/products/…"` and `imagePending: false` (or drop it).
+   */
+  imagePending?: boolean;
   availability: Availability;
   /** Marketing flag used only for surfacing, never for pricing. */
   isNew?: boolean;
@@ -66,6 +72,7 @@ export const PRODUCTS: Product[] = [
     priceUsd: 18500,
     image: "/products/watch-01.jpg",
     availability: "in-stock",
+    imagePending: true,
     isNew: true,
     specs: [
       { label: "Case", value: "36 mm, Oystersteel & Everose" },
@@ -85,6 +92,7 @@ export const PRODUCTS: Product[] = [
     priceUsd: null,
     image: "/products/watch-02.jpg",
     availability: "waitlist",
+    imagePending: true,
     specs: [
       { label: "Case", value: "40 mm, stainless steel" },
       { label: "Movement", value: "Automatic, calibre 26-330 S C" },
@@ -103,6 +111,7 @@ export const PRODUCTS: Product[] = [
     priceUsd: 78000,
     image: "/products/watch-03.jpg",
     availability: "reserved",
+    imagePending: true,
     specs: [
       { label: "Case", value: "41 mm, stainless steel" },
       { label: "Movement", value: "Automatic, calibre 4302" },
@@ -121,6 +130,7 @@ export const PRODUCTS: Product[] = [
     priceUsd: 21400,
     image: "/products/necklace.jpg",
     availability: "in-stock",
+    imagePending: true,
     isNew: true,
     specs: [
       { label: "Metal", value: "18K yellow gold" },
@@ -140,6 +150,7 @@ export const PRODUCTS: Product[] = [
     priceUsd: 11500,
     image: "/products/bracelet.jpg",
     availability: "in-stock",
+    imagePending: true,
     specs: [
       { label: "Metal", value: "18K white gold" },
       { label: "Stones", value: "4 brilliant-cut diamonds" },
@@ -158,6 +169,7 @@ export const PRODUCTS: Product[] = [
     priceUsd: 1690,
     image: "/products/ring.jpg",
     availability: "in-stock",
+    imagePending: true,
     specs: [
       { label: "Metal", value: "18K white / yellow / rose gold" },
       { label: "Width", value: "Three-band" },
@@ -176,6 +188,7 @@ export const PRODUCTS: Product[] = [
     priceUsd: 8950,
     image: "/products/bracelet.jpg",
     availability: "waitlist",
+    imagePending: true,
     specs: [
       { label: "Metal", value: "18K yellow gold" },
       { label: "Design", value: "Golden beads" },
@@ -194,6 +207,7 @@ export const PRODUCTS: Product[] = [
     priceUsd: 42000,
     image: "/products/bag.jpg",
     availability: "reserved",
+    imagePending: true,
     isNew: true,
     specs: [
       { label: "Leather", value: "Togo" },
@@ -213,6 +227,7 @@ export const PRODUCTS: Product[] = [
     priceUsd: null,
     image: "/products/bag.jpg",
     availability: "waitlist",
+    imagePending: true,
     specs: [
       { label: "Leather", value: "Clemence" },
       { label: "Hardware", value: "Palladium" },

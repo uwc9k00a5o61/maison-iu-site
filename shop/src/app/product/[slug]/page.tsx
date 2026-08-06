@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import { ProductImage } from "@/components/site/product-image";
+import { PhotoTile } from "@/components/site/photo-tile";
 import { ThemeBar } from "@/components/site/theme-bar";
 import { SiteNav } from "@/components/site/site-nav";
 import { SiteFooter } from "@/components/site/site-footer";
@@ -67,23 +68,33 @@ export default async function ProductPage({
             {/* gallery — single confident hero + zoom + caption (no placeholder tiles) */}
             <Reveal>
               <div className="plinth photo-vignette relative aspect-square overflow-hidden rounded-[20px] border border-panel-line">
-                <ProductImage
-                  src={product.image}
-                  alt={`${product.brand} ${product.name}`}
-                  fill
-                  sizes="(max-width:768px) 100vw, 620px"
-                  className="object-cover"
-                  priority
-                />
-                <span
-                  aria-hidden
-                  className="absolute right-3.5 top-3.5 z-[2] flex size-8 items-center justify-center rounded-full bg-paper/85 backdrop-blur-sm"
-                >
-                  <Search className="size-[15px] text-ink2" strokeWidth={1.4} />
-                </span>
-                <span className="absolute bottom-3.5 left-3.5 z-[2] rounded-full bg-[rgba(18,16,13,0.72)] px-[11px] py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-white">
-                  {product.brand} · Ref. {product.reference}
-                </span>
+                {product.imagePending ? (
+                  <PhotoTile
+                    variant="hero"
+                    brand={product.brand}
+                    reference={product.reference}
+                  />
+                ) : (
+                  <>
+                    <ProductImage
+                      src={product.image}
+                      alt={`${product.brand} ${product.name}`}
+                      fill
+                      sizes="(max-width:768px) 100vw, 620px"
+                      className="object-cover"
+                      priority
+                    />
+                    <span
+                      aria-hidden
+                      className="absolute right-3.5 top-3.5 z-[2] flex size-8 items-center justify-center rounded-full bg-paper/85 backdrop-blur-sm"
+                    >
+                      <Search className="size-[15px] text-ink2" strokeWidth={1.4} />
+                    </span>
+                    <span className="absolute bottom-3.5 left-3.5 z-[2] rounded-full bg-[rgba(18,16,13,0.72)] px-[11px] py-1.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-white">
+                      {product.brand} · Ref. {product.reference}
+                    </span>
+                  </>
+                )}
               </div>
             </Reveal>
 

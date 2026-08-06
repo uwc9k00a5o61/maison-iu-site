@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Heart } from "lucide-react";
 
 import { ProductImage } from "@/components/site/product-image";
+import { PhotoTile } from "@/components/site/photo-tile";
 import { Badge } from "@/components/ui/badge";
 import { AVAILABILITY_LABELS } from "@/lib/catalog";
 import { formatPriceUsd } from "@/lib/format";
@@ -20,13 +21,21 @@ export function ProductCard({ product }: { product: Product }) {
       className="panel group flex flex-col overflow-hidden rounded-2xl border shadow-[0_12px_44px_rgba(22,19,14,0.05)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(22,19,14,0.10)]"
     >
       <div className="plinth photo-vignette relative aspect-[1/1.1] overflow-hidden">
-        <ProductImage
-          src={product.image}
-          alt={`${product.brand} ${product.name}`}
-          fill
-          sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 360px"
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-        />
+        {product.imagePending ? (
+          <PhotoTile
+            variant="card"
+            brand={product.brand}
+            reference={product.reference}
+          />
+        ) : (
+          <ProductImage
+            src={product.image}
+            alt={`${product.brand} ${product.name}`}
+            fill
+            sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 360px"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+          />
+        )}
 
         {showBadge && (
           <div className="absolute left-3 top-3 z-[2]">
