@@ -46,6 +46,7 @@ export const metadata: Metadata = {
   },
   description:
     "Original watches, jewellery and premium bags with verified provenance and full box & papers. By appointment — Moscow · Dubai · Istanbul.",
+  icons: { icon: "/favicon.ico" },
   openGraph: {
     title: "MAISON IU — Fine Watches, Jewellery & Bags",
     description:
