@@ -12,6 +12,7 @@ import {
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 import { ProductCard } from "@/components/site/product-card";
 import { Reveal } from "@/components/site/reveal";
+import { useT } from "@/components/i18n/lang-provider";
 import { filterProducts, sortProducts, type SortKey } from "@/lib/catalog";
 import {
   BRANDS,
@@ -21,27 +22,19 @@ import {
   type Category,
 } from "@/lib/products";
 
-const PRICE_TIERS: { value: string; label: string; max?: number }[] = [
-  { value: "all", label: "Any price" },
-  { value: "10000", label: "Under $10,000", max: 10000 },
-  { value: "25000", label: "Under $25,000", max: 25000 },
-  { value: "75000", label: "Under $75,000", max: 75000 },
-];
+const PRICE_TIERS: { value: string; label?: string; cap?: string; max?: number }[] =
+  [
+    { value: "all" },
+    { value: "10000", cap: "$10,000", max: 10000 },
+    { value: "25000", cap: "$25,000", max: 25000 },
+    { value: "75000", cap: "$75,000", max: 75000 },
+  ];
 
-const SORTS: { value: SortKey; label: string }[] = [
-  { value: "featured", label: "Featured" },
-  { value: "price-asc", label: "Price · Low to High" },
-  { value: "price-desc", label: "Price · High to Low" },
+const SORTS: { value: SortKey; key: string }[] = [
+  { value: "featured", key: "sort.featured" },
+  { value: "price-asc", key: "sort.priceAsc" },
+  { value: "price-desc", key: "sort.priceDesc" },
 ];
-
-const WORDS = [
-  "Zero", "One", "Two", "Three", "Four", "Five", "Six",
-  "Seven", "Eight", "Nine", "Ten", "Eleven", "Twelve",
-];
-function pieces(n: number) {
-  const word = WORDS[n] ?? String(n);
-  return `${word} ${n === 1 ? "piece" : "pieces"}`;
-}
 
 // borderless editorial dropdown (no box) — text + champagne chevron
 const EDITORIAL_TRIGGER =
@@ -52,6 +45,7 @@ export function CatalogClient({
 }: {
   initialCategory?: Category | "all";
 }) {
+  const { t, pieces } = useT();
   const [category, setCategory] = React.useState<Category | "all">(
     initialCategory,
   );
@@ -60,7 +54,7 @@ export function CatalogClient({
   const [sort, setSort] = React.useState<SortKey>("featured");
 
   const maxPriceUsd = React.useMemo(
-    () => PRICE_TIERS.find((t) => t.value === priceTier)?.max,
+    () => PRICE_TIERS.find((tier) => tier.value === priceTier)?.max,
     [priceTier],
   );
 
@@ -69,14 +63,26 @@ export function CatalogClient({
     return sortProducts(filtered, sort);
   }, [category, brand, maxPriceUsd, sort]);
 
-  const tabs: { value: Category | "all"; label: string }[] = [
-    { value: "all", label: "All" },
-    ...CATEGORIES,
-  ];
+  const tabs: (Category | "all")[] = ["all", ...CATEGORIES.map((c) => c.value)];
 
   return (
-    <div>
-      {/* editorial category filter — text + garnet underline (keyboard a11y via ToggleGroup) */}
+    <>
+      {/* hero — title tracks the active category */}
+      <section className="pb-6 pt-12 text-center sm:pt-16">
+        <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-ey">
+          {t("catalog.eyebrow")}
+        </span>
+        <h1 className="mt-3 font-serif text-[clamp(34px,5vw,52px)] font-medium leading-[1.03] text-fg">
+          {t(`catalog.title.${category}`)}
+        </h1>
+        <div className="mx-auto mt-4 h-0.5 w-14 bg-script-accent" />
+        <p className="mt-5 text-[14px] leading-relaxed text-fg2">
+          Rolex · Patek Philippe · Audemars Piguet · Cartier · Van Cleef &amp;
+          Arpels · Hermès
+        </p>
+      </section>
+
+      {/* editorial category filter */}
       <div className="border-y border-hairline py-3.5">
         <ToggleGroup
           type="single"
@@ -87,31 +93,28 @@ export function CatalogClient({
               setBrand("all");
             }
           }}
-          aria-label="Category"
+          aria-label={t("catalog.title.all")}
         >
-          {tabs.map((t) => (
-            <ToggleGroupItem key={t.value} value={t.value}>
-              {t.label}
+          {tabs.map((tab) => (
+            <ToggleGroupItem key={tab} value={tab}>
+              {t(`filter.${tab}`)}
             </ToggleGroupItem>
           ))}
         </ToggleGroup>
       </div>
 
-      {/* editorial sub-row: italic count + quiet brand / price / sort dropdowns */}
+      {/* editorial sub-row: italic count + quiet dropdowns */}
       <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 pt-3.5 pb-1.5">
         <span className="font-serif text-[14px] italic text-fg2">
           {pieces(results.length)}
         </span>
         <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
-          <Select
-            value={brand}
-            onValueChange={(v) => setBrand(v as Brand | "all")}
-          >
-            <SelectTrigger aria-label="Brand" className={EDITORIAL_TRIGGER}>
-              <SelectValue placeholder="Brand" />
+          <Select value={brand} onValueChange={(v) => setBrand(v as Brand | "all")}>
+            <SelectTrigger aria-label={t("filter.allBrands")} className={EDITORIAL_TRIGGER}>
+              <SelectValue />
             </SelectTrigger>
             <SelectContent align="end">
-              <SelectItem value="all">All brands</SelectItem>
+              <SelectItem value="all">{t("filter.allBrands")}</SelectItem>
               {BRANDS.map((b) => (
                 <SelectItem key={b} value={b}>
                   {b}
@@ -121,26 +124,28 @@ export function CatalogClient({
           </Select>
 
           <Select value={priceTier} onValueChange={setPriceTier}>
-            <SelectTrigger aria-label="Price" className={EDITORIAL_TRIGGER}>
-              <SelectValue placeholder="Price" />
+            <SelectTrigger aria-label={t("filter.anyPrice")} className={EDITORIAL_TRIGGER}>
+              <SelectValue />
             </SelectTrigger>
             <SelectContent align="end">
-              {PRICE_TIERS.map((t) => (
-                <SelectItem key={t.value} value={t.value}>
-                  {t.label}
+              {PRICE_TIERS.map((tier) => (
+                <SelectItem key={tier.value} value={tier.value}>
+                  {tier.value === "all"
+                    ? t("filter.anyPrice")
+                    : t("filter.under", { v: tier.cap ?? "" })}
                 </SelectItem>
               ))}
             </SelectContent>
           </Select>
 
           <Select value={sort} onValueChange={(v) => setSort(v as SortKey)}>
-            <SelectTrigger aria-label="Sort" className={EDITORIAL_TRIGGER}>
-              <SelectValue placeholder="Sort" />
+            <SelectTrigger aria-label={t("sort.featured")} className={EDITORIAL_TRIGGER}>
+              <SelectValue />
             </SelectTrigger>
             <SelectContent align="end">
               {SORTS.map((s) => (
                 <SelectItem key={s.value} value={s.value}>
-                  {s.label}
+                  {t(s.key)}
                 </SelectItem>
               ))}
             </SelectContent>
@@ -159,12 +164,12 @@ export function CatalogClient({
         </div>
       ) : (
         <div className="mt-12 border-y border-hairline py-20 text-center">
-          <p className="font-serif text-[20px] text-fg">Nothing here yet</p>
-          <p className="mt-2 text-[14px] text-fg2">
-            No pieces match these filters.
+          <p className="font-serif text-[20px] text-fg">
+            {t("catalog.empty.title")}
           </p>
+          <p className="mt-2 text-[14px] text-fg2">{t("catalog.empty.copy")}</p>
         </div>
       )}
-    </div>
+    </>
   );
 }

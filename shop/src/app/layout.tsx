@@ -1,11 +1,17 @@
 import type { Metadata, Viewport } from "next";
-import { Bodoni_Moda, Inter, Pinyon_Script } from "next/font/google";
+import {
+  Bodoni_Moda,
+  Inter,
+  Pinyon_Script,
+  Playfair_Display,
+} from "next/font/google";
 import "./globals.css";
+import { LangProvider } from "@/components/i18n/lang-provider";
 import { CartProvider } from "@/components/cart/cart-store";
 import { CartSheet } from "@/components/cart/cart-sheet";
 
 const inter = Inter({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   variable: "--font-inter",
   display: "swap",
 });
@@ -14,6 +20,15 @@ const bodoni = Bodoni_Moda({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-bodoni",
+  display: "swap",
+});
+
+// Cyrillic-capable Didone serif — used for RU headings where Bodoni Moda
+// lacks Cyrillic glyphs (see globals.css html[data-lang="ru"]).
+const playfair = Playfair_Display({
+  subsets: ["latin", "cyrillic"],
+  weight: ["500", "600", "700"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -46,35 +61,41 @@ export const viewport: Viewport = {
   themeColor: "#F4F0E7",
 };
 
-// Applied before first paint (no theme flash). Same localStorage key
-// ('miu_skin') and ?skin= handoff as the static home3 site. Also syncs the
-// theme-color meta so the mobile browser chrome matches the skin.
-const SKIN_INIT = `(function(){try{
-  var q=new URLSearchParams(location.search).get('skin');
-  var ls=localStorage.getItem('miu_skin');
-  var s=(q==='light'||q==='heritage')?q:((ls==='light'||ls==='heritage')?ls:'light');
-  document.documentElement.setAttribute('data-skin',s);
+// Applied before first paint (no flash). Skin (?skin=/miu_skin) + language
+// (?lang=/miu_lang, default RU). Sets data-skin/data-lang/lang + theme-color.
+const APP_INIT = `(function(){try{
+  var d=document.documentElement, q=new URLSearchParams(location.search);
+  var qs=q.get('skin'), ls=localStorage.getItem('miu_skin');
+  var s=(qs==='light'||qs==='heritage')?qs:((ls==='light'||ls==='heritage')?ls:'light');
+  d.setAttribute('data-skin',s);
   var m=document.querySelector('meta[name="theme-color"]');
   if(m)m.setAttribute('content',s==='heritage'?'#2C0E15':'#F4F0E7');
-  if(q==='light'||q==='heritage'){try{localStorage.setItem('miu_skin',s);}catch(e){}}
+  if(qs==='light'||qs==='heritage'){try{localStorage.setItem('miu_skin',s);}catch(e){}}
+  var ql=q.get('lang'), ll=localStorage.getItem('miu_lang');
+  var l=(ql==='ru'||ql==='en')?ql:((ll==='ru'||ll==='en')?ll:'ru');
+  d.setAttribute('data-lang',l); d.setAttribute('lang',l);
+  if(ql==='ru'||ql==='en'){try{localStorage.setItem('miu_lang',l);}catch(e){}}
 }catch(e){}})();`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="en"
+      lang="ru"
       data-skin="light"
-      className={`${inter.variable} ${bodoni.variable} ${pinyon.variable} antialiased`}
+      data-lang="ru"
+      className={`${inter.variable} ${bodoni.variable} ${playfair.variable} ${pinyon.variable} antialiased`}
     >
       <body className="flex min-h-dvh flex-col">
-        <script dangerouslySetInnerHTML={{ __html: SKIN_INIT }} />
+        <script dangerouslySetInnerHTML={{ __html: APP_INIT }} />
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        <CartProvider>
-          {children}
-          <CartSheet />
-        </CartProvider>
+        <LangProvider>
+          <CartProvider>
+            {children}
+            <CartSheet />
+          </CartProvider>
+        </LangProvider>
       </body>
     </html>
   );

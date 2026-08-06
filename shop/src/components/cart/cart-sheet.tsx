@@ -8,11 +8,13 @@ import { Button } from "@/components/ui/button";
 import { ProductImage } from "@/components/site/product-image";
 import { PhotoTile } from "@/components/site/photo-tile";
 import { useCart } from "@/components/cart/cart-store";
+import { useT } from "@/components/i18n/lang-provider";
 import { resolveLines, subtotalUsd, poaQty } from "@/lib/cart";
 import { formatPriceUsd } from "@/lib/format";
 
 export function CartSheet() {
   const { lines, open, setOpen, setQty, remove } = useCart();
+  const { t } = useT();
   const resolved = resolveLines(lines);
   const sub = subtotalUsd(resolved);
   const poa = poaQty(resolved);
@@ -20,10 +22,11 @@ export function CartSheet() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetContent title="Your selection">
+      <SheetContent title={t("cart.title")}>
         <div className="flex items-center justify-between border-b border-panel-line px-6 py-5">
           <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ey">
-            Your selection{units > 0 ? ` · ${units}` : ""}
+            {t("cart.title")}
+            {units > 0 ? ` · ${units}` : ""}
           </span>
         </div>
 
@@ -33,17 +36,14 @@ export function CartSheet() {
             <span className="flex size-14 items-center justify-center rounded-full border border-panel-line text-script-accent">
               <ShoppingBag className="size-6" strokeWidth={1.3} />
             </span>
-            <p className="font-serif text-[22px] text-fg">Your selection is empty</p>
-            <p className="max-w-[34ch] text-[14px] leading-relaxed text-fg2">
-              Add pieces to reserve them, then complete your enquiry privately
-              via Telegram or WhatsApp.
+            <p className="font-serif text-[22px] text-fg">
+              {t("cart.empty.title")}
             </p>
-            <Button
-              className="mt-2"
-              onClick={() => setOpen(false)}
-              asChild
-            >
-              <Link href="/catalog">Browse the collection</Link>
+            <p className="max-w-[34ch] text-[14px] leading-relaxed text-fg2">
+              {t("cart.empty.copy")}
+            </p>
+            <Button className="mt-2" onClick={() => setOpen(false)} asChild>
+              <Link href="/catalog">{t("cart.browse")}</Link>
             </Button>
           </div>
         ) : (
@@ -86,14 +86,14 @@ export function CartSheet() {
                         {product.name}
                       </Link>
                       <span className="text-[10px] font-semibold uppercase tracking-[0.1em] text-mute">
-                        Ref. {product.reference}
+                        {t("ref")} {product.reference}
                       </span>
 
                       <div className="mt-2 flex items-center justify-between gap-2">
                         <div className="flex items-center gap-2.5">
                           <button
                             type="button"
-                            aria-label="Decrease quantity"
+                            aria-label={t("cart.decrease")}
                             onClick={() => setQty(product.id, qty - 1)}
                             className="flex size-6 items-center justify-center rounded-full border border-line2 text-fg2 transition-colors hover:text-fg"
                           >
@@ -104,7 +104,7 @@ export function CartSheet() {
                           </span>
                           <button
                             type="button"
-                            aria-label="Increase quantity"
+                            aria-label={t("cart.increase")}
                             onClick={() => setQty(product.id, qty + 1)}
                             className="flex size-6 items-center justify-center rounded-full border border-line2 text-fg2 transition-colors hover:text-fg"
                           >
@@ -117,7 +117,7 @@ export function CartSheet() {
                           </span>
                         ) : (
                           <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-champ">
-                            On request
+                            {t("price.onRequestShort")}
                           </span>
                         )}
                       </div>
@@ -125,7 +125,7 @@ export function CartSheet() {
 
                     <button
                       type="button"
-                      aria-label={`Remove ${product.name}`}
+                      aria-label={t("cart.remove", { name: product.name })}
                       onClick={() => remove(product.id)}
                       className="self-start text-fg2 transition-colors hover:text-garnet"
                     >
@@ -139,7 +139,7 @@ export function CartSheet() {
             <div className="border-t border-panel-line px-6 py-5">
               <div className="flex items-baseline justify-between">
                 <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-fg2">
-                  Subtotal
+                  {t("cart.subtotal")}
                 </span>
                 <span className="tabular font-sans text-[20px] font-bold text-fg">
                   {formatPriceUsd(sub)}
@@ -147,18 +147,18 @@ export function CartSheet() {
               </div>
               {poa > 0 && (
                 <p className="mt-1 text-right text-[11px] font-semibold uppercase tracking-[0.1em] text-champ">
-                  + {poa} on request
+                  {t("cart.onRequest", { n: poa })}
                 </p>
               )}
               <Button className="mt-4 w-full" onClick={() => setOpen(false)} asChild>
-                <Link href="/checkout">Proceed to checkout →</Link>
+                <Link href="/checkout">{t("cart.proceed")}</Link>
               </Button>
               <button
                 type="button"
                 onClick={() => setOpen(false)}
                 className="mt-3 w-full text-center text-[11px] font-semibold uppercase tracking-[0.14em] text-fg2 transition-colors hover:text-fg"
               >
-                Continue browsing
+                {t("cart.continue")}
               </button>
             </div>
           </>

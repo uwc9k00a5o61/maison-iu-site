@@ -5,6 +5,7 @@ import { ArrowRight, Check } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/components/cart/cart-store";
+import { useT } from "@/components/i18n/lang-provider";
 import { cn } from "@/lib/utils";
 
 /** PDP primary CTA — adds to bag and opens the cart. */
@@ -16,6 +17,7 @@ export function AddToBagButton({
   className?: string;
 }) {
   const { add, setOpen } = useCart();
+  const { t } = useT();
   return (
     <Button
       className={cn(
@@ -27,7 +29,7 @@ export function AddToBagButton({
         setOpen(true);
       }}
     >
-      Add to bag
+      {t("pdp.addToBag")}
       <span
         aria-hidden
         className="absolute right-2 top-1/2 hidden size-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 md:flex"
@@ -41,6 +43,7 @@ export function AddToBagButton({
 /** Small catalogue-card affordance — adds without leaving the grid. */
 export function CardAddButton({ id }: { id: string }) {
   const { add } = useCart();
+  const { t } = useT();
   const [added, setAdded] = React.useState(false);
 
   return (
@@ -63,10 +66,10 @@ export function CardAddButton({ id }: { id: string }) {
     >
       {added ? (
         <>
-          <Check className="size-3" /> Added
+          <Check className="size-3" /> {t("cart.added")}
         </>
       ) : (
-        "Add to bag"
+        t("pdp.addToBag")
       )}
     </button>
   );

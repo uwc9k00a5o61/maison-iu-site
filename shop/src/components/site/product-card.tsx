@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Heart } from "lucide-react";
 
@@ -5,11 +7,12 @@ import { ProductImage } from "@/components/site/product-image";
 import { PhotoTile } from "@/components/site/photo-tile";
 import { CardAddButton } from "@/components/cart/add-to-bag";
 import { Badge } from "@/components/ui/badge";
-import { AVAILABILITY_LABELS } from "@/lib/catalog";
+import { useT } from "@/components/i18n/lang-provider";
 import { formatPriceUsd } from "@/lib/format";
 import type { Product } from "@/lib/products";
 
 export function ProductCard({ product }: { product: Product }) {
+  const { t } = useT();
   const showBadge =
     product.availability === "waitlist" ||
     product.availability === "reserved" ||
@@ -41,13 +44,13 @@ export function ProductCard({ product }: { product: Product }) {
         {showBadge && (
           <div className="absolute left-3 top-3 z-[2]">
             {product.isNew ? (
-              <Badge variant="solid">New</Badge>
+              <Badge variant="solid">{t("availability.new")}</Badge>
             ) : (
               <Badge
                 variant={product.availability === "reserved" ? "quiet" : "outline"}
                 className="bg-paper/85 backdrop-blur-sm"
               >
-                {AVAILABILITY_LABELS[product.availability]}
+                {t(`availability.${product.availability}`)}
               </Badge>
             )}
           </div>
@@ -71,11 +74,11 @@ export function ProductCard({ product }: { product: Product }) {
           {product.name}
         </h3>
         <span className="text-[10.5px] font-semibold uppercase tracking-[0.1em] text-mute">
-          Ref. {product.reference}
+          {t("ref")} {product.reference}
         </span>
         {isPoa ? (
           <span className="whitespace-nowrap pt-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-champ">
-            {formatPriceUsd(null)}
+            {t("price.onRequest")}
           </span>
         ) : (
           /* price in Inter (legible $ / numerals) — names stay Bodoni */

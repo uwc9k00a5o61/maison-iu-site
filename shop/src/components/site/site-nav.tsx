@@ -6,16 +6,18 @@ import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 import { useCart } from "@/components/cart/cart-store";
+import { useT } from "@/components/i18n/lang-provider";
 
 const LINKS = [
-  { href: "/catalog?category=watches", label: "Watches" },
-  { href: "/catalog?category=jewellery", label: "Jewellery" },
-  { href: "/catalog?category=bags", label: "Bags" },
+  { href: "/catalog?category=watches", key: "nav.watches" },
+  { href: "/catalog?category=jewellery", key: "nav.jewellery" },
+  { href: "/catalog?category=bags", key: "nav.bags" },
 ];
 
 export function SiteNav() {
   const [open, setOpen] = React.useState(false);
   const { count, setOpen: setCartOpen } = useCart();
+  const { t } = useT();
 
   return (
     <header className="hdr-plate sticky top-0 z-40 border-b backdrop-blur-md">
@@ -24,7 +26,7 @@ export function SiteNav() {
         <div className="flex items-center gap-4 justify-self-start">
           <button
             type="button"
-            aria-label="Menu"
+            aria-label={t("nav.menu")}
             className="flex size-8 items-center justify-center text-hdr-fg md:hidden"
             onClick={() => setOpen(true)}
           >
@@ -49,7 +51,7 @@ export function SiteNav() {
                   href={l.href}
                   className="text-[11px] font-semibold uppercase tracking-[0.18em] text-hdr-fg2 transition-colors hover:text-hdr-fg"
                 >
-                  {l.label}
+                  {t(l.key)}
                 </Link>
               </li>
             ))}
@@ -66,18 +68,18 @@ export function SiteNav() {
 
         {/* RIGHT — store utilities */}
         <div className="flex items-center justify-end gap-4 justify-self-end text-hdr-fg2 sm:gap-5">
-          <button aria-label="Search" className="transition-colors hover:text-hdr-fg">
+          <button aria-label={t("nav.search")} className="transition-colors hover:text-hdr-fg">
             <Search className="size-[18px]" strokeWidth={1.5} />
           </button>
           <button
-            aria-label="Account"
+            aria-label={t("nav.account")}
             className="hidden transition-colors hover:text-hdr-fg sm:block"
           >
             <User className="size-[18px]" strokeWidth={1.5} />
           </button>
           <button
             type="button"
-            aria-label={`Cart${count > 0 ? ` (${count})` : ""}`}
+            aria-label={`${t("nav.cart")}${count > 0 ? ` (${count})` : ""}`}
             onClick={() => setCartOpen(true)}
             className="relative transition-colors hover:text-hdr-fg"
           >
@@ -88,9 +90,6 @@ export function SiteNav() {
               </span>
             )}
           </button>
-          <span className="hidden text-[11px] font-semibold uppercase tracking-[0.14em] text-hdr-fg2 lg:inline">
-            <b className="text-hdr-fg">RU</b> · EN
-          </span>
         </div>
       </nav>
 
@@ -105,11 +104,11 @@ export function SiteNav() {
       >
         <button
           type="button"
-          aria-label="Close"
+          aria-label={t("nav.close")}
           className="absolute right-6 top-6 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-ivory/70"
           onClick={() => setOpen(false)}
         >
-          Close <X className="size-4" />
+          {t("nav.close")} <X className="size-4" />
         </button>
         <span
           translate="no"
@@ -124,7 +123,7 @@ export function SiteNav() {
             className="font-serif text-[clamp(28px,8vw,40px)] font-semibold leading-tight text-ivory transition-colors hover:text-champ"
             onClick={() => setOpen(false)}
           >
-            {l.label}
+            {t(l.key)}
           </Link>
         ))}
         <Link
@@ -132,7 +131,7 @@ export function SiteNav() {
           className="font-serif text-[clamp(28px,8vw,40px)] font-semibold leading-tight text-ivory transition-colors hover:text-champ"
           onClick={() => setOpen(false)}
         >
-          Catalogue
+          {t("nav.catalogue")}
         </Link>
       </div>
     </header>

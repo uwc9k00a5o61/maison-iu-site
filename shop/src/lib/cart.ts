@@ -50,42 +50,61 @@ export interface CheckoutDetails {
   locale?: "ru" | "en";
 }
 
+const SUMMARY_LABELS = {
+  en: {
+    header: "MAISON IU — Order enquiry",
+    onRequest: "Price on request",
+    subtotal: "Subtotal",
+    onRequestN: (n: number) => `+ ${n} on request`,
+    name: "Name",
+    channel: "Channel",
+    city: "City",
+    note: "Note",
+  },
+  ru: {
+    header: "MAISON IU — Заявка на заказ",
+    onRequest: "Цена по запросу",
+    subtotal: "Подытог",
+    onRequestN: (n: number) => `+ ${n} по запросу`,
+    name: "Имя",
+    channel: "Канал",
+    city: "Город",
+    note: "Комментарий",
+  },
+} as const;
+
 /**
  * Plain-text order summary for the Telegram / WhatsApp hand-off. Pure &
- * deterministic so QA can assert it. Bilingual header (RU · EN); item lines
- * are language-neutral (brand / model / ref / qty / price).
+ * deterministic so QA can assert it. Localised by `details.locale` (default
+ * EN); item lines stay language-neutral (brand / model / ref / qty / price).
  */
 export function buildOrderSummary(
   resolved: readonly ResolvedLine[],
   details: CheckoutDetails = {},
 ): string {
-  const lines: string[] = [];
-  lines.push("MAISON IU — Заявка на заказ / Order enquiry");
-  lines.push("");
+  const L = SUMMARY_LABELS[details.locale === "ru" ? "ru" : "en"];
+  const lines: string[] = [L.header, ""];
 
   resolved.forEach((l, i) => {
     const price =
       l.product.priceUsd !== null
         ? formatPriceUsd(l.product.priceUsd)
-        : "Price on request";
+        : L.onRequest;
     lines.push(
       `${i + 1}. ${l.product.brand} — ${l.product.name} · Ref. ${l.product.reference} · ×${l.qty} · ${price}`,
     );
   });
 
-  const sub = subtotalUsd(resolved);
   const poa = poaQty(resolved);
   lines.push("");
-  lines.push(`Подытог / Subtotal: ${formatPriceUsd(sub)}`);
-  if (poa > 0) {
-    lines.push(`+ ${poa} позиц. по запросу / on request`);
-  }
+  lines.push(`${L.subtotal}: ${formatPriceUsd(subtotalUsd(resolved))}`);
+  if (poa > 0) lines.push(L.onRequestN(poa));
 
   const meta: string[] = [];
-  if (details.name) meta.push(`Имя / Name: ${details.name}`);
-  if (details.channel) meta.push(`Канал / Channel: ${details.channel}`);
-  if (details.city) meta.push(`Город / City: ${details.city}`);
-  if (details.comment) meta.push(`Комментарий / Note: ${details.comment}`);
+  if (details.name) meta.push(`${L.name}: ${details.name}`);
+  if (details.channel) meta.push(`${L.channel}: ${details.channel}`);
+  if (details.city) meta.push(`${L.city}: ${details.city}`);
+  if (details.comment) meta.push(`${L.note}: ${details.comment}`);
   if (meta.length) {
     lines.push("");
     lines.push(...meta);

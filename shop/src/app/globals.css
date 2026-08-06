@@ -291,6 +291,14 @@ html[data-skin="heritage"] :focus-visible {
   font-feature-settings: "tnum" 1;
 }
 
+/* RU serif → Playfair Display (Cyrillic-capable Didone). Bodoni Moda has no
+   Cyrillic glyphs, so `font-serif` uses Playfair while the RU locale is active
+   (never thin — weights 500–700). EN keeps Bodoni. Brand marks (Pinyon) and
+   model names stay Latin. */
+html[data-lang="ru"] {
+  --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
+}
+
 /* branded "photography in preparation" placeholder tile — theme-aware, no
    fake logos/dials; script = --script-accent (garnet / ivory), faint
    concentric rings from --line-c over the --ph-grad ground */

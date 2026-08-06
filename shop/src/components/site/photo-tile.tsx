@@ -1,4 +1,7 @@
+"use client";
+
 import { cn } from "@/lib/utils";
+import { useT } from "@/components/i18n/lang-provider";
 
 /**
  * Honest branded placeholder shown while real photography is pending
@@ -16,6 +19,7 @@ export function PhotoTile({
   variant?: "card" | "hero" | "mini";
   className?: string;
 }) {
+  const { t } = useT();
   // compact thumbnail (e.g. cart line) — script mark only, keeps the
   // branded ground consistent with the catalogue placeholder
   if (variant === "mini") {
@@ -69,7 +73,7 @@ export function PhotoTile({
               : "mt-1.5 text-[7.5px] tracking-[0.12em]",
           )}
         >
-          Photography in preparation
+          {t("tile.pending")}
         </span>
       </div>
     </div>
