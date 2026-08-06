@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 // (guards against Render serving a stale cached build).
 export const dynamic = "force-static";
 
-const BUILD_MARKER = "MIU-BACKEND-M1.1-favicon-fix";
+const BUILD_MARKER = "MIU-BACKEND-M2-customers-auth";
 
 export function GET() {
   return new NextResponse(`${BUILD_MARKER}\n`, {

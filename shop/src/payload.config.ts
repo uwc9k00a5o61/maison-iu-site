@@ -6,6 +6,7 @@ import { buildConfig } from "payload";
 import sharp from "sharp";
 
 import { Admins } from "./collections/Admins";
+import { Customers } from "./collections/Customers";
 import { Products } from "./collections/Products";
 
 const filename = fileURLToPath(import.meta.url);
@@ -21,7 +22,7 @@ export default buildConfig({
       titleSuffix: "· MAISON IU",
     },
   },
-  collections: [Admins, Products],
+  collections: [Admins, Customers, Products],
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
