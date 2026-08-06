@@ -1,4 +1,8 @@
-import type { CollectionAfterChangeHook, CollectionAfterDeleteHook, Payload } from "payload";
+import type {
+  CollectionAfterChangeHook,
+  CollectionAfterDeleteHook,
+  PayloadRequest,
+} from "payload";
 
 /** Extract a relationship id whether it's stored flat or populated. */
 function relId(value: unknown): string | number | null {
@@ -16,12 +20,18 @@ function relId(value: unknown): string | number | null {
  * increment) keeps the figure idempotent under any status transition, edit,
  * or delete, so it can never drift or double-count. Guests (no customer) are
  * a no-op.
+ *
+ * IMPORTANT: the find/update run inside the hook's own transaction (`req` is
+ * forwarded). Without it the update would open a second connection and block
+ * on the row that the outer order-write transaction already locks (FK), a
+ * self-deadlock that hangs the request.
  */
 export async function recomputeCustomerSpend(
-  payload: Payload,
+  req: PayloadRequest,
   customerId: string | number | null,
 ): Promise<void> {
   if (customerId == null) return;
+  const { payload } = req;
   const confirmed = await payload.find({
     collection: "orders",
     where: {
@@ -33,6 +43,7 @@ export async function recomputeCustomerSpend(
     limit: 1000,
     depth: 0,
     overrideAccess: true,
+    req,
   });
   const total = confirmed.docs.reduce(
     (sum, o) => sum + (Number((o as { pricedSubtotalUsd?: number }).pricedSubtotalUsd) || 0),
@@ -43,6 +54,7 @@ export async function recomputeCustomerSpend(
     id: customerId,
     data: { cumulativeSpendUsd: total },
     overrideAccess: true,
+    req,
     context: { skipRecompute: true },
   });
 }
@@ -55,9 +67,9 @@ export const ordersAfterChange: CollectionAfterChangeHook = async ({
 }) => {
   const current = relId(doc?.customer);
   const previous = relId(previousDoc?.customer);
-  await recomputeCustomerSpend(req.payload, current);
+  await recomputeCustomerSpend(req, current);
   if (previous != null && previous !== current) {
-    await recomputeCustomerSpend(req.payload, previous);
+    await recomputeCustomerSpend(req, previous);
   }
   return doc;
 };
@@ -67,6 +79,6 @@ export const ordersAfterDelete: CollectionAfterDeleteHook = async ({
   doc,
   req,
 }) => {
-  await recomputeCustomerSpend(req.payload, relId(doc?.customer));
+  await recomputeCustomerSpend(req, relId(doc?.customer));
   return doc;
 };
