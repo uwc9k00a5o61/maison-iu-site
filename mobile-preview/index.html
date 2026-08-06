@@ -19,11 +19,9 @@ h2.sec{font-family:'Bodoni Moda',serif;font-weight:600;font-size:23px;text-align
 .phone{background:#141414;border-radius:34px;padding:9px;box-shadow:0 26px 64px rgba(21,18,13,.20)}
 .phone .scr{border-radius:26px;overflow:hidden;background:#f4f0e7}
 .phone img{display:block;width:100%}
-.phone.cap .scr{height:560px}
-.phone.cap img{height:auto;object-fit:cover;object-position:top}
+.phone.cap .scr{height:600px}
 .cap{font-family:'Bodoni Moda',serif;font-weight:600;font-size:16px;margin-top:15px}
 .cap i{display:block;font-family:Inter;font-weight:600;font-style:normal;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#8A8478;margin-top:3px}
-/* watch decision panel */
 .panel{max-width:900px;margin:0 auto;background:#fff;border:1px solid rgba(0,0,0,.09);border-radius:18px;overflow:hidden;box-shadow:0 24px 56px rgba(22,19,14,.10)}
 .panel img{display:block;width:100%}
 .decide{max-width:760px;margin:20px auto 0;font-size:13.5px;line-height:1.7;color:#2A2620}
@@ -36,35 +34,32 @@ footer{text-align:center;color:#8A8478;font-size:12px;padding:60px 0 46px}
   <h1>Магазин — мобильный обзор</h1>
   <p>Живое состояние магазина на телефоне (истинные 390px, эмуляция устройства). Каталог и карточка товара в обеих темах.</p>
   <div class="note">
-    <span class="ok">✓ Проверено:</span> цены — <b>Inter, жирные, знак $ читаемый</b> (не тонкий Bodoni); фильтры <b>бренд · цена · сортировка</b> восстановлены (тихие дропдауны + категории на shadcn); шапка <b>в цвет темы</b>, тумблер Ivory/Heritage по центру; карточка товара на мобилке <b>отцентрована</b>, кнопки в столбик; спеки — читаемые строки. <b>Overflow 0</b> на 360 / 390 / 440, обе темы, 0 ошибок в консоли.<br>
-    <b>На ваше решение — фото часов</b> (нижний блок): сейчас на трёх разных часах стоит один и тот же кроп. Предлагаю вариант до ваших реальных фото. Это снимки — живьём тыкайте ссылку из чата.
+    <span class="ok">✓ Готово и проверено вживую:</span> фирменные <b>фото-заглушки</b> на всех товарах (часы · украшения · сумки) — плитка «Maison IU · бренд · референс · Photography in preparation», у каждого товара своя, обе темы. Заменяются на ваши реальные фото за одну строку.<br>
+    Цены — <b>Inter, жирные, $ читаемый</b>; фильтры <b>бренд · цена · сортировка</b> на месте; карточка на мобилке отцентрована; шапка в цвет темы. <b>Overflow 0</b> на 360 / 390 / 440, обе темы, каталог и карточка, <b>0 ошибок</b> в консоли. Это снимки — живьём тыкайте ссылку из чата.
   </div>
 </header>
 <main class="wrap">
 
   <h2 class="sec">Каталог</h2>
-  <p class="sub">Цены Inter · фильтры восстановлены · шапка в цвет темы</p>
+  <p class="sub">Фирменные плитки на всех товарах · цены Inter · фильтры</p>
   <div class="grid">
-    <div class="card"><div class="phone cap"><div class="scr"><img src="shop-catalog-light.png" alt="Каталог Ivory"></div></div><div class="cap">Каталог<i>Тема Ivory</i></div></div>
-    <div class="card"><div class="phone cap"><div class="scr"><img src="shop-catalog-heritage.png" alt="Каталог Heritage"></div></div><div class="cap">Каталог<i>Тема Heritage</i></div></div>
+    <div class="card"><div class="phone cap"><div class="scr"><img src="ph-catalog-light.png" alt="Каталог Ivory"></div></div><div class="cap">Каталог<i>Тема Ivory</i></div></div>
+    <div class="card"><div class="phone cap"><div class="scr"><img src="ph-catalog-heritage.png" alt="Каталог Heritage"></div></div><div class="cap">Каталог<i>Тема Heritage</i></div></div>
   </div>
 
   <h2 class="sec">Карточка товара</h2>
-  <p class="sub">Отцентрована · кнопки в столбик · спеки и провенанс</p>
+  <p class="sub">Плитка-герой · отцентровано · кнопки в столбик · спеки и провенанс</p>
   <div class="grid">
-    <div class="card"><div class="phone"><div class="scr"><img src="shop-product-light.png" alt="Карточка Ivory"></div></div><div class="cap">Карточка товара<i>Тема Ivory</i></div></div>
-    <div class="card"><div class="phone"><div class="scr"><img src="shop-product-heritage.png" alt="Карточка Heritage"></div></div><div class="cap">Карточка товара<i>Тема Heritage</i></div></div>
+    <div class="card"><div class="phone"><div class="scr"><img src="ph-product-light.png" alt="Карточка Ivory"></div></div><div class="cap">Карточка · Rolex<i>Тема Ivory</i></div></div>
+    <div class="card"><div class="phone"><div class="scr"><img src="ph-product-heritage.png" alt="Карточка Heritage"></div></div><div class="cap">Карточка · Patek<i>Тема Heritage</i></div></div>
   </div>
 
-  <h2 class="sec">Фото часов — на ваше решение</h2>
-  <p class="sub">Сейчас | Предлагаю · обе темы</p>
-  <div class="panel"><img src="watch-compare.png" alt="Сравнение карточек часов: сейчас и предложение"></div>
+  <h2 class="sec">Что изменилось — фото товаров</h2>
+  <p class="sub">Было | Стало · применено на всех товарах, обе темы</p>
+  <div class="panel"><img src="watch-compare.png" alt="Было и стало: карточки товаров"></div>
   <div class="decide">
-    <span class="tag">Что не так сейчас</span><br>
-    На карточках Rolex Datejust, Patek Nautilus и Audemars Piguet Royal Oak стоит <b>один и тот же кроп</b> одних часов (двухцветный браслет), а у Nautilus кроп почти пустой. Для магазина часов это сразу видно — модели-то разные и очень узнаваемые.<br><br>
-    <span class="tag">Предлагаю до ваших фото</span><br>
-    Фирменная «витрина» вместо чужого фото: скрипт <b>Maison IU</b>, у каждой карточки свой бренд и референс, подпись «Photography in preparation». Честно, на бренде, и три карточки становятся разными. Меняется мгновенно, как только пришлёте <b>реальные фото вашего товара</b> — это и есть главный рычаг качества.<br><br>
-    <b>Ничего из этого пока не применено к живому каталогу.</b> Скажете «да» — поставлю за пару минут; пришлёте фото — заменю на настоящие.
+    <span class="tag">Было</span> На трёх разных часах (Rolex · Patek · AP) стоял <b>один и тот же кроп</b> одних часов, у Nautilus — почти пустой.<br><br>
+    <span class="tag">Стало (применено)</span> Честная фирменная «витрина»: скрипт <b>Maison IU</b>, у каждого товара свой бренд и референс, «Photography in preparation». Ничего чужого и поддельного, каждая карточка своя. <b>Заменим на реальные фото вашего товара за минуту</b> — это и есть главный рычаг качества, ждём их.
   </div>
 
 </main>
