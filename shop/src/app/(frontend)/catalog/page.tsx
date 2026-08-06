@@ -4,6 +4,7 @@ import { ThemeBar } from "@/components/site/theme-bar";
 import { SiteNav } from "@/components/site/site-nav";
 import { SiteFooter } from "@/components/site/site-footer";
 import { CatalogClient } from "@/components/site/catalog-client";
+import { getAllProducts } from "@/lib/products-data";
 import type { Category } from "@/lib/products";
 
 export const metadata: Metadata = {
@@ -11,6 +12,10 @@ export const metadata: Metadata = {
   description:
     "Fine watches, jewellery and bags — Rolex, Patek Philippe, Audemars Piguet, Cartier, Hermès. Verified provenance, $ pricing.",
 };
+
+// Serve catalogue from the CMS with 60s ISR — admin edits (prices,
+// availability, new SKUs, photos) surface within a minute without a rebuild.
+export const revalidate = 60;
 
 const VALID: (Category | "all")[] = ["all", "watches", "jewellery", "bags"];
 
@@ -23,6 +28,8 @@ export default async function CatalogPage({
     ? raw
     : "all") as Category | "all";
 
+  const products = await getAllProducts();
+
   return (
     <>
       <ThemeBar />
@@ -30,7 +37,7 @@ export default async function CatalogPage({
 
       <main id="main" className="flex-1">
         <div className="mx-auto max-w-[1480px] px-5 pb-24 sm:px-8">
-          <CatalogClient initialCategory={category} />
+          <CatalogClient initialCategory={category} products={products} />
         </div>
       </main>
 
