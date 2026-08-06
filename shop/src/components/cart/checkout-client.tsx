@@ -37,6 +37,41 @@ export function CheckoutClient() {
   const [comment, setComment] = React.useState("");
   const [copied, setCopied] = React.useState(false);
 
+  // Persist the enquiry to the CMS on hand-off. Fire-and-forget & guarded so
+  // it records once per selection and never blocks or breaks the guest flow
+  // (Telegram/WhatsApp hand-off proceeds regardless of the DB write).
+  const postedRef = React.useRef(false);
+  React.useEffect(() => {
+    postedRef.current = false;
+  }, [lines]);
+
+  function recordOrder() {
+    if (postedRef.current || lines.length === 0) return;
+    postedRef.current = true;
+    try {
+      fetch("/orders", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "same-origin",
+        keepalive: true,
+        body: JSON.stringify({
+          items: lines.map((l) => ({ id: l.id, qty: l.qty })),
+          contact: {
+            name: name.trim() || undefined,
+            channel,
+            city,
+            comment: comment.trim() || undefined,
+          },
+          locale: lang,
+        }),
+      }).catch(() => {
+        postedRef.current = false; // allow a retry on the next hand-off click
+      });
+    } catch {
+      postedRef.current = false;
+    }
+  }
+
   const summary = React.useMemo(
     () =>
       buildOrderSummary(resolved, {
@@ -222,12 +257,22 @@ export function CheckoutClient() {
 
           <div className="mt-4 flex flex-col gap-3">
             <Button asChild>
-              <a href={telegramUrl(summary)} target="_blank" rel="noopener noreferrer">
+              <a
+                href={telegramUrl(summary)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={recordOrder}
+              >
                 <Send className="size-4" /> {t("checkout.orderTelegram")}
               </a>
             </Button>
             <Button variant="outline" asChild>
-              <a href={whatsappUrl(summary)} target="_blank" rel="noopener noreferrer">
+              <a
+                href={whatsappUrl(summary)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={recordOrder}
+              >
                 {t("checkout.orderWhatsapp")}
               </a>
             </Button>
