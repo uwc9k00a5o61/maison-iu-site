@@ -27,6 +27,55 @@ export interface CreateOrderInput {
   locale?: "ru" | "en";
 }
 
+export interface CartQuote {
+  pricedSubtotalUsd: number;
+  poaCount: number;
+  vipTier: string;
+  vipPercentLabel: string;
+  vipDiscountUsd: number;
+  totalUsd: number;
+  isMember: boolean;
+}
+
+/**
+ * Server-authoritative price quote for a cart — subtotal, POA count and the
+ * VIP discount for the session's customer (0 for guests / no tier / POA).
+ * Prices are re-resolved from the catalogue; client-sent prices are ignored.
+ */
+export async function quoteCart(
+  rawItems: unknown,
+  headers: Headers,
+): Promise<CartQuote> {
+  const items = sanitiseItems(rawItems);
+  const products = await getAllProducts();
+  const byId = new Map(products.map((p) => [p.id, p]));
+
+  let pricedSubtotalUsd = 0;
+  let poaCount = 0;
+  for (const { id, qty } of items) {
+    const p = byId.get(id);
+    if (!p) continue;
+    if (p.priceUsd !== null) pricedSubtotalUsd += p.priceUsd * qty;
+    else poaCount += qty;
+  }
+
+  const customer = await getCurrentCustomer(headers);
+  const { tier, discountUsd } = vipDiscountUsd(
+    pricedSubtotalUsd,
+    customer?.cumulativeSpendUsd ?? 0,
+  );
+
+  return {
+    pricedSubtotalUsd,
+    poaCount,
+    vipTier: tier.id,
+    vipPercentLabel: tier.percentLabel,
+    vipDiscountUsd: discountUsd,
+    totalUsd: Math.max(0, pricedSubtotalUsd - discountUsd),
+    isMember: Boolean(customer),
+  };
+}
+
 function genOrderNumber(): string {
   const stamp = Date.now().toString(36).toUpperCase();
   const rand = crypto.randomBytes(2).toString("hex").toUpperCase();

@@ -1,5 +1,10 @@
 import type { Access, CollectionConfig } from "payload";
 
+import {
+  ordersAfterChange,
+  ordersAfterDelete,
+} from "./hooks/recomputeCustomerSpend";
+
 /**
  * Orders = enquiries raised from checkout. A guest order has no `customer`
  * (the guest flow must never be blocked by auth). Line items and money are
@@ -32,6 +37,10 @@ export const Orders: CollectionConfig = {
       "createdAt",
     ],
     group: "Shop",
+  },
+  hooks: {
+    afterChange: [ordersAfterChange],
+    afterDelete: [ordersAfterDelete],
   },
   access: {
     read: adminOrOwner,

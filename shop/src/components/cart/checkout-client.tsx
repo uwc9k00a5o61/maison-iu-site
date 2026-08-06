@@ -37,6 +37,39 @@ export function CheckoutClient() {
   const [comment, setComment] = React.useState("");
   const [copied, setCopied] = React.useState(false);
 
+  // Server-authoritative quote (VIP discount computed on the server for the
+  // logged-in customer; guests / no-tier / POA → 0). Purely additive: if the
+  // quote is unavailable the summary falls back to the client subtotal.
+  const [quote, setQuote] = React.useState<{
+    pricedSubtotalUsd: number;
+    vipPercentLabel: string;
+    vipDiscountUsd: number;
+    totalUsd: number;
+  } | null>(null);
+  React.useEffect(() => {
+    if (lines.length === 0) {
+      setQuote(null);
+      return;
+    }
+    let alive = true;
+    fetch("/cart/quote", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      credentials: "same-origin",
+      body: JSON.stringify({ items: lines.map((l) => ({ id: l.id, qty: l.qty })) }),
+    })
+      .then((r) => r.json())
+      .then((d) => {
+        if (alive && d.ok) setQuote(d.quote);
+      })
+      .catch(() => {
+        /* keep client fallback */
+      });
+    return () => {
+      alive = false;
+    };
+  }, [lines]);
+
   // Persist the enquiry to the CMS on hand-off. Fire-and-forget & guarded so
   // it records once per selection and never blocks or breaks the guest flow
   // (Telegram/WhatsApp hand-off proceeds regardless of the DB write).
@@ -249,6 +282,27 @@ export function CheckoutClient() {
             <p className="mt-1 text-right text-[11px] font-semibold uppercase tracking-[0.1em] text-champ">
               {t("cart.onRequest", { n: poa })}
             </p>
+          )}
+
+          {quote && quote.vipDiscountUsd > 0 && (
+            <>
+              <div className="mt-2 flex items-baseline justify-between">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-champ">
+                  {t("checkout.vipDiscount", { pct: quote.vipPercentLabel })}
+                </span>
+                <span className="tabular text-[14px] font-semibold text-champ">
+                  −{formatPriceUsd(quote.vipDiscountUsd)}
+                </span>
+              </div>
+              <div className="mt-2 flex items-baseline justify-between border-t border-panel-line pt-3">
+                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-fg2">
+                  {t("checkout.total")}
+                </span>
+                <span className="tabular font-sans text-[20px] font-bold text-fg">
+                  {formatPriceUsd(quote.totalUsd)}
+                </span>
+              </div>
+            </>
           )}
 
           <p className="mt-5 text-[12px] leading-relaxed text-fg2">

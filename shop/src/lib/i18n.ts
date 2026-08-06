@@ -113,6 +113,8 @@ const en: Dict = {
   "checkout.comment": "Comment",
   "checkout.commentPlaceholder": "Anything we should know (optional)",
   "checkout.orderSummary": "Order summary",
+  "checkout.vipDiscount": "VIP discount · {pct}%",
+  "checkout.total": "Total",
   "checkout.noPayment":
     "No online payment — send your selection to our concierge and we'll confirm availability, price and private viewing.",
   "checkout.orderTelegram": "Order via Telegram",
@@ -255,6 +257,8 @@ const ru: Dict = {
   "checkout.comment": "Комментарий",
   "checkout.commentPlaceholder": "Что-то, что нам стоит знать (необязательно)",
   "checkout.orderSummary": "Сводка заказа",
+  "checkout.vipDiscount": "VIP-скидка · {pct}%",
+  "checkout.total": "Итого",
   "checkout.noPayment":
     "Без онлайн-оплаты — отправьте выбор нашему консьержу, и мы подтвердим наличие, цену и личный просмотр.",
   "checkout.orderTelegram": "Оформить в Telegram",
