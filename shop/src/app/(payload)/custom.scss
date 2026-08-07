@@ -9,8 +9,6 @@
    --theme-border-color; .btn--style-primary uses --bg-color/--color).
    ============================================================ */
 
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=Pinyon+Script&display=swap");
-
 :root {
   --miu-garnet: #7a2231;
   --miu-garnet2: #6e2233;
@@ -28,12 +26,16 @@
   --miu-oxline: rgba(244, 240, 231, 0.16);
   --miu-onlt: #f4f0e7;
   --miu-onmt: rgba(244, 240, 231, 0.82);
+}
 
-  --miu-serif: "Playfair Display", Georgia, "Times New Roman", serif;
-  --miu-script: "Pinyon Script", cursive;
-
-  /* body/UI font → Inter (Cyrillic-capable) */
-  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+/* Fonts loaded via next/font on the .miu-fonts wrapper (layout.tsx). Consuming
+   variables + the base UI font are declared here so they resolve inside the
+   admin subtree (inherits through display:contents). Fallbacks: no Comic Sans. */
+.miu-fonts {
+  --miu-serif: var(--miu-playfair), Georgia, "Times New Roman", serif;
+  --miu-script: var(--miu-pinyon), "Brush Script MT", cursive;
+  --font-body: var(--miu-inter), Inter, system-ui, -apple-system, sans-serif;
+  font-family: var(--miu-inter), Inter, system-ui, -apple-system, sans-serif;
 }
 
 /* ---------------- IVORY (light, default) ---------------- */
