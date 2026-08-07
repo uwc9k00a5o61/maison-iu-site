@@ -10,12 +10,14 @@ import type { CollectionConfig } from "payload";
  * Photography: while `imagePending` is true the storefront renders the
  * branded PhotoTile placeholder instead of `image`. To ship a real shot:
  * set `image` to a real path and untick `imagePending`.
+ *
+ * Admin labels are bilingual ({ en, ru }); the panel defaults to Russian.
  */
 export const Products: CollectionConfig = {
   slug: "products",
   labels: {
-    singular: "Product",
-    plural: "Products",
+    singular: { en: "Product", ru: "Товар" },
+    plural: { en: "Products", ru: "Товары" },
   },
   admin: {
     useAsTitle: "name",
@@ -27,7 +29,7 @@ export const Products: CollectionConfig = {
       "availability",
       "imagePending",
     ],
-    group: "Catalogue",
+    group: { en: "Catalogue", ru: "Каталог" },
   },
   // Storefront reads the catalogue publicly. Writes stay admin-only
   // (Payload default: only authenticated admins).
@@ -44,11 +46,13 @@ export const Products: CollectionConfig = {
           type: "text",
           required: true,
           unique: true,
-          label: "Product ID",
+          label: { en: "Product ID", ru: "ID товара" },
           admin: {
             width: "50%",
-            description:
-              "Stable business id (maps to Product.id). e.g. rlx-datejust-36",
+            description: {
+              en: "Stable business id (maps to Product.id). e.g. rlx-datejust-36",
+              ru: "Постоянный ID товара (совпадает с Product.id). Напр. rlx-datejust-36",
+            },
           },
         },
         {
@@ -57,9 +61,13 @@ export const Products: CollectionConfig = {
           required: true,
           unique: true,
           index: true,
+          label: { en: "Slug", ru: "Слаг (URL)" },
           admin: {
             width: "50%",
-            description: "URL slug, e.g. rolex-datejust-36",
+            description: {
+              en: "URL slug, e.g. rolex-datejust-36",
+              ru: "Часть URL, напр. rolex-datejust-36",
+            },
           },
         },
       ],
@@ -68,7 +76,7 @@ export const Products: CollectionConfig = {
       name: "name",
       type: "text",
       required: true,
-      label: "Model name",
+      label: { en: "Model name", ru: "Название модели" },
     },
     {
       type: "row",
@@ -77,6 +85,7 @@ export const Products: CollectionConfig = {
           name: "brand",
           type: "select",
           required: true,
+          label: { en: "Brand", ru: "Бренд" },
           admin: { width: "50%" },
           options: [
             "Rolex",
@@ -91,11 +100,12 @@ export const Products: CollectionConfig = {
           name: "category",
           type: "select",
           required: true,
+          label: { en: "Category", ru: "Категория" },
           admin: { width: "50%" },
           options: [
-            { label: "Watches", value: "watches" },
-            { label: "Jewellery", value: "jewellery" },
-            { label: "Bags", value: "bags" },
+            { label: { en: "Watches", ru: "Часы" }, value: "watches" },
+            { label: { en: "Jewellery", ru: "Украшения" }, value: "jewellery" },
+            { label: { en: "Bags", ru: "Сумки" }, value: "bags" },
           ],
         },
       ],
@@ -107,16 +117,20 @@ export const Products: CollectionConfig = {
           name: "reference",
           type: "text",
           required: true,
+          label: { en: "Reference", ru: "Референс" },
           admin: { width: "50%" },
         },
         {
           name: "priceUsd",
           type: "number",
           min: 0,
-          label: "Price (USD)",
+          label: { en: "Price (USD)", ru: "Цена (USD)" },
           admin: {
             width: "50%",
-            description: "Whole USD. Leave empty for POA (price on application).",
+            description: {
+              en: "Whole USD. Leave empty for POA (price on application).",
+              ru: "Целые USD. Оставьте пустым для «Цена по запросу» (POA).",
+            },
           },
         },
       ],
@@ -129,21 +143,25 @@ export const Products: CollectionConfig = {
           type: "select",
           required: true,
           defaultValue: "in-stock",
+          label: { en: "Availability", ru: "Наличие" },
           admin: { width: "50%" },
           options: [
-            { label: "In stock", value: "in-stock" },
-            { label: "Waitlist", value: "waitlist" },
-            { label: "Reserved", value: "reserved" },
+            { label: { en: "In stock", ru: "В наличии" }, value: "in-stock" },
+            { label: { en: "Waitlist", ru: "Лист ожидания" }, value: "waitlist" },
+            { label: { en: "Reserved", ru: "Резерв" }, value: "reserved" },
           ],
         },
         {
           name: "sortOrder",
           type: "number",
           defaultValue: 0,
-          label: "Sort order",
+          label: { en: "Sort order", ru: "Порядок сортировки" },
           admin: {
             width: "50%",
-            description: "Ascending. Controls the default 'featured' order.",
+            description: {
+              en: "Ascending. Controls the default 'featured' order.",
+              ru: "По возрастанию. Задаёт порядок «Рекомендуемые».",
+            },
           },
         },
       ],
@@ -152,8 +170,12 @@ export const Products: CollectionConfig = {
       name: "image",
       type: "text",
       required: true,
+      label: { en: "Photo", ru: "Фото" },
       admin: {
-        description: "Public image path, e.g. /products/watch-01.jpg",
+        description: {
+          en: "Public image path, e.g. /products/watch-01.jpg",
+          ru: "Путь к изображению, напр. /products/watch-01.jpg",
+        },
       },
     },
     {
@@ -163,21 +185,26 @@ export const Products: CollectionConfig = {
           name: "imagePending",
           type: "checkbox",
           defaultValue: true,
-          label: "Photo pending",
+          label: { en: "Photo pending", ru: "Фото готовится" },
           admin: {
             width: "50%",
-            description:
-              "While ticked the storefront shows the branded placeholder tile.",
+            description: {
+              en: "While ticked the storefront shows the branded placeholder tile.",
+              ru: "Пока включено, на витрине показывается фирменная заглушка вместо фото.",
+            },
           },
         },
         {
           name: "isNew",
           type: "checkbox",
           defaultValue: false,
-          label: "New arrival",
+          label: { en: "New arrival", ru: "Новинка" },
           admin: {
             width: "50%",
-            description: "Marketing flag for surfacing only — never pricing.",
+            description: {
+              en: "Marketing flag for surfacing only — never pricing.",
+              ru: "Маркетинговый флаг для показа — не влияет на цену.",
+            },
           },
         },
       ],
@@ -185,10 +212,16 @@ export const Products: CollectionConfig = {
     {
       name: "specs",
       type: "array",
-      label: "Specifications",
-      labels: { singular: "Spec", plural: "Specs" },
+      label: { en: "Specifications", ru: "Характеристики" },
+      labels: {
+        singular: { en: "Spec", ru: "Характеристика" },
+        plural: { en: "Specs", ru: "Характеристики" },
+      },
       admin: {
-        description: "Structured spec rows shown on the product page.",
+        description: {
+          en: "Structured spec rows shown on the product page.",
+          ru: "Строки характеристик, показываемые на странице товара.",
+        },
       },
       fields: [
         {
@@ -198,12 +231,14 @@ export const Products: CollectionConfig = {
               name: "label",
               type: "text",
               required: true,
+              label: { en: "Label", ru: "Название" },
               admin: { width: "40%" },
             },
             {
               name: "value",
               type: "text",
               required: true,
+              label: { en: "Value", ru: "Значение" },
               admin: { width: "60%" },
             },
           ],

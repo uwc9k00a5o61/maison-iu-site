@@ -24,6 +24,10 @@ const adminsOnly: Access = ({ req: { user } }) =>
 
 export const Customers: CollectionConfig = {
   slug: "customers",
+  labels: {
+    singular: { en: "Customer", ru: "Клиент" },
+    plural: { en: "Customers", ru: "Клиенты" },
+  },
   auth: {
     tokenExpiration: 60 * 60 * 24 * 30, // 30 days
     maxLoginAttempts: 0, // passwordless server-side login → no lockout
@@ -32,7 +36,7 @@ export const Customers: CollectionConfig = {
   admin: {
     useAsTitle: "email",
     defaultColumns: ["email", "name", "cumulativeSpendUsd", "createdAt"],
-    group: "Shop",
+    group: { en: "Shop", ru: "Магазин" },
   },
   access: {
     read: selfOrAdmin,
@@ -45,23 +49,31 @@ export const Customers: CollectionConfig = {
     {
       name: "name",
       type: "text",
-      label: "Name",
+      label: { en: "Name", ru: "Имя" },
     },
     {
       name: "phone",
       type: "text",
-      label: "Phone",
+      label: { en: "Phone", ru: "Телефон" },
     },
     {
       name: "telegramId",
       type: "text",
       unique: true,
       index: true,
-      admin: { readOnly: true, description: "Telegram user id (if linked)." },
+      label: { en: "Telegram ID", ru: "Telegram ID" },
+      admin: {
+        readOnly: true,
+        description: {
+          en: "Telegram user id (if linked).",
+          ru: "Telegram ID пользователя (если привязан).",
+        },
+      },
     },
     {
       name: "telegramUsername",
       type: "text",
+      label: { en: "Telegram username", ru: "Telegram-ник" },
       admin: { readOnly: true },
     },
     {
@@ -69,11 +81,13 @@ export const Customers: CollectionConfig = {
       type: "number",
       defaultValue: 0,
       min: 0,
-      label: "Cumulative spend (USD)",
+      label: { en: "Cumulative spend (USD)", ru: "Накопленная сумма (USD)" },
       admin: {
         readOnly: true,
-        description:
-          "Sum of confirmed orders' priced ($) subtotals. Drives VIP tier. Maintained by hooks.",
+        description: {
+          en: "Sum of confirmed orders' priced ($) subtotals. Drives VIP tier. Maintained by hooks.",
+          ru: "Сумма подытогов подтверждённых заказов. Определяет VIP-уровень. Ведётся автоматически.",
+        },
       },
     },
     // --- Hidden passwordless one-time-code state (never exposed via API) ---

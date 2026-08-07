@@ -9,17 +9,21 @@ import type { CollectionConfig } from "payload";
  */
 export const Admins: CollectionConfig = {
   slug: "admins",
+  labels: {
+    singular: { en: "Admin", ru: "Администратор" },
+    plural: { en: "Admins", ru: "Администраторы" },
+  },
   auth: true,
   admin: {
     useAsTitle: "email",
     defaultColumns: ["name", "email"],
-    group: "Staff",
+    group: { en: "Staff", ru: "Персонал" },
   },
   fields: [
     {
       name: "name",
       type: "text",
-      label: "Name",
+      label: { en: "Name", ru: "Имя" },
     },
   ],
 };

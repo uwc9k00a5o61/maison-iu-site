@@ -2,6 +2,8 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import { postgresAdapter } from "@payloadcms/db-postgres";
+import { en } from "@payloadcms/translations/languages/en";
+import { ru } from "@payloadcms/translations/languages/ru";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 
@@ -24,6 +26,11 @@ export default buildConfig({
     },
   },
   collections: [Admins, Customers, Orders, Products],
+  // Admin panel language: Russian by default (fallback), English available.
+  i18n: {
+    supportedLanguages: { en, ru },
+    fallbackLanguage: "ru",
+  },
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
     outputFile: path.resolve(dirname, "payload-types.ts"),
