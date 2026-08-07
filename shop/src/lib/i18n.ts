@@ -160,6 +160,25 @@ const en: Dict = {
   "account.dash.orders": "Your enquiries",
   "account.orders.empty": "No enquiries yet.",
   "account.orders.emptyCta": "Browse the collection",
+  // home landing
+  "home.hero.eyebrow1": "Boutique · by appointment",
+  "home.hero.eyebrow2": "Moscow · Dubai · Istanbul",
+  "home.hero.title": "Authenticity you can see",
+  "home.hero.slogan":
+    "Original watches, jewellery and premium bags — verified provenance and a full box & papers set.",
+  "home.hero.ctaPrimary": "View the catalogue",
+  "home.hero.ctaSecondary": "Book a viewing",
+  "home.cat.allLink": "Full catalogue",
+  "home.cat.watches.sub": "Timepieces",
+  "home.cat.jewellery.sub": "Fine Jewellery",
+  "home.cat.bags.sub": "Leather",
+  "home.trust.years.l": "years in the market",
+  "home.trust.set.l": "complete set",
+  "home.trust.cities.l": "cities · MSK · DXB · IST",
+  "home.appt.eyebrow": "Concierge service",
+  "home.appt.title": "Personal sourcing",
+  "home.appt.copy":
+    "We'll source the watch, jewel or bag you're after and show it to you privately — by appointment, in confidence. Verified provenance, full box & papers.",
   // footer
   "footer.tagline":
     "Original watches, jewellery and premium bags — verified provenance, full box & papers.",
@@ -304,6 +323,25 @@ const ru: Dict = {
   "account.dash.orders": "Ваши заявки",
   "account.orders.empty": "Заявок пока нет.",
   "account.orders.emptyCta": "Смотреть коллекцию",
+  // home landing
+  "home.hero.eyebrow1": "Бутик · по записи",
+  "home.hero.eyebrow2": "Москва · Дубай · Стамбул",
+  "home.hero.title": "Подлинность, которую видно",
+  "home.hero.slogan":
+    "Оригинальные часы, украшения и сумки премиум-класса — с проверенной подлинностью и полным комплектом box & papers.",
+  "home.hero.ctaPrimary": "Смотреть каталог",
+  "home.hero.ctaSecondary": "Записаться на просмотр",
+  "home.cat.allLink": "Весь каталог",
+  "home.cat.watches.sub": "Timepieces",
+  "home.cat.jewellery.sub": "Fine Jewellery",
+  "home.cat.bags.sub": "Leather",
+  "home.trust.years.l": "лет на рынке",
+  "home.trust.set.l": "полная комплектация",
+  "home.trust.cities.l": "города · MSK · DXB · IST",
+  "home.appt.eyebrow": "Консьерж-сервис",
+  "home.appt.title": "Персональный подбор",
+  "home.appt.copy":
+    "Подберём часы, украшение или сумку под ваш запрос и покажем лично — конфиденциально, по записи. Проверенная подлинность, полный комплект box & papers.",
   "footer.tagline":
     "Оригинальные часы, украшения и премиум-сумки — подтверждённая подлинность, полный комплект box & papers.",
 };
