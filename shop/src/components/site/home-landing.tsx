@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 import { Reveal } from "@/components/site/reveal";
 import { useT } from "@/components/i18n/lang-provider";
@@ -11,9 +10,9 @@ import { telegramUrl, whatsappUrl } from "@/lib/contacts";
 const SECTION = "mx-auto w-full max-w-[1480px] px-5 sm:px-8";
 
 const CATEGORIES = [
-  { key: "watches", img: "/products/watch-01.jpg", sub: "home.cat.watches.sub", label: "nav.watches" },
-  { key: "jewellery", img: "/products/necklace.jpg", sub: "home.cat.jewellery.sub", label: "nav.jewellery" },
-  { key: "bags", img: "/products/bag.jpg", sub: "home.cat.bags.sub", label: "nav.bags" },
+  { key: "watches", sub: "home.cat.watches.sub", label: "nav.watches" },
+  { key: "jewellery", sub: "home.cat.jewellery.sub", label: "nav.jewellery" },
+  { key: "bags", sub: "home.cat.bags.sub", label: "nav.bags" },
 ] as const;
 
 export function HomeLanding() {
@@ -102,24 +101,26 @@ export function HomeLanding() {
               <Link
                 href={`/catalog?category=${c.key}`}
                 className="panel group relative block overflow-hidden rounded-[20px] border p-1.5"
+                aria-label={t(c.label)}
               >
-                <div className="relative aspect-[3/4] overflow-hidden rounded-[15px] plinth">
-                  <Image
-                    src={c.img}
-                    alt={t(c.label)}
-                    fill
-                    sizes="(max-width: 640px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                </div>
-                <span className="absolute bottom-4 left-1/2 flex -translate-x-1/2 flex-col items-center gap-0.5 rounded-[12px] border border-white/20 bg-black/35 px-5 py-2.5 text-center text-white backdrop-blur-md">
-                  <span className="text-[9.5px] font-semibold uppercase tracking-[0.24em] opacity-85">
-                    {t(c.sub)}
+                {/* branded placeholder ground — matches the catalogue PhotoTile
+                    (script + guilloche rings), category name instead of a
+                    photo; no "photography in preparation" copy here */}
+                <div className="plinth tile-rings relative flex aspect-[3/4] flex-col items-center justify-center overflow-hidden rounded-[15px] px-4 text-center transition-transform duration-700 group-hover:scale-[1.02]">
+                  <span
+                    translate="no"
+                    className="tile-script relative text-[clamp(26px,5vw,34px)]"
+                  >
+                    Maison IU
                   </span>
-                  <span className="font-serif text-[clamp(21px,5vw,25px)] font-semibold leading-[1.05]">
+                  <span className="relative my-3 h-px w-8 bg-foil" />
+                  <span className="relative font-serif text-[clamp(22px,5vw,27px)] font-semibold leading-[1.05] text-fg">
                     {t(c.label)}
                   </span>
-                </span>
+                  <span className="relative mt-2 text-[9.5px] font-semibold uppercase tracking-[0.24em] text-ey">
+                    {t(c.sub)}
+                  </span>
+                </div>
               </Link>
             </Reveal>
           ))}
