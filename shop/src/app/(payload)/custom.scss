@@ -1,1 +1,147 @@
-/* Custom admin panel styles. Intentionally empty for now. */
+/* ============================================================
+   MAISON IU — Payload admin brand re-skin (approach A)
+   Ivory default · Heritage optional (built-in theme toggle).
+   Accent: garnet #7A2231 (Ivory) / champagne #9A7E4E (Heritage).
+   These rules are UNLAYERED, so they win over Payload's
+   @layer payload-default defaults regardless of import order.
+   Token names verified against @payloadcms/ui 3.87 (colors.scss:
+   --theme-bg, --theme-elevation-*, --theme-text, --theme-input-bg,
+   --theme-border-color; .btn--style-primary uses --bg-color/--color).
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=Pinyon+Script&display=swap");
+
+:root {
+  --miu-garnet: #7a2231;
+  --miu-garnet2: #6e2233;
+  --miu-champ: #9a7e4e;
+  --miu-ivory: #f4f0e7;
+  --miu-paper: #fbf8f2;
+  --miu-ink: #16130e;
+  --miu-ink2: #2a2620;
+  --miu-ash: #5e584d;
+  --miu-line: rgba(22, 19, 14, 0.12);
+  --miu-line2: rgba(22, 19, 14, 0.22);
+  --miu-ox: #43141e;
+  --miu-ox2: #2c0e15;
+  --miu-ox3: #38111b;
+  --miu-oxline: rgba(244, 240, 231, 0.16);
+  --miu-onlt: #f4f0e7;
+  --miu-onmt: rgba(244, 240, 231, 0.82);
+
+  --miu-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --miu-script: "Pinyon Script", cursive;
+
+  /* body/UI font → Inter (Cyrillic-capable) */
+  --font-body: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* ---------------- IVORY (light, default) ---------------- */
+html[data-theme="light"] {
+  --miu-accent: var(--miu-garnet);
+
+  --theme-bg: var(--miu-ivory);
+  --theme-text: var(--miu-ink);
+  --theme-border-color: var(--miu-line);
+  --theme-input-bg: #ffffff;
+
+  /* warm neutral surface ramp (low = paper surfaces / hairlines) */
+  --theme-elevation-0: var(--miu-paper);
+  --theme-elevation-50: #f1ece0;
+  --theme-elevation-100: #ebe4d6;
+  --theme-elevation-150: #e2d9c7;
+  --theme-elevation-200: #d8cdb8;
+  --theme-elevation-250: #ccbfa6;
+  /* high = ink for strong text/marks */
+  --theme-elevation-800: #2a2620;
+  --theme-elevation-900: #201c16;
+  --theme-elevation-950: #1b1710;
+  --theme-elevation-1000: var(--miu-ink);
+}
+
+/* ---------------- HERITAGE (dark, optional) ---------------- */
+html[data-theme="dark"] {
+  --miu-accent: var(--miu-champ);
+
+  --theme-bg: var(--miu-ox2);
+  --theme-text: var(--miu-onlt);
+  --theme-border-color: var(--miu-oxline);
+  --theme-input-bg: rgba(244, 240, 231, 0.06);
+
+  /* oxblood surfaces (elevation-0 = panels/sidebar) */
+  --theme-elevation-0: var(--miu-ox3);
+  --theme-elevation-50: #431520;
+  --theme-elevation-100: #4c1826;
+  --theme-elevation-150: #571d2c;
+  --theme-elevation-200: #62212f;
+  --theme-elevation-250: #6e2636;
+  /* high = ivory for text/marks */
+  --theme-elevation-800: #efe7dc;
+  --theme-elevation-900: #f4f0e7;
+  --theme-elevation-950: #f8f5ee;
+  --theme-elevation-1000: #ffffff;
+}
+
+/* ---------------- Serif headings (Playfair, Cyrillic-safe) ---------------- */
+h1,
+h2,
+h3,
+h4,
+.doc-header__title,
+.list-header h1,
+.collection-list__page-heading,
+.dashboard__label,
+.view-description__title {
+  font-family: var(--miu-serif);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+
+/* ---------------- Garnet / champagne accents ---------------- */
+/* primary buttons (class drives local --bg-color/--color/--hover-*) */
+.btn--style-primary {
+  --bg-color: var(--miu-accent);
+  --hover-bg: var(--miu-garnet2);
+  --color: var(--miu-paper);
+  --hover-color: var(--miu-paper);
+  border-radius: 999px;
+}
+html[data-theme="dark"] .btn--style-primary {
+  --hover-bg: #b8965f;
+  --color: #20090f;
+  --hover-color: #20090f;
+}
+
+/* links & focused controls in brand accent */
+a:not(.btn):not(.nav-group__toggle):hover {
+  color: var(--miu-accent);
+}
+
+/* active nav item — accent text + inset rule (selectors kept broad; a miss
+   is harmless, tokens already brand the sidebar) */
+.nav a.active,
+.nav a[aria-current="page"],
+.nav__link--active,
+.nav-group__link--active {
+  color: var(--miu-accent) !important;
+  box-shadow: inset 3px 0 0 var(--miu-accent);
+}
+
+/* ---------------- Brand wordmark (Logo / Icon components) ---------------- */
+.miu-brand {
+  font-family: var(--miu-script);
+  line-height: 1;
+  color: var(--theme-text);
+  -webkit-text-stroke: 0.5px currentColor;
+  paint-order: stroke fill;
+  display: inline-block;
+}
+.miu-brand--logo {
+  font-size: 54px;
+}
+.miu-brand--icon {
+  font-size: 24px;
+}
+.login__brand {
+  text-align: center;
+}

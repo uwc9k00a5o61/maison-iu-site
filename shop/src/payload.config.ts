@@ -24,6 +24,12 @@ export default buildConfig({
     meta: {
       titleSuffix: "· MAISON IU",
     },
+    components: {
+      graphics: {
+        Logo: "/components/admin/MaisonLogo#MaisonLogo",
+        Icon: "/components/admin/MaisonIcon#MaisonIcon",
+      },
+    },
   },
   collections: [Admins, Customers, Orders, Products],
   // Admin panel language: Russian by default (fallback), English available.
