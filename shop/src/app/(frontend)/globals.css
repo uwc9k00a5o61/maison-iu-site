@@ -391,3 +391,100 @@ html[data-skin="light"] .foot-skin {
     transition: none;
   }
 }
+
+/* ============ home intro — script logo pen-writes, dark curtains part ============
+   Ported from home3. Neutral brand moment in both skins (ink curtains, ivory
+   script). Runs once per session (sessionStorage miu_intro); ?intro=1 forces;
+   prefers-reduced-motion skips (overlay removed pre-paint by the inline script,
+   so no FOUC / no layout shift). */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+}
+.intro .curtain {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50.5%;
+  background: var(--brand-ink);
+  transition: transform 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.intro .curtain.top {
+  top: 0;
+}
+.intro .curtain.bot {
+  bottom: 0;
+}
+.intro .lg {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition:
+    opacity 0.55s ease,
+    transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.intro .lg svg.sglogo {
+  width: min(72vw, 560px);
+  height: auto;
+}
+.intro .lg .sig {
+  fill: none;
+  stroke: var(--brand-ivory);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  font-family: var(--font-script);
+}
+.intro .lg .sig-fill {
+  fill: var(--brand-ivory);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  font-family: var(--font-script);
+}
+.intro .lg .flr {
+  display: block;
+  margin: 4px auto 0;
+  width: min(48vw, 360px);
+  height: 22px;
+}
+.intro .lg .flr path {
+  fill: none;
+  stroke: var(--brand-champ);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+}
+.intro .lg .dsc {
+  margin-top: 16px;
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--brand-champ);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.intro.done .curtain.top {
+  transform: translateY(-100%);
+}
+.intro.done .curtain.bot {
+  transform: translateY(100%);
+}
+.intro.done .lg {
+  opacity: 0;
+  transform: scale(0.94);
+}
+.intro.gone {
+  display: none;
+}
+body.introing {
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    display: none;
+  }
+}
