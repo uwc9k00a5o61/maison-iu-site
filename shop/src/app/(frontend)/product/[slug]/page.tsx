@@ -6,17 +6,17 @@ import { SiteNav } from "@/components/site/site-nav";
 import { SiteFooter } from "@/components/site/site-footer";
 import { ProductDetail } from "@/components/site/product-detail";
 import { formatPriceUsd } from "@/lib/format";
-import { PRODUCTS } from "@/lib/products";
+import { getProductBySlug } from "@/lib/products-data";
 
-export function generateStaticParams() {
-  return PRODUCTS.map((p) => ({ slug: p.slug }));
-}
+// CMS-backed with 60s ISR; pages render on demand and cache, so new SKUs
+// added in the admin become reachable without a redeploy.
+export const revalidate = 60;
 
 export async function generateMetadata({
   params,
 }: PageProps<"/product/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const product = PRODUCTS.find((p) => p.slug === slug);
+  const product = await getProductBySlug(slug);
   if (!product) return { title: "Not found" };
   return {
     title: `${product.brand} ${product.name}`,
@@ -28,7 +28,7 @@ export default async function ProductPage({
   params,
 }: PageProps<"/product/[slug]">) {
   const { slug } = await params;
-  const product = PRODUCTS.find((p) => p.slug === slug);
+  const product = await getProductBySlug(slug);
   if (!product) notFound();
 
   return (

@@ -20,6 +20,7 @@ import {
   PRODUCTS,
   type Brand,
   type Category,
+  type Product,
 } from "@/lib/products";
 
 const PRICE_TIERS: { value: string; label?: string; cap?: string; max?: number }[] =
@@ -42,8 +43,11 @@ const EDITORIAL_TRIGGER =
 
 export function CatalogClient({
   initialCategory = "all",
+  products = PRODUCTS,
 }: {
   initialCategory?: Category | "all";
+  /** Catalogue source — Payload-backed from the server, static as fallback. */
+  products?: Product[];
 }) {
   const { t, pieces } = useT();
   const [category, setCategory] = React.useState<Category | "all">(
@@ -59,9 +63,9 @@ export function CatalogClient({
   );
 
   const results = React.useMemo(() => {
-    const filtered = filterProducts(PRODUCTS, { category, brand, maxPriceUsd });
+    const filtered = filterProducts(products, { category, brand, maxPriceUsd });
     return sortProducts(filtered, sort);
-  }, [category, brand, maxPriceUsd, sort]);
+  }, [products, category, brand, maxPriceUsd, sort]);
 
   const tabs: (Category | "all")[] = ["all", ...CATEGORIES.map((c) => c.value)];
 

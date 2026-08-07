@@ -71,12 +71,13 @@ export function SiteNav() {
           <button aria-label={t("nav.search")} className="transition-colors hover:text-hdr-fg">
             <Search className="size-[18px]" strokeWidth={1.5} />
           </button>
-          <button
+          <Link
+            href="/account"
             aria-label={t("nav.account")}
             className="hidden transition-colors hover:text-hdr-fg sm:block"
           >
             <User className="size-[18px]" strokeWidth={1.5} />
-          </button>
+          </Link>
           <button
             type="button"
             aria-label={`${t("nav.cart")}${count > 0 ? ` (${count})` : ""}`}
