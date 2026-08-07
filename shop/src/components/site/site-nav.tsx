@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, Search, ShoppingBag, User, X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -22,6 +23,10 @@ export function SiteNav() {
   const { count, setOpen: setCartOpen } = useCart();
   const { t, lang, setLang } = useT();
   const [skin, setSkin] = React.useState<Skin>("light");
+  // On the home page the hero IS the brand mark, so the header wordmark is
+  // hidden to avoid two stacked "Maison IU" logos. Every other page (no hero)
+  // keeps the header logo.
+  const isHome = usePathname() === "/";
 
   React.useEffect(() => {
     const current = document.documentElement.getAttribute("data-skin");
@@ -76,17 +81,19 @@ export function SiteNav() {
             >
               <Menu className="size-5" strokeWidth={1.5} />
             </button>
-            <Link
-              href="/"
-              aria-label="Maison IU"
-              translate="no"
-              className="logo-hdr hidden text-[30px] md:block"
-            >
-              Maison IU
-            </Link>
+            {!isHome && (
+              <Link
+                href="/"
+                aria-label="Maison IU"
+                translate="no"
+                className="logo-hdr hidden text-[30px] md:block"
+              >
+                Maison IU
+              </Link>
+            )}
           </div>
 
-          {/* CENTER — menu (desktop) / wordmark (mobile) */}
+          {/* CENTER — menu (desktop) / wordmark (mobile, hidden on home) */}
           <div className="justify-self-center">
             <ul className="hidden items-center gap-7 md:flex">
               {LINKS.map((l) => (
@@ -100,14 +107,16 @@ export function SiteNav() {
                 </li>
               ))}
             </ul>
-            <Link
-              href="/"
-              aria-label="Maison IU"
-              translate="no"
-              className="logo-hdr text-[27px] md:hidden"
-            >
-              Maison IU
-            </Link>
+            {!isHome && (
+              <Link
+                href="/"
+                aria-label="Maison IU"
+                translate="no"
+                className="logo-hdr text-[27px] md:hidden"
+              >
+                Maison IU
+              </Link>
+            )}
           </div>
 
           {/* RIGHT — store utilities */}
