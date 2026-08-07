@@ -2,6 +2,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 import { postgresAdapter } from "@payloadcms/db-postgres";
+import { s3Storage } from "@payloadcms/storage-s3";
 import { en } from "@payloadcms/translations/languages/en";
 import { ru } from "@payloadcms/translations/languages/ru";
 import { buildConfig } from "payload";
@@ -9,8 +10,32 @@ import sharp from "sharp";
 
 import { Admins } from "./collections/Admins";
 import { Customers } from "./collections/Customers";
+import { Media } from "./collections/Media";
 import { Orders } from "./collections/Orders";
 import { Products } from "./collections/Products";
+
+// Cloud storage is opt-in via env. With no S3_* vars set, Media stays on local
+// disk (dev/test). Set the vars (S3-compatible bucket — Cloudflare R2 / AWS S3)
+// and the same collection is served from the bucket — no code change.
+// NB: no official Cloudinary adapter exists for Payload v3; R2/S3 is the
+// v3-supported, Cloudinary-like (CDN) path. Never hardcode credentials.
+const cloudStoragePlugins = process.env.S3_BUCKET
+  ? [
+      s3Storage({
+        collections: { media: true },
+        bucket: process.env.S3_BUCKET,
+        config: {
+          endpoint: process.env.S3_ENDPOINT,
+          region: process.env.S3_REGION || "auto",
+          forcePathStyle: true,
+          credentials: {
+            accessKeyId: process.env.S3_ACCESS_KEY_ID || "",
+            secretAccessKey: process.env.S3_SECRET_ACCESS_KEY || "",
+          },
+        },
+      }),
+    ]
+  : [];
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -31,7 +56,8 @@ export default buildConfig({
       },
     },
   },
-  collections: [Admins, Customers, Orders, Products],
+  collections: [Admins, Customers, Media, Orders, Products],
+  plugins: cloudStoragePlugins,
   // Admin panel language: Russian by default (fallback), English available.
   i18n: {
     supportedLanguages: { en, ru },

@@ -20,6 +20,11 @@ import {
  * `Product` type used everywhere in the UI.
  */
 
+type MediaDoc = {
+  url?: string | null;
+  sizes?: Record<string, { url?: string | null } | undefined> | null;
+};
+
 type ProductDoc = {
   productId: string;
   slug: string;
@@ -33,12 +38,25 @@ type ProductDoc = {
   availability: string;
   isNew?: boolean | null;
   specs?: { label: string; value: string }[] | null;
+  /** Uploaded real photo (populated at depth ≥ 1); overrides the placeholder. */
+  photo?: MediaDoc | string | null;
 };
+
+/** Best available URL from an uploaded media doc (hero size → original). */
+function photoUrl(photo: ProductDoc["photo"]): string | null {
+  if (!photo || typeof photo === "string") return null;
+  return photo.sizes?.hero?.url ?? photo.url ?? null;
+}
 
 function mapDoc(doc: ProductDoc): Product {
   const specs: ProductSpec[] | undefined = doc.specs?.length
     ? doc.specs.map((s) => ({ label: s.label, value: s.value }))
     : undefined;
+
+  // A real uploaded photo takes priority and auto-clears the placeholder.
+  const realPhoto = photoUrl(doc.photo);
+  const image = realPhoto ?? doc.image;
+  const imagePending = realPhoto ? false : (doc.imagePending ?? false);
 
   return {
     id: doc.productId,
@@ -48,8 +66,8 @@ function mapDoc(doc: ProductDoc): Product {
     category: doc.category as Category,
     reference: doc.reference,
     priceUsd: doc.priceUsd ?? null,
-    image: doc.image,
-    imagePending: doc.imagePending ?? false,
+    image,
+    imagePending,
     availability: doc.availability as Availability,
     isNew: doc.isNew ?? false,
     specs,
@@ -64,7 +82,7 @@ export async function getAllProducts(): Promise<Product[]> {
       collection: "products",
       limit: 500,
       sort: "sortOrder",
-      depth: 0,
+      depth: 1,
     });
     if (!res.docs.length) return PRODUCTS;
     return (res.docs as unknown as ProductDoc[]).map(mapDoc);
@@ -82,7 +100,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
       collection: "products",
       where: { slug: { equals: slug } },
       limit: 1,
-      depth: 0,
+      depth: 1,
     });
     const doc = res.docs[0] as unknown as ProductDoc | undefined;
     if (doc) return mapDoc(doc);

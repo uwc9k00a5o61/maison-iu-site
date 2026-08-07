@@ -167,14 +167,26 @@ export const Products: CollectionConfig = {
       ],
     },
     {
-      name: "image",
-      type: "text",
-      required: true,
+      name: "photo",
+      type: "upload",
+      relationTo: "media",
       label: { en: "Photo", ru: "Фото" },
       admin: {
         description: {
-          en: "Public image path, e.g. /products/watch-01.jpg",
-          ru: "Путь к изображению, напр. /products/watch-01.jpg",
+          en: "Upload a real photo — it replaces the placeholder tile on the storefront automatically.",
+          ru: "Загрузите реальное фото — оно автоматически заменит плитку-заглушку на витрине.",
+        },
+      },
+    },
+    {
+      name: "image",
+      type: "text",
+      required: true,
+      label: { en: "Image path (legacy)", ru: "Путь к изображению (legacy)" },
+      admin: {
+        description: {
+          en: "Fallback static path. Superseded by the uploaded Photo above.",
+          ru: "Резервный статический путь. Приоритет у загруженного «Фото» выше.",
         },
       },
     },
