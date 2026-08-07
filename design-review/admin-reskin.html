@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MAISON IU — Ре-скин админки Payload · ДО | ПОСЛЕ</title><link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{--ivory:#F4F0E7;--paper:#FBF8F2;--panel:#fff;--ink:#16130E;--ink2:#2A2620;--ash:#5E584D;--mute:#8A8377;--line:rgba(22,19,14,.12);--line2:rgba(22,19,14,.22);--garnet:#7A2231;--garnet2:#6E2233;--champ:#9A7E4E;
+--ox:#43141E;--ox2:#2C0E15;--ox3:#38111B;--oxline:rgba(244,240,231,.16);--onlt:#F4F0E7;--onmt:rgba(244,240,231,.8);
+--serif:'Playfair Display',Georgia,serif;--script:'Pinyon Script',cursive;--sans:'Inter',system-ui,sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;min-width:0}
+body{background:#E7E0D3;color:var(--ink);font-family:var(--sans);line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1360px;margin:0 auto;padding:0 32px}
+.top{background:linear-gradient(180deg,#2C0E15,#20090F);color:var(--onlt);padding:52px 0 40px;text-align:center}
+.top .script{font-family:var(--script);font-size:60px;color:#F4F0E7;-webkit-text-stroke:.7px #F4F0E7;line-height:1}
+.top .ey{font-size:11px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:rgba(244,240,231,.7);margin-top:12px}
+.top h1{font-family:var(--serif);font-weight:600;font-size:32px;margin-top:8px}
+.top p{max-width:70ch;margin:14px auto 0;color:rgba(244,240,231,.82);font-size:14px}
+.sec{padding:48px 0}
+.sec+.sec{border-top:1px solid var(--line)}
+.kick{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--garnet)}
+.sec h2{font-family:var(--serif);font-weight:600;font-size:30px;margin:8px 0 4px}
+.sec .lede{color:var(--ink2);max-width:74ch;font-size:14.5px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:24px;align-items:start}
+.card{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:#fff;box-shadow:0 16px 40px rgba(22,19,14,.08)}
+.card .cl{display:flex;align-items:center;gap:8px;padding:10px 15px;border-bottom:1px solid var(--line);font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}
+.cl.b{color:var(--ash)}.cl.a{color:var(--garnet)}
+.d{width:7px;height:7px;border-radius:999px;background:currentColor}
+.card img{width:100%;display:block}
+/* ===== generic admin frame ===== */
+.adm{height:460px;display:grid;grid-template-columns:210px 1fr;font-size:12.5px}
+.sb{padding:16px 14px;display:flex;flex-direction:column;gap:4px}
+.sb .lg{font-family:var(--script);font-size:30px;line-height:1;margin:4px 4px 4px;-webkit-text-stroke:.5px currentColor;paint-order:stroke fill}
+.sb .grp{font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin:14px 8px 6px;opacity:.6}
+.sb a{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:8px;font-weight:500;text-decoration:none}
+.sb a .i{width:15px;height:15px;border-radius:4px;border:1.5px solid currentColor;opacity:.7}
+.main{display:flex;flex-direction:column}
+.bar{display:flex;align-items:center;justify-content:space-between;padding:12px 20px;border-bottom:1px solid var(--line)}
+.bar .bc{font-size:11px;letter-spacing:.04em}
+.bar .acc{width:26px;height:26px;border-radius:999px}
+.body{padding:20px;overflow:hidden}
+.hrow{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.hrow h3{font-family:var(--serif);font-weight:600;font-size:24px}
+.btn{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:9px 16px;border-radius:8px;border:0;cursor:pointer}
+.tbl{width:100%;border-collapse:collapse;font-size:12px}
+.tbl th{text-align:left;font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:9px 10px}
+.tbl td{padding:11px 10px}
+.tbl .th{width:34px;height:34px;border-radius:7px;background:linear-gradient(160deg,#F2ECDF,#E7DECB)}
+.tbl .nm{font-family:var(--serif);font-weight:600;font-size:13.5px}
+.tbl .tab{font-variant-numeric:tabular-nums;font-weight:600}
+.pill{font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 9px;border-radius:999px;display:inline-block}
+/* ===== BEFORE (default payload dark) ===== */
+.adm.pre{background:#111112;color:#c8c8c9}
+.pre .sb{background:#18181a;border-right:1px solid #2a2a2c}
+.pre .sb .lg{font-family:var(--sans);font-size:15px;font-weight:700;color:#e8e8e8;-webkit-text-stroke:0;letter-spacing:-.01em}
+.pre .sb a{color:#b6b6b8}.pre .sb a.on{background:#242427;color:#fff}
+.pre .bar{border-color:#2a2a2c}.pre .bar .acc{background:#2a2a2c}
+.pre .hrow h3{font-family:var(--sans);font-weight:600;font-size:20px;color:#eaeaea}
+.pre .btn{background:#e8e8e8;color:#18181a}
+.pre .tbl th{color:#7d7d80;border-bottom:1px solid #2a2a2c}
+.pre .tbl td{border-bottom:1px solid #202022;color:#c8c8c9}
+.pre .tbl .nm{font-family:var(--sans);font-weight:600;font-size:12.5px;color:#eaeaea}
+.pre .pill{background:#2a2a2c;color:#b6b6b8}
+/* ===== AFTER · IVORY ===== */
+.adm.iv{background:var(--ivory);color:var(--ink2)}
+.iv .sb{background:var(--paper);border-right:1px solid var(--line)}
+.iv .sb .lg{color:var(--ink)}
+.iv .sb .grp{color:var(--ash)}
+.iv .sb a{color:var(--ink2)}
+.iv .sb a.on{background:rgba(122,34,49,.09);color:var(--garnet);box-shadow:inset 3px 0 0 var(--garnet)}
+.iv .sb a.on .i{border-color:var(--garnet);opacity:1}
+.iv .bar{background:var(--paper);border-color:var(--line)}
+.iv .bar .bc{color:var(--ash)}.iv .bar .acc{background:var(--garnet)}
+.iv .hrow h3{color:var(--ink)}
+.iv .btn{background:var(--garnet);color:var(--paper)}
+.iv .tbl th{color:var(--ash);border-bottom:1px solid var(--line2)}
+.iv .tbl td{border-bottom:1px solid var(--line);color:var(--ink2)}
+.iv .tbl .nm{color:var(--ink)}
+.iv .tbl tr:hover td{background:var(--paper)}
+.iv .pill.ok{background:rgba(122,34,49,.1);color:var(--garnet)}
+.iv .pill.q{background:transparent;color:var(--ash);border:1px solid var(--line2)}
+/* ===== AFTER · HERITAGE ===== */
+.adm.he{background:linear-gradient(180deg,#43141E,#2C0E15);color:var(--onmt)}
+.he .sb{background:rgba(20,9,15,.4);border-right:1px solid var(--oxline)}
+.he .sb .lg{color:var(--onlt)}
+.he .sb .grp{color:rgba(244,240,231,.6)}
+.he .sb a{color:var(--onmt)}
+.he .sb a.on{background:rgba(244,240,231,.08);color:#fff;box-shadow:inset 3px 0 0 var(--champ)}
+.he .bar{border-color:var(--oxline)}.he .bar .acc{background:var(--champ)}
+.he .hrow h3{color:var(--onlt)}
+.he .btn{background:var(--champ);color:#20090F}
+.he .tbl th{color:rgba(244,240,231,.6);border-bottom:1px solid var(--oxline)}
+.he .tbl td{border-bottom:1px solid rgba(244,240,231,.08);color:var(--onmt)}
+.he .tbl .nm{color:var(--onlt)}
+.he .pill.ok{background:rgba(154,126,78,.18);color:var(--champ)}
+.he .pill.q{background:transparent;color:rgba(244,240,231,.7);border:1px solid var(--oxline)}
+/* ===== login mock ===== */
+.login{height:460px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;padding:30px}
+.login .lg{font-family:var(--script);font-size:52px;line-height:1;-webkit-text-stroke:.6px currentColor;paint-order:stroke fill}
+.login .desc{font-family:var(--serif);font-size:12px;letter-spacing:.24em;text-transform:uppercase;margin:6px 0 26px}
+.login .f{width:320px;max-width:100%;margin-bottom:14px}
+.login .f label{display:block;font-size:11px;font-weight:600;letter-spacing:.04em;margin-bottom:6px}
+.login .f input{width:100%;height:42px;border-radius:9px;border:1px solid var(--line2);background:#fff;padding:0 13px;font-family:var(--sans);font-size:13px;color:var(--ink)}
+.login .forgot{width:320px;max-width:100%;font-size:11.5px;text-decoration:underline;margin:2px 0 16px}
+.login .go{width:320px;max-width:100%;height:46px;border:0;border-radius:999px;font-weight:600;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+.iv-login{background:var(--ivory);color:var(--ink)}
+.iv-login .desc{color:var(--ash)}.iv-login .forgot{color:var(--ink2)}
+.iv-login .go{background:var(--garnet);color:var(--paper)}
+.he-login{background:linear-gradient(180deg,#43141E,#2C0E15);color:var(--onlt)}
+.he-login .desc{color:var(--onmt)}
+.he-login .f input{background:rgba(244,240,231,.06);border-color:var(--oxline);color:var(--onlt)}
+.he-login .forgot{color:var(--onmt)}
+.he-login .go{background:var(--champ);color:#20090F}
+.note{background:#FBF8F2;border:1px solid var(--line);border-left:3px solid var(--garnet);border-radius:10px;padding:16px 20px;margin-top:24px;font-size:13.5px;color:var(--ink2)}
+.note b{color:var(--ink)}
+.tags{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px}
+.tag{font-size:10.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink2);border:1px solid var(--line2);border-radius:999px;padding:6px 12px}
+.foot{background:#20090F;color:rgba(244,240,231,.75);text-align:center;padding:28px 0;font-size:12px}
+.foot .script{font-family:var(--script);font-size:24px;color:#F4F0E7;-webkit-text-stroke:.5px #F4F0E7;display:block;margin-bottom:6px}
+</style></head><body>
+
+<header class="top"><div class="wrap">
+  <div class="script">Maison IU</div>
+  <div class="ey">Ре-скин админки · Payload CMS</div>
+  <h1>Панель управления — направление и ДО | ПОСЛЕ</h1>
+  <p>Payload нельзя переверстать произвольно, но можно ре-скиннуть через кастомный CSS (дизайн-токены) + свой логотип и шрифты. Рекомендация: основной режим — светлый <b>Ivory</b> (читаемость для ежедневной работы с таблицами), опционально тёмный <b>Heritage</b> через встроенный тумблер тем.</p>
+  <div class="tags"><span class="tag" style="color:#E7D9C4;border-color:rgba(244,240,231,.28)">Рекомендация: Ivory по умолчанию</span><span class="tag" style="color:#E7D9C4;border-color:rgba(244,240,231,.28)">+ Heritage опционально</span><span class="tag" style="color:#E7D9C4;border-color:rgba(244,240,231,.28)">Скрипт-лого · сериф-заголовки · Inter-таблицы</span></div>
+</div></header>
+
+<!-- ЭКРАН ВХОДА -->
+<section class="sec"><div class="wrap">
+  <div class="kick">Экран входа</div>
+  <h2>Вход: скрипт-лого вместо «Payload»</h2>
+  <p class="lede">Дефолт — near-black с логотипом Payload и светло-серой кнопкой. После — бренд-экран: скрипт «Maison IU», гранатовая кнопка «Войти».</p>
+  <div class="row">
+    <figure class="card"><div class="cl b"><span class="d"></span>До · дефолтный Payload (реальный экран)</div><img src="./admin-before/admin-login-desk.png" alt="Payload login — до"></figure>
+    <figure class="card"><div class="cl a"><span class="d"></span>После · Ivory</div>
+      <div class="login iv-login">
+        <div class="lg">Maison IU</div><div class="desc">Панель управления</div>
+        <div class="f"><label>Email</label><input value="islam@maison-iu.com"></div>
+        <div class="f"><label>Пароль</label><input type="password" value="········"></div>
+        <div class="forgot">Забыли пароль?</div>
+        <button class="go">Войти</button>
+      </div>
+    </figure>
+  </div>
+  <div class="row" style="grid-template-columns:1fr;margin-top:22px">
+    <figure class="card" style="max-width:660px"><div class="cl a"><span class="d"></span>После · Heritage (опциональная тёмная тема)</div>
+      <div class="login he-login">
+        <div class="lg">Maison IU</div><div class="desc">Панель управления</div>
+        <div class="f"><label>Email</label><input value="islam@maison-iu.com"></div>
+        <div class="f"><label>Пароль</label><input type="password" value="········"></div>
+        <div class="forgot">Забыли пароль?</div>
+        <button class="go">Войти</button>
+      </div>
+    </figure>
+  </div>
+</div></section>
+
+<!-- СПИСОК ТОВАРОВ -->
+<section class="sec"><div class="wrap">
+  <div class="kick">Список коллекции · Товары</div>
+  <h2>Списки и таблицы: премиально, но читаемо</h2>
+  <p class="lede">Сайдбар с гранатовым активным пунктом, сериф-заголовок раздела, гранатовая «Создать», спокойные hairline-строки, tabular-цены, тихие статус-пиллы. Данные — Inter, заголовки — Playfair (кириллица ок).</p>
+
+  <div class="row">
+    <figure class="card"><div class="cl b"><span class="d"></span>До · дефолтный Payload (реконструкция)</div>
+      <div class="adm pre">
+        <aside class="sb">
+          <div class="lg">Payload</div>
+          <div class="grp">Collections</div>
+          <a class="on"><span class="i"></span>Products</a><a><span class="i"></span>Orders</a><a><span class="i"></span>Customers</a><a><span class="i"></span>Media</a>
+        </aside>
+        <div class="main"><div class="bar"><span class="bc">Products</span><span class="acc"></span></div>
+          <div class="body"><div class="hrow"><h3>Products</h3><button class="btn">Create New</button></div>
+            <table class="tbl"><thead><tr><th></th><th>Brand</th><th>Name</th><th>Ref</th><th>Price</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td><span class="th"></span></td><td>Rolex</td><td class="nm">Datejust 36</td><td>126231</td><td class="tab">$18,500</td><td><span class="pill">In stock</span></td></tr>
+              <tr><td><span class="th"></span></td><td>Patek Philippe</td><td class="nm">Nautilus 5711</td><td>5711/1A</td><td class="tab">On request</td><td><span class="pill">Waitlist</span></td></tr>
+              <tr><td><span class="th"></span></td><td>Hermès</td><td class="nm">Kelly 25</td><td>Sellier</td><td class="tab">$42,000</td><td><span class="pill">Reserved</span></td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </figure>
+
+    <figure class="card"><div class="cl a"><span class="d"></span>После · Ivory</div>
+      <div class="adm iv">
+        <aside class="sb">
+          <div class="lg">Maison IU</div>
+          <div class="grp">Магазин</div>
+          <a class="on"><span class="i"></span>Товары</a><a><span class="i"></span>Заказы</a><a><span class="i"></span>Клиенты</a><a><span class="i"></span>Медиа</a>
+        </aside>
+        <div class="main"><div class="bar"><span class="bc">Магазин / Товары</span><span class="acc"></span></div>
+          <div class="body"><div class="hrow"><h3>Товары</h3><button class="btn">Создать товар</button></div>
+            <table class="tbl"><thead><tr><th></th><th>Бренд</th><th>Модель</th><th>Ref</th><th>Цена</th><th>Наличие</th></tr></thead>
+            <tbody>
+              <tr><td><span class="th"></span></td><td>Rolex</td><td class="nm">Datejust 36</td><td>126231</td><td class="tab">$18,500</td><td><span class="pill ok">В наличии</span></td></tr>
+              <tr><td><span class="th"></span></td><td>Patek Philippe</td><td class="nm">Nautilus 5711</td><td>5711/1A</td><td class="tab">По запросу</td><td><span class="pill q">Лист ожидания</span></td></tr>
+              <tr><td><span class="th"></span></td><td>Hermès</td><td class="nm">Kelly 25 Sellier</td><td>Togo</td><td class="tab">$42,000</td><td><span class="pill q">Зарезервирован</span></td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </figure>
+  </div>
+
+  <div class="row" style="grid-template-columns:1fr;margin-top:22px">
+    <figure class="card" style="max-width:720px"><div class="cl a"><span class="d"></span>После · Heritage (опциональная тёмная тема)</div>
+      <div class="adm he">
+        <aside class="sb">
+          <div class="lg">Maison IU</div>
+          <div class="grp">Магазин</div>
+          <a class="on"><span class="i"></span>Товары</a><a><span class="i"></span>Заказы</a><a><span class="i"></span>Клиенты</a><a><span class="i"></span>Медиа</a>
+        </aside>
+        <div class="main"><div class="bar"><span class="bc">Магазин / Товары</span><span class="acc"></span></div>
+          <div class="body"><div class="hrow"><h3>Товары</h3><button class="btn">Создать товар</button></div>
+            <table class="tbl"><thead><tr><th></th><th>Бренд</th><th>Модель</th><th>Ref</th><th>Цена</th><th>Наличие</th></tr></thead>
+            <tbody>
+              <tr><td><span class="th"></span></td><td>Rolex</td><td class="nm">Datejust 36</td><td>126231</td><td class="tab">$18,500</td><td><span class="pill ok">В наличии</span></td></tr>
+              <tr><td><span class="th"></span></td><td>Cartier</td><td class="nm">Santos Large</td><td>WSSA0009</td><td class="tab">$12,900</td><td><span class="pill q">Лист ожидания</span></td></tr>
+              <tr><td><span class="th"></span></td><td>Van Cleef</td><td class="nm">Alhambra</td><td>10 motifs</td><td class="tab">$9,400</td><td><span class="pill ok">В наличии</span></td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </figure>
+  </div>
+
+  <div class="note"><b>Рекомендация:</b> по умолчанию — <b>Ivory</b> (светлая): для ежедневной работы с таблицами/формами выше читаемость и меньше усталости; ощущается «дорого-чисто», как Linear/Notion. <b>Heritage</b> (oxblood) — как опция через встроенный тумблер тем Payload (совпадает с тёмным регистром сайта). Единый акцент — гранат #7A2231 (в Heritage — шампань-фойл), без золота в брендинге.</div>
+</div></section>
+
+<footer class="foot"><div class="wrap"><span class="script">Maison IU</span>Ре-скин админки Payload · направление + спека для инженера · ДО | ПОСЛЕ</div></footer>
+</body></html>
